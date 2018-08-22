@@ -1,2 +1,31 @@
-<h3>Welcome</h3>
-<p><%= link_to 'Users:', users_path %> <%= User.count %> registered</p>
+<form action="/" method="get">
+  <div class="input-group col-md-4">
+    <input class="form-control py-2" type="search" value="<%= @keyword_string %>" id="example-search-input" name="keyword">
+    <span class="input-group-append">
+        <button class="btn btn-outline-secondary" type="submit">
+          search
+        </button>
+      </span>
+  </div>
+</form>
+<br><br>
+<table class="table">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">photo</th>
+    <th scope="col">url</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @resutls.each_with_index do |result, index| %>
+    <tr>
+      <th scope="row"><%= index + 1 %></th>
+      <td><%= image_tag result["photos"].first["url"] %></td>
+      <td><%= link_to "開啟 inaturalist", result["uri"], target: "_blank" %></td>
+    </tr>
+  <% end %>
+
+  </tbody>
+</table>
+
