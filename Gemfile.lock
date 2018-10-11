@@ -301,6 +301,10 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   awesome_rails_console
+<<<<<<< HEAD
+=======
+  better_errors
+>>>>>>> develop
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.0.0)
   capybara (>= 2.15, < 4.0)
