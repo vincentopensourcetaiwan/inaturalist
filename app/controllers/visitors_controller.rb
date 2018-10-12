@@ -2,7 +2,7 @@ class VisitorsController < ApplicationController
   def index
     require "net/https"
     require "uri"
-    require 'json'
+    require "json"
 
     permitted = params.permit(:keyword)
     attributes = permitted.to_h || {}
