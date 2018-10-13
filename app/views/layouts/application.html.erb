@@ -85,12 +85,11 @@
         <!-- #section:basics/navbar.user_menu -->
         <li class="light-blue">
           <% if Rails.env.production? %>
-            <%= ENV['INATURALIST_LOGIN_URL'] %>
+            <a href="<%= ENV['INATURALIST_LOGIN_URL'] %>">
           <% else %>
             test
           <% end %>
           <i class="ace-icon fa fa-power-off"></i>
-          Login
           </a>
         </li>
         <!-- /section:basics/navbar.user_menu -->
