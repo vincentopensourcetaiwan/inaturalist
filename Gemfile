@@ -11,6 +11,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'sendgrid-ruby'
 gem 'oauth2'
 gem 'rest-client', '~> 2.0.2'
+gem 'config'
 group :development, :test do
   gem 'awesome_rails_console'
   gem 'awesome_print'
