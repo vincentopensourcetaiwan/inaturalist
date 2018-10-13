@@ -87,7 +87,7 @@
           <% if Rails.env.production? %>
             <a href="<%= ENV['INATURALIST_LOGIN_URL'] %>">
           <% else %>
-            abc
+            <a href="<%= Settings.inaturalist_login_url %>">
           <% end %>
           <i class="ace-icon fa fa-power-off"></i>
           </a>
