@@ -84,9 +84,13 @@
       <ul class="nav ace-nav">
         <!-- #section:basics/navbar.user_menu -->
         <li class="light-blue">
-          <a href="<%= destroy_user_session_path %>" data-method="delete" rel="nofollow">
-            <i class="ace-icon fa fa-power-off"></i>
-<!--            Logout-->
+          <% if Rails.env.production? %>
+            <%= ENV['INATURALIST_LOGIN_URL'] %>
+          <% else %>
+            test
+          <% end %>
+          <i class="ace-icon fa fa-power-off"></i>
+          Login
           </a>
         </li>
         <!-- /section:basics/navbar.user_menu -->
