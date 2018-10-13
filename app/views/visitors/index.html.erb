@@ -18,6 +18,7 @@
   <tr>
     <th class="text-center">#</th>
     <th class="text-center">photo</th>
+    <th class="text-center">user</th>
     <th class="text-center">url</th>
   </tr>
   </thead>
@@ -26,6 +27,10 @@
     <tr>
       <td class="text-center"><%= index + 1 %></td>
       <td class="text-center"><%= image_tag result["photos"].first["url"] %></td>
+      <td class="text-center">
+        <%= image_tag result["user"]["icon"] if result["user"].present? && result["user"]["icon"].present? %>
+        <%= link_to "#{result["user"]["login"]}", "https://www.inaturalist.org/people/#{result["user"]["login"]}", target: "_blank" %>
+      </td>
       <td class="text-center"><%= link_to "開啟 inaturalist", result["uri"], target: "_blank" %></td>
     </tr>
   <% end %>
