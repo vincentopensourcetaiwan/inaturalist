@@ -84,12 +84,8 @@
       <ul class="nav ace-nav">
         <!-- #section:basics/navbar.user_menu -->
         <li class="light-blue">
-          <% if Rails.env.production? %>
-            <a href="<%= ENV['INATURALIST_LOGIN_URL'] %>">
-          <% else %>
-            <a href="<%= Settings.inaturalist.link_to_authorization_code %>">
-          <% end %>
-          <i class="ace-icon fa fa-power-off"></i>
+          <a href="<%= ENV['INATURALIST_LOGIN_URL'] %>">
+            <i class="ace-icon fa fa-power-off"></i>
           </a>
         </li>
         <!-- /section:basics/navbar.user_menu -->
