@@ -6,15 +6,15 @@ namespace :dev do
     require 'json'
 
     site = "https://www.inaturalist.org"
-    app_id = Rails.application.secrets.inaturalist[:app_id]
-    app_secret = Rails.application.secrets.inaturalist[:app_secret]
-    redirect_uri = 'http://localhost:3000/' # you can set this to some URL you control for testing
+    app_id = Settings.inaturalist.app_id
+    app_secret = Settings.inaturalist.app_secret
+    redirect_uri = Settings.inaturalist.redirect_uri # you can set this to some URL you control for testing
 
     # REQUEST AN AUTHORIZATION CODE
     # Your web app should redirect the user to this url. They should see a screen
     # offering them the choice to authorize your app. If they aggree, they will be
     # redirected to your redirect_uri with a "code" parameter
-    # url = "#{site}/oauth/authorize?client_id=#{app_id}&redirect_uri=#{redirect_uri}&response_type=code"
+    url = "#{site}/oauth/authorize?client_id=#{app_id}&redirect_uri=#{redirect_uri}&response_type=code"
 
     # REQUEST AN AUTH TOKEN
     # Once your app has that code parameter, you can exchange it for an access token:
@@ -24,23 +24,19 @@ namespace :dev do
     # auth_code = gets.strip
     # puts
 
+    binding.pry
 
-    permitted = params.permit(:code)
-    attributes = permitted.to_h || {}
-    attributes.values
 
-    # binding.pry
     payload = {
       :client_id => app_id,
       :client_secret => app_secret,
-      :code => attributes[:code],
+      :code => auth_code,
       :redirect_uri => redirect_uri,
       :grant_type => "authorization_code"
     }
     puts "POST #{site}/oauth/token, payload: #{payload.inspect}"
-    # binding.pry
     puts response = RestClient.post("#{site}/oauth/token", payload)
-    # puts
+    puts
     # response will be a chunk of JSON looking like
     # {
     #   "access_token":"xxx",
@@ -53,13 +49,10 @@ namespace :dev do
     # Store the token (access_token) in your web app. You can now use it to make authorized
     # requests on behalf of the user, like retrieving profile data:
     token = JSON.parse(response)["access_token"]
-    # headers = { "Authorization" => "Bearer #{token}" }
-    # puts "GET /users/edit.json, headers: #{headers.inspect}"
-    # puts RestClient.get("#{site}/users/edit.json", headers)
-    # puts
-
-    puts token
-    binding.pry
+    headers = { "Authorization" => "Bearer #{token}" }
+    puts "GET /users/edit.json, headers: #{headers.inspect}"
+    puts RestClient.get("#{site}/users/edit.json", headers)
+    puts
   end
 
 
@@ -91,7 +84,6 @@ namespace :dev do
     data = JSON.parse(request)
 
   end
-
 
 
 end
