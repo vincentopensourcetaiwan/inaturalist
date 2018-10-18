@@ -13,9 +13,9 @@ class ApplicationController < ActionController::Base
       require 'json'
 
       site = "https://www.inaturalist.org"
-      app_id = Settings.inaturalist.app_id
-      app_secret = Settings.inaturalist.app_secret
-      redirect_uri = Settings.inaturalist.redirect_uri
+      app_id = ENV['INATURALIST_APP_ID']
+      app_secret = ENV['INATURALIST_APP_SECRET']
+      redirect_uri = ENV['INATURALIST_REDIRECT_URI']
       payload = {
         :client_id => app_id,
         :client_secret => app_secret,
@@ -29,12 +29,7 @@ class ApplicationController < ActionController::Base
         token = JSON.parse(response)["access_token"]
         session[:token] = token
       rescue
-        if Rails.env.production?
-          link_to_authorization_code = ENV['INATURALIST_LOGIN_URL']
-        else
-          link_to_authorization_code = Settings.inaturalist.link_to_authorization_code
-        end
-        redirect_to link_to_authorization_code
+        redirect_to ENV['INATURALIST_LOGIN_URL']
       end
     end
   end
