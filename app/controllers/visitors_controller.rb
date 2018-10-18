@@ -25,7 +25,6 @@ class VisitorsController < ApplicationController
       response = http.request(request)
       data = JSON.parse(response.body)
       @resutls = data["results"]
-      # binding.pry
     end
 
   end
