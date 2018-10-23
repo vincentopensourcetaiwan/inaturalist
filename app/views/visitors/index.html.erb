@@ -1,3 +1,10 @@
+<div id="like_button_container"></div>
+<script>
+    const domContainer = document.querySelector('#like_button_container');
+    ReactDOM.render(e(LikeButton), domContainer);
+</script>
+
+
 <div class="row">
   <div class="col-xs-3">
     <%= form_tag root_path, method: :get, class: 'form-search' do %>
@@ -19,20 +26,41 @@
     <th class="text-center">#</th>
     <th class="text-center">photo</th>
     <th class="text-center">user</th>
+    <th class="text-center">tags</th>
+    <th class="text-center">edit tags</th>
     <th class="text-center">url</th>
   </tr>
   </thead>
   <tbody>
-  <% @resutls.each_with_index do |result, index| %>
-    <tr>
-      <td class="text-center"><%= index + 1 %></td>
-      <td class="text-center"><%= image_tag result["photos"].first["url"] %></td>
-      <td class="text-center">
-        <%= image_tag result["user"]["icon"] if result["user"].present? && result["user"]["icon"].present? %>
-        <%= link_to "#{result["user"]["login"]}", "https://www.inaturalist.org/people/#{result["user"]["login"]}", target: "_blank" %>
-      </td>
-      <td class="text-center"><%= link_to "開啟 inaturalist", result["uri"], target: "_blank" %></td>
-    </tr>
+  <% if @observations.present? %>
+    <% @observations.each_with_index do |observation, index| %>
+      <tr>
+        <td class="text-center"><%= index + 1 %></td>
+        <td class="text-center">
+          <%= link_to observation["uri"], target: :_blank do %>
+            <%= image_tag observation["photos"].first["url"] %>
+          <% end %>
+        </td>
+        <td class="text-center">
+          <% if observation["user"].present? && observation["user"]["icon"].present? %>
+            <%= link_to "https://www.inaturalist.org/people/#{observation["user"]["login"]}", target: :_blank do %>
+              <%= image_tag observation["user"]["icon"] %>
+            <% end %>
+          <% end %>
+          <br>
+          <%= link_to "#{observation["user"]["login"]}", "https://www.inaturalist.org/people/#{observation["user"]["login"]}", target: "_blank" %>
+        </td>
+        <td class="text-center"><%= show_tags(observation) %></td>
+        <td class="text-center">
+          <a href="<%= show_tags_path(observation_id: observation["id"]) %>" class="btn btn-app btn-primary no-radius" target="_blank">
+            <i class="ace-icon fa fa-pencil-square-o bigger-230"></i>
+          </a>
+        <td class="text-center">
+          <a href="<%= observation["uri"] %>" class="btn btn-app btn-success" target="_blank">
+            <i class="ace-icon glyphicon glyphicon-zoom-out bigger-230"></i>
+          </a>
+      </tr>
+    <% end %>
   <% end %>
   </tbody>
 </table>
