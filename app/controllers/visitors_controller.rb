@@ -10,10 +10,8 @@ class VisitorsController < ApplicationController
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     request = Net::HTTP::Get.new(uri.request_uri)
-    # request['Authorization'] = "Bearer #{token}"
     response = http.request(request)
     data = JSON.parse(response.body)
-    # binding.pry
   end
 
   def test_update
@@ -75,7 +73,6 @@ class VisitorsController < ApplicationController
       response = http.request(request)
       data = JSON.parse(response.body)
       @observations = data["results"]
-      # binding.pry
     end
 
     permitted = params.permit(:keyword)
@@ -99,7 +96,6 @@ class VisitorsController < ApplicationController
       response = http.request(request)
       data = JSON.parse(response.body)
       @resutls = data["results"]
-      # binding.pry
     end
 
   end
@@ -117,10 +113,9 @@ class VisitorsController < ApplicationController
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     request = Net::HTTP::Get.new(uri.request_uri)
-    # request['Authorization'] = "Bearer #{token}"
     response = http.request(request)
     data = JSON.parse(response.body)
-    @tags = data["results"].last["description"]
+    @tags = data["results"].last["description"].split(",")
 
   end
 end

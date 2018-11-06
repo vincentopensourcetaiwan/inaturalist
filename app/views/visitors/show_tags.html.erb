@@ -1,1 +1,29 @@
-<%= @tags %>
+<div class="row">
+  <div class="col-xs-3"></div>
+  <div class="col-xs-6"></div>
+  <div class="col-xs-3 text-right">
+  </div>
+</div>
+
+
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+  <tr>
+    <th class="text-center">#</th>
+    <th class="text-center">name</th>
+    <th class="text-center">operations</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% if @tags.present? %>
+    <% @tags.each_with_index do |tag, index| %>
+      <tr>
+        <td class="text-center"><%= index + 1 %></td>
+        <td class="text-center"><%= tag_label(tag) %></td>
+        <td class="text-center">dddd</td>
+
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
