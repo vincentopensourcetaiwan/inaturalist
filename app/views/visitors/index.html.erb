@@ -1,10 +1,3 @@
-<div id="like_button_container"></div>
-<script>
-    const domContainer = document.querySelector('#like_button_container');
-    ReactDOM.render(e(LikeButton), domContainer);
-</script>
-
-
 <div class="row">
   <div class="col-xs-3">
     <%= form_tag root_path, method: :get, class: 'form-search' do %>
@@ -55,10 +48,12 @@
           <a href="<%= show_tags_path(observation_id: observation["id"]) %>" class="btn btn-app btn-primary no-radius" target="_blank">
             <i class="ace-icon fa fa-pencil-square-o bigger-230"></i>
           </a>
+        </td>
         <td class="text-center">
           <a href="<%= observation["uri"] %>" class="btn btn-app btn-success" target="_blank">
             <i class="ace-icon glyphicon glyphicon-zoom-out bigger-230"></i>
           </a>
+        </td>
       </tr>
     <% end %>
   <% end %>
