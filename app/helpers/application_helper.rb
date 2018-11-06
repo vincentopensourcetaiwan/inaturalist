@@ -12,6 +12,7 @@ module ApplicationHelper
   end
 
   def tag_label(tag)
-    "<span class='badge badge-inverse'>#{tag}</span>&nbsp"
+    "<span class='label label-lg label-inverse arrowed arrowed-in-right'>#{tag}</span>&nbsp".html_safe
+    # "<span class='badge badge-lg badge-inverse'>#{tag}</span>&nbsp".html_safe
   end
 end
