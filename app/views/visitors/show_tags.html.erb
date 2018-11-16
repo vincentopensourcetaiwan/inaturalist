@@ -2,6 +2,12 @@
   <div class="col-xs-3"></div>
   <div class="col-xs-6"></div>
   <div class="col-xs-3 text-right">
+    <%= form_tag add_tag_path(observation_id: @observation_id), method: :post, class: 'form-search' do %>
+      <p>
+        <%= text_field_tag :tag, params[:tag], class: 'nav-search-input' %>
+        <%= submit_tag "add tag", name: nil, class: 'btn btn-primary' %>
+      </p>
+    <% end %>
   </div>
 </div>
 
@@ -20,8 +26,12 @@
       <tr>
         <td class="text-center"><%= index + 1 %></td>
         <td class="text-center"><%= tag_label(tag) %></td>
-        <td class="text-center">dddd</td>
-
+        <td class="text-center">
+          <a href="<%= delete_tag_path(observation_id: @observation_id, tag: tag) %>" class="btn btn-app btn-danger btn-sm" data-method="delete">
+            <i class="ace-icon fa fa-trash-o bigger-200"></i>
+            Delete
+          </a>
+        </td>
       </tr>
     <% end %>
   <% end %>
