@@ -3,54 +3,6 @@ class VisitorsController < ApplicationController
   require "uri"
   require "json"
 
-  def detail
-    url = "https://api.inaturalist.org/v1/observations/17512346"
-    uri = URI.parse(url)
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    request = Net::HTTP::Get.new(uri.request_uri)
-    response = http.request(request)
-    data = JSON.parse(response.body)
-  end
-
-  def test_update
-    token = session[:token]
-
-    url = "https://www.inaturalist.org/users/api_token"
-    uri = URI.parse(url)
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    request = Net::HTTP::Get.new(uri.request_uri)
-    request['Authorization'] = "Bearer #{token}"
-    response = http.request(request)
-    data = JSON.parse(response.body)
-    api_token = data["api_token"]
-
-
-    uri = URI.parse("https://api.inaturalist.org/v1/observations/17765492")
-    request = Net::HTTP::Put.new(uri)
-    request.content_type = "application/json"
-    request["Accept"] = "application/json"
-    request["Authorization"] = api_token
-    request.body = JSON.dump({
-                               "ignore_photos" => 1,
-                               "observation" => {
-                                 "description" => "qwe, 789, ooo"
-                               }
-                             })
-
-    req_options = {
-      use_ssl: uri.scheme == "https",
-    }
-
-    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-      http.request(request)
-    end
-    data = JSON.parse(response.body)
-  end
-
   def index
     permitted = params.permit(:keyword)
     attributes = permitted.to_h || {}
