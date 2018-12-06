@@ -1,10 +1,11 @@
 language: ruby
 rvm:
 - 2.4.4
-
 services:
 - postgresql
-
 before_script:
 - cp config/database.yml.travis config/database.yml
 - psql -c 'create database travis_ci_test;' -U postgres
+deploy:
+  api_key:
+    secure: Wr/IYuYaSeMGmeuuXXyaQ84a/QIfty2jBHJ7H4qLmer70L1TMfXAiEb0SlfLJBzO3oHhMQ69UaKpzz5TkVyeHN9yMRWq/XaV477+ZJGRQAzXVVTphp/voNQOHeOYwXOGhpBeBn16DQI6NlQuh0DHugxYE2nFWN5/HpvR617k5wrJirDkB7tX7lxEsYAsVdGte6gs2+HzC8NXCTAp4KHYqr66P83szkkYDaAlIwbj+W1LvqAljW6EjyT0YAMUPbrtfZscwV4oKZwBmVRvmAhjeGWLse8DHbLHEVgO9RwyyIjZZEB4+huUyT71LBxXgaDQphdE5v6j4Rn9Di2OHe2YHu1rLB3Kd0Z4hMoryk/wr+unm0Soe5l+cLuEJDLN6fX0J5Vt4nEcV4uIIxf+s0grsB4F3pR5H3RuemuObFxF0G3kAAz3NEq0i9qbz7oaEUcnXLViZN20lxQnPTRSm5R5imGk6DhT6HxIPBiKuxSHYJSFCbMI7MfIGS4rRnaO1uiA+oNvaKnA7KbZO/QF8CTddTEdmiZb+KVkI7S9co8+OFBk7eeZCWFUFR2wSS43aw5dp9viMYZKvRUDgRAZPSvmSmTwBZpAZgrlH/qfeJiQx95+Cmq1ZAFlz3HMwP7XDhPGSkGUgmA9ccXUtckT06b/0P0OUL0XQHvyLcRjehdEaXY=
