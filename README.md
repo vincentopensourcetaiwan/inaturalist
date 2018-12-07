@@ -1,5 +1,6 @@
 Inaturalist
 ================
+[![Build Status](https://semaphoreci.com/api/v1/vincent-lin/inaturalist/branches/master/badge.svg)](https://semaphoreci.com/vincent-lin/inaturalist)
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
