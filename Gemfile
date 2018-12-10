@@ -14,6 +14,7 @@ gem 'rest-client', '~> 2.0.2'
 gem 'config'
 gem "figaro"
 gem 'mini_racer'
+gem 'rollbar'
 group :development, :test do
   gem 'awesome_rails_console'
   gem 'awesome_print'
