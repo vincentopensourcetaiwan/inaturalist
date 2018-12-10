@@ -15,6 +15,7 @@ gem 'config'
 gem "figaro"
 gem 'mini_racer'
 gem 'rollbar'
+gem 'newrelic_rpm'
 group :development, :test do
   gem 'awesome_rails_console'
   gem 'awesome_print'
