@@ -16,23 +16,6 @@ gem "figaro"
 gem 'mini_racer'
 gem 'rollbar'
 gem 'newrelic_rpm'
-group :development, :test do
-  gem 'awesome_rails_console'
-  gem 'awesome_print'
-  gem 'pry-remote'
-  gem 'pry'
-end
-group :development do
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-end
-group :test do
-  gem 'capybara', '>= 2.15', '< 4.0'
-  gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
-end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap', '~> 4.0.0'
 gem 'devise'
@@ -40,16 +23,29 @@ gem 'high_voltage'
 gem 'jquery-rails'
 gem 'pg'
 gem 'pundit'
-group :development do
-  gem 'rails_layout'
-  gem 'spring-commands-rspec'
-end
 group :development, :test do
+  gem 'awesome_rails_console'
+  gem 'awesome_print'
+  gem 'pry-remote'
+  gem 'pry'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rspec-rails'
 end
+group :development do
+  gem 'web-console', '>= 3.3.0'
+  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'rails_layout'
+  gem 'spring-commands-rspec'
+end
 group :test do
+  gem 'capybara', '>= 2.15', '< 4.0'
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
   gem 'database_cleaner'
   gem 'launchy'
+  gem 'webmock'
 end
+
