@@ -13,7 +13,7 @@ describe InaturalistService do
 
     keyword = URI.encode("吃")
     observations = InaturalistService.search(keyword)
-    expect(observations[0]["uri"]).to eq "0"
+    expect(observations[0]["uri"]).to be_truthy
   end
 
 end
