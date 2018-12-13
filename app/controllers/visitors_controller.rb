@@ -14,7 +14,7 @@ class VisitorsController < ApplicationController
     else
       convert = { :url => attributes[:keyword] }.to_query
       keyword = convert.split("=")[1]
-      @observations = InaturalistService.search(keyword)
+      @observations = InaturalistService.search_observations(keyword)
     end
   end
 
@@ -24,17 +24,8 @@ class VisitorsController < ApplicationController
     attributes.values
 
     @observation_id = attributes[:observation_id]
-
-    url = "https://api.inaturalist.org/v1/observations/#{@observation_id}"
-    uri = URI.parse(url)
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    request = Net::HTTP::Get.new(uri.request_uri)
-    response = http.request(request)
-    data = JSON.parse(response.body)
-    @tags = data["results"].last["description"].split(",")
-
+    observation = InaturalistService.show_observation(@observation_id)
+    @tags = observation.last["description"].split(",")
   end
 
   def add_tag
