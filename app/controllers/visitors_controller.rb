@@ -38,16 +38,7 @@ class VisitorsController < ApplicationController
 
     # get api token
     token = session[:token]
-    url = "https://www.inaturalist.org/users/api_token"
-    uri = URI.parse(url)
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    request = Net::HTTP::Get.new(uri.request_uri)
-    request['Authorization'] = "Bearer #{token}"
-    response = http.request(request)
-    data = JSON.parse(response.body)
-    api_token = data["api_token"]
+    api_token = InaturalistService.get_api_token(token)
 
     # get tags
     url = "https://api.inaturalist.org/v1/observations/#{@observation_id}"
@@ -102,16 +93,7 @@ class VisitorsController < ApplicationController
 
     # get api token
     token = session[:token]
-    url = "https://www.inaturalist.org/users/api_token"
-    uri = URI.parse(url)
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    request = Net::HTTP::Get.new(uri.request_uri)
-    request['Authorization'] = "Bearer #{token}"
-    response = http.request(request)
-    data = JSON.parse(response.body)
-    api_token = data["api_token"]
+    api_token = InaturalistService.get_api_token(token)
 
     # get tags
     url = "https://api.inaturalist.org/v1/observations/#{@observation_id}"
