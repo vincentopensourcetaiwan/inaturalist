@@ -51,4 +51,25 @@ describe InaturalistService do
     observation = InaturalistService.show_observation(observation_id)
     expect(observation[0]["description"]).to be_truthy
   end
+
+  it "update observation description" do
+    observation_id = "17929047"
+    description = "可以吃,  菇,  紅色,  test, 測試"
+    api_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjoxMDUxMzI1LCJvYXV0aF9hcHBsaWNhdGlvbl9pZCI6MjgzLCJleHAiOjE1NDUyMTM2NDZ9.4vwKO2XQexjf0D5YJWbkiPzNQX2b-3gFt0amM-0YQi5Esa68vfRazLYGvVaN4heksltukwICyHK0c-_2NHVB8Q"
+
+    stub_request(:put, "#{InaturalistService::API_URL}#{observation_id}").
+      with(
+        body: "{\"ignore_photos\":1,\"observation\":{\"description\":\"#{description}\"}}",
+        headers: {
+          'Accept' => 'application/json',
+          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'Authorization' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjoxMDUxMzI1LCJvYXV0aF9hcHBsaWNhdGlvbl9pZCI6MjgzLCJleHAiOjE1NDUyMTM2NDZ9.4vwKO2XQexjf0D5YJWbkiPzNQX2b-3gFt0amM-0YQi5Esa68vfRazLYGvVaN4heksltukwICyHK0c-_2NHVB8Q',
+          'Content-Type' => 'application/json',
+          'Host' => 'api.inaturalist.org',
+          'User-Agent' => 'Ruby'
+        }).
+      to_return(status: 200, body: "", headers: {})
+    response = InaturalistService.update_observation_description(observation_id, description, api_token)
+    expect(response.code).to eq "200"
+  end
 end
