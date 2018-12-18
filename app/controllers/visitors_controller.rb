@@ -85,8 +85,7 @@ class VisitorsController < ApplicationController
     end
     description.chop!.chop!
 
-    test = InaturalistService.update_observation_description(@observation_id, description, api_token)
-    binding.pry
+    InaturalistService.update_observation_description(@observation_id, description, api_token)
 
     redirect_to show_tags_path(observation_id: @observation_id)
 

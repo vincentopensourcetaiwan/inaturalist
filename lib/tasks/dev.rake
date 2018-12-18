@@ -24,9 +24,6 @@ namespace :dev do
     # auth_code = gets.strip
     # puts
 
-    binding.pry
-
-
     payload = {
       :client_id => app_id,
       :client_secret => app_secret,
