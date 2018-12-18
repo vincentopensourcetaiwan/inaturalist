@@ -34,6 +34,29 @@ class InaturalistService
     data["results"]
   end
 
+  def self.update_observation_description(observation_id, description, api_token)
+    url = "#{API_URL}#{observation_id}"
+    uri = URI.parse(url)
+    request = Net::HTTP::Put.new(uri)
+    request.content_type = "application/json"
+    request["Accept"] = "application/json"
+    request["Authorization"] = api_token
+    request.body = JSON.dump({
+                               "ignore_photos" => 1,
+                               "observation" => {
+                                 "description" => description
+                               }
+                             })
+
+    req_options = {
+      use_ssl: uri.scheme == "https",
+    }
+
+    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+      http.request(request)
+    end
+  end
+
   def self.get_api_token(token)
     url = API_TOKEN_URL
     uri = URI.parse(url)
