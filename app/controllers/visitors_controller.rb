@@ -52,26 +52,8 @@ class VisitorsController < ApplicationController
     end
     description.chop!.chop!
 
-    url = "https://api.inaturalist.org/v1/observations/#{@observation_id}"
-    uri = URI.parse(url)
-    request = Net::HTTP::Put.new(uri)
-    request.content_type = "application/json"
-    request["Accept"] = "application/json"
-    request["Authorization"] = api_token
-    request.body = JSON.dump({
-                               "ignore_photos" => 1,
-                               "observation" => {
-                                 "description" => description
-                               }
-                             })
+    InaturalistService.update_observation_description(@observation_id, description, api_token)
 
-    req_options = {
-      use_ssl: uri.scheme == "https",
-    }
-
-    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-      http.request(request)
-    end
     redirect_to show_tags_path(observation_id: @observation_id)
   end
 
@@ -103,26 +85,9 @@ class VisitorsController < ApplicationController
     end
     description.chop!.chop!
 
-    url = "https://api.inaturalist.org/v1/observations/#{@observation_id}"
-    uri = URI.parse(url)
-    request = Net::HTTP::Put.new(uri)
-    request.content_type = "application/json"
-    request["Accept"] = "application/json"
-    request["Authorization"] = api_token
-    request.body = JSON.dump({
-                               "ignore_photos" => 1,
-                               "observation" => {
-                                 "description" => description
-                               }
-                             })
+    test = InaturalistService.update_observation_description(@observation_id, description, api_token)
+    binding.pry
 
-    req_options = {
-      use_ssl: uri.scheme == "https",
-    }
-
-    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-      http.request(request)
-    end
     redirect_to show_tags_path(observation_id: @observation_id)
 
   end
