@@ -4,37 +4,25 @@ class VisitorsController < ApplicationController
   require "json"
 
   def index
-    permitted = params.permit(:keyword)
-    attributes = permitted.to_h || {}
-    attributes.values
-
-    @keyword_string = attributes[:keyword]
+    @keyword_string = permitted_params["keyword"]
     if (@keyword_string.nil?) || (@keyword_string == "")
       @resutls = []
     else
-      convert = { :url => attributes[:keyword] }.to_query
+      convert = { :url => @keyword_string }.to_query
       keyword = convert.split("=")[1]
       @observations = InaturalistService.search_observations(keyword)
     end
   end
 
   def show_tags
-    permitted = params.permit(:observation_id)
-    attributes = permitted.to_h || {}
-    attributes.values
-
-    @observation_id = attributes[:observation_id]
+    @observation_id = permitted_params["observation_id"]
     observation = InaturalistService.show_observation(@observation_id)
     @tags = observation.last["description"].split(",")
   end
 
   def add_tag
-    permitted = params.permit(:tag, :observation_id)
-    attributes = permitted.to_h || {}
-    attributes.values
-
-    @tag = attributes[:tag]
-    @observation_id = attributes[:observation_id]
+    @tag = permitted_params["tag"]
+    @observation_id = permitted_params["observation_id"]
 
     # get api token
     token = session[:token]
@@ -59,12 +47,8 @@ class VisitorsController < ApplicationController
 
 
   def delete_tag
-    permitted = params.permit(:tag, :observation_id)
-    attributes = permitted.to_h || {}
-    attributes.values
-
-    @tag = attributes[:tag].strip!
-    @observation_id = attributes[:observation_id]
+    @tag = permitted_params["tag"].strip!
+    @observation_id = permitted_params["observation_id"]
 
     # get api token
     token = session[:token]
@@ -90,4 +74,9 @@ class VisitorsController < ApplicationController
     redirect_to show_tags_path(observation_id: @observation_id)
 
   end
+
+  def permitted_params
+    params.permit(:keyword, :observation_id, :tag)
+  end
+
 end
