@@ -23,7 +23,6 @@ gem 'high_voltage'
 gem 'jquery-rails'
 gem 'pg'
 gem 'pundit'
-gem 'simplecov', require: false, group: :test
 group :development, :test do
   gem 'awesome_rails_console'
   gem 'awesome_print'
@@ -48,5 +47,7 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'webmock'
+  gem 'simplecov', require: false
+  gem 'codeclimate-test-reporter', require: false
 end
 
