@@ -2,10 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :save_token
 
   def save_token
-    permitted = params.permit(:code)
-    attributes = permitted.to_h || {}
-    attributes.values
-    auth_code = attributes[:code]
+    auth_code = params.permit(:code)[:code]
 
     if auth_code.present?
       require 'rubygems'
@@ -31,6 +28,9 @@ class ApplicationController < ActionController::Base
       rescue
         redirect_to ENV['INATURALIST_LOGIN_URL']
       end
+
     end
+
   end
+
 end
