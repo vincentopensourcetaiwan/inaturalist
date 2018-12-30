@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Find easily a doctor and book online an appointment">
+  <meta name="author" content="Ansonika">
+  <title>FINDOCTOR - Find easily a doctor and book online an appointment</title>
+
+  <!-- Favicons-->
+  <link rel="shortcut icon" img src="visitor-theme/html_menu_2/img/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" type="image/x-icon" img src="visitor-theme/html_menu_2/img/apple-touch-icon-57x57-precomposed.png">
+  <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" img src="visitor-theme/html_menu_2/img/apple-touch-icon-72x72-precomposed.png">
+  <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" img src="visitor-theme/html_menu_2/img/apple-touch-icon-114x114-precomposed.png">
+  <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" img src="visitor-theme/html_menu_2/img/apple-touch-icon-144x144-precomposed.png">
+
+  <!-- GOOGLE WEB FONT -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800" rel="stylesheet">
+
+  <!-- BASE CSS -->
+  <link href="visitor-theme/html_menu_2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="visitor-theme/html_menu_2/css/style.css" rel="stylesheet">
+  <link href="visitor-theme/html_menu_2/css/menu.css" rel="stylesheet">
+  <link href="visitor-theme/html_menu_2/css/vendors.css" rel="stylesheet">
+  <link href="visitor-theme/html_menu_2/css/icon_fonts/css/all_icons_min.css" rel="stylesheet">
+
+  <!-- SPECIFIC CSS -->
+  <link href="visitor-theme/html_menu_2/css/date_picker.css" rel="stylesheet">
+
+  <!-- YOUR CUSTOM CSS -->
+  <link href="visitor-theme/html_menu_2/css/custom.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div id="preloader" class="Fixed">
+  <div data-loader="circle-side"></div>
+</div>
+<!-- /Preload-->
+
+<div id="page">
+  <header class="static">
+    <a href="#menu" class="btn_mobile">
+      <div class="hamburger hamburger--spin" id="hamburger">
+        <div class="hamburger-box">
+          <div class="hamburger-inner"></div>
+        </div>
+      </div>
+    </a>
+    <!-- /btn_mobile-->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-6">
+        </div>
+        <div class="col-lg-9 col-6">
+          <nav id="menu" class="main-menu">
+          </nav>
+          <!-- /main-menu -->
+        </div>
+      </div>
+    </div>
+    <!-- /container -->
+  </header>
+  <!-- /header -->
+
+  <main class="theia-exception">
+    <div id="results">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h4><strong>Showing <%= @observations.count %></strong> of <%= @observations.count %> results</h4>
+          </div>
+          <div class="col-md-6">
+            <div class="search_bar_list">
+              <%= form_tag search_results_path, method: :get do %>
+                <input type="text" class="form-control" placeholder="" name="keyword">
+                <input type="submit" value="搜尋">
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <!-- /row -->
+      </div>
+      <!-- /container -->
+    </div>
+    <!-- /results -->
+
+    <div class="filters_listing">
+      <div class="container">
+      </div>
+      <!-- /container -->
+    </div>
+    <!-- /filters -->
+
+    <div class="container margin_60_35">
+      <div class="row">
+        <div class="col-lg-7">
+          <% if @observations.present? %>
+            <% @observations.each_with_index do |observation, index| %>
+              <div class="strip_list wow fadeIn">
+                <figure>
+                  <a href="<%= observation["uri"] %>" target="_blank"><img src="<%= observation["photos"].first["url"] %>" alt=""></a>
+                </figure>
+                <h3><%= @observations[0]["species_guess"] %></h3>
+                <p><%= observation["description"] %></p>
+                <p></p>
+                <ul>
+                  <li><a href="#0" onclick="onHtmlClick('Doctors', 0)" class="btn_listing">View on Map</a></li>
+                  <li>
+                  </li>
+                  <li>
+                    <% unless observation["user"].present? && observation["user"]["icon"].present? %>
+                      <%= link_to observation["user"]["login"], "https://www.inaturalist.org/people/#{observation["user"]["login"]}", target: :_blank %>
+                    <% else %>
+                      <%= "#{observation["user"]["login"]}" %>
+                      <%= link_to "https://www.inaturalist.org/people/#{observation["user"]["login"]}", target: :_blank do %>
+                        <%= image_tag observation["user"]["icon"] %>
+                      <% end %>
+                    <% end %>
+                  </li>
+                </ul>
+              </div>
+              <!-- /strip_list -->
+            <% end %>
+          <% end %>
+
+
+        </div>
+        <!-- /col -->
+
+        <aside class="col-lg-5" id="sidebar">
+          <div id="map_listing" class="normal_list">
+          </div>
+        </aside>
+        <!-- /aside -->
+
+      </div>
+      <!-- /row -->
+    </div>
+    <!-- /container -->
+  </main>
+  <!-- /main -->
+
+  <footer>
+    <div class="container margin_60_35">
+
+    </div>
+  </footer>
+  <!--/footer-->
+</div>
+<!-- page -->
+
+<div id="toTop"></div>
+<!-- Back to top button -->
+
+<!-- COMMON SCRIPTS -->
+<script src="visitor-theme/html_menu_2/js/jquery-2.2.4.min.js"></script>
+<script src="visitor-theme/html_menu_2/js/common_scripts.min.js"></script>
+<script src="visitor-theme/html_menu_2/js/functions.js"></script>
+
+<!-- SPECIFIC SCRIPTS -->
+<script src="visitor-theme/html_menu_2/js/markerclusterer.js"></script>
+<script src="visitor-theme/html_menu_2/js/map_listing.js"></script>
+<script src="visitor-theme/html_menu_2/js/infobox.js"></script>
+
+</body>
+</html>

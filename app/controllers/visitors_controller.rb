@@ -3,6 +3,21 @@ class VisitorsController < ApplicationController
   require "uri"
   require "json"
 
+  def search
+  end
+
+  def search_results
+    @keyword_string = permitted_params["keyword"]
+    if (@keyword_string.nil?) || (@keyword_string == "")
+      @resutls = []
+    else
+      convert = { :url => @keyword_string }.to_query
+      keyword = convert.split("=")[1]
+      @observations = InaturalistService.search_observations(keyword)
+    end
+    render layout: false
+  end
+
   def index
     @keyword_string = permitted_params["keyword"]
     if (@keyword_string.nil?) || (@keyword_string == "")
@@ -39,7 +54,7 @@ class VisitorsController < ApplicationController
       description = description + "#{tag}, "
     end
     description.chop!.chop!
-
+    Ø
     InaturalistService.update_observation_description(@observation_id, description, api_token)
 
     redirect_to show_tags_path(observation_id: @observation_id)
