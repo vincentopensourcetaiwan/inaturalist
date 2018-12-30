@@ -104,7 +104,7 @@
                 <figure>
                   <a href="<%= observation["uri"] %>" target="_blank"><img src="<%= observation["photos"].first["url"] %>" alt=""></a>
                 </figure>
-                <h3><%= @observations[0]["species_guess"] %></h3>
+                <h3><%= observation["taxon"]["name"] %></h3>
                 <p><%= observation["description"] %></p>
                 <p></p>
                 <ul>
