@@ -39,6 +39,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rails_layout'
   gem 'spring-commands-rspec'
+  gem 'annotate'
 end
 group :test do
   gem 'capybara', '>= 2.15', '< 4.0'
