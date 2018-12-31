@@ -1,15 +1,104 @@
-<div class="hero_home">
-  <div class="content">
-    <h3>南湖登山小學</h3>
-    <p>
-    </p>
-    <%= form_tag search_results_path, method: :get do %>
-      <div id="custom-search-input">
-        <div class="input-group">
-          <%= text_field_tag :keyword, params[:keyword], class: 'search-query' %>
-          <%= submit_tag "搜尋", name: nil, class: 'btn_search' %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Find easily a doctor and book online an appointment">
+  <meta name="author" content="Ansonika">
+  <title>FINDOCTOR - Find easily a doctor and book online an appointment</title>
+
+  <!-- Favicons-->
+  <link rel="shortcut icon" href="visitor-theme/html_menu_2/img/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" type="image/x-icon" href="visitor-theme/html_menu_2/img/apple-touch-icon-57x57-precomposed.png">
+  <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="visitor-theme/html_menu_2/img/apple-touch-icon-72x72-precomposed.png">
+  <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="visitor-theme/html_menu_2/img/apple-touch-icon-114x114-precomposed.png">
+  <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="visitor-theme/html_menu_2/img/apple-touch-icon-144x144-precomposed.png">
+
+  <!-- GOOGLE WEB FONT -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800" rel="stylesheet">
+
+  <!-- BASE CSS -->
+  <link href="visitor-theme/html_menu_2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="visitor-theme/html_menu_2/css/style.css" rel="stylesheet">
+  <link href="visitor-theme/html_menu_2/css/menu.css" rel="stylesheet">
+  <link href="visitor-theme/html_menu_2/css/vendors.css" rel="stylesheet">
+  <link href="visitor-theme/html_menu_2/css/icon_fonts/css/all_icons_min.css" rel="stylesheet">
+
+  <!-- YOUR CUSTOM CSS -->
+  <link href="visitor-theme/html_menu_2/css/custom.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div id="preloader" class="Fixed">
+  <div data-loader="circle-side"></div>
+</div>
+<!-- /Preload-->
+
+<div id="page">
+  <header class="header_sticky">
+    <a href="#menu" class="btn_mobile">
+      <div class="hamburger hamburger--spin" id="hamburger">
+        <div class="hamburger-box">
+          <div class="hamburger-inner"></div>
         </div>
       </div>
-    <% end %>
-  </div>
+    </a>
+    <!-- /container -->
+  </header>
+  <!-- /header -->
+
+  <main>
+    <div class="hero_home">
+      <div class="content">
+        <h3>南湖登山小學</h3>
+        <p>
+        </p>
+        <%= form_tag search_results_path, method: :get do %>
+          <div id="custom-search-input">
+            <div class="input-group">
+              <%= text_field_tag :keyword, params[:keyword], class: 'search-query' %>
+              <%= submit_tag "搜尋", name: nil, class: 'btn_search' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>    <!-- /Hero -->
+  </main>
+  <!-- /main content -->
+
+  <footer>
+    <div class="container margin_60_35">
+      <div class="row">
+        <div class="col-lg-3 col-md-12">
+          <p>
+            <a href="index.html" title="Findoctor">
+              <img src="href=" visitor-theme/html_menu_2/img/logo.png" data-retina="true" alt="" width="163" height="36"
+              class="img-fluid">
+            </a>
+          </p>
+        </div>
+      </div>
+      <!--/row-->
+    </div>
+  </footer>
+  <!--/footer-->
 </div>
+<!-- page -->
+
+<div id="toTop"></div>
+<!-- Back to top button -->
+
+<!-- COMMON SCRIPTS -->
+<script src="visitor-theme/html_menu_2/js/jquery-2.2.4.min.js"></script>
+<script src="visitor-theme/html_menu_2/js/common_scripts.min.js"></script>
+<script src="visitor-theme/html_menu_2/js/functions.js"></script>
+
+<%= debug(params) if Rails.env.development? %>
+
+</body>
+
+</html>
