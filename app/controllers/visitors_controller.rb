@@ -4,6 +4,7 @@ class VisitorsController < ApplicationController
   require "json"
 
   def search
+    render layout: false
   end
 
   def search_results
