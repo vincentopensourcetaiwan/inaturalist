@@ -1,0 +1,19 @@
+<div id="preloader" class="Fixed">
+  <div data-loader="circle-side"></div>
+</div>
+
+<div class="hero_home">
+  <div class="content">
+    <h3>南湖登山小學</h3>
+    <p>
+    </p>
+    <%= form_tag search_results_path, method: :get do %>
+      <div id="custom-search-input">
+        <div class="input-group">
+          <%= text_field_tag :keyword, params[:keyword], class: 'search-query' %>
+          <%= submit_tag "搜尋", name: nil, class: 'btn_search' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
