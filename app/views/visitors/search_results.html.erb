@@ -40,31 +40,20 @@
   <div data-loader="circle-side"></div>
 </div>
 <!-- /Preload-->
-
 <div id="page">
-  <header class="static">
-
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-3 col-6">
-        </div>
-        <div class="col-lg-9 col-6">
-          <nav id="menu" class="main-menu">
-          </nav>
-          <!-- /main-menu -->
-        </div>
-      </div>
-    </div>
-    <!-- /container -->
-  </header>
-  <!-- /header -->
+  <div class="container">
+    <nav id="menu" class="main-menu">
+    </nav>
+    <!-- /main-menu -->
+  </div>
+  <!-- /container -->
 
   <main class="theia-exception">
     <div id="results">
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <h4><strong>Showing <%= @observations.count %></strong> of <%= @observations.count %> results</h4>
+            <a href="<%= root_path %>"><img src="visitor-theme/html_menu_2/img/23706-icon-span2.png" alt=""></a>
           </div>
           <div class="col-md-6">
             <div class="search_bar_list">
@@ -83,6 +72,7 @@
 
     <div class="filters_listing">
       <div class="container">
+        <h4><strong>Showing <%= @observations.count %></strong> of <%= @observations.count %> results</h4>
       </div>
       <!-- /container -->
     </div>
