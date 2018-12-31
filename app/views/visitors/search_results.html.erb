@@ -72,7 +72,11 @@
 
     <div class="filters_listing">
       <div class="container">
-        <h4><strong>Showing <%= @observations.count %></strong> of <%= @observations.count %> results</h4>
+        <% if @observations.present? %>
+          <h4><strong>顯示 <%= @observations.count %></strong> 共 <%= @observations.count %> 資料</h4>
+        <% else %>
+          <h4>沒有資料</h4>
+        <% end %>
       </div>
       <!-- /container -->
     </div>
