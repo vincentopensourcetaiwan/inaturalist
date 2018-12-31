@@ -6,6 +6,4 @@ Rails.application.routes.draw do
   post '/add_tag', to: 'visitors#add_tag'
   delete '/delete_tag', to: 'visitors#delete_tag'
   root to: 'visitors#search'
-  devise_for :users
-  resources :users
 end

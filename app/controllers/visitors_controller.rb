@@ -55,7 +55,6 @@ class VisitorsController < ApplicationController
       description = description + "#{tag}, "
     end
     description.chop!.chop!
-    Ø
     InaturalistService.update_observation_description(@observation_id, description, api_token)
 
     redirect_to show_tags_path(observation_id: @observation_id)
