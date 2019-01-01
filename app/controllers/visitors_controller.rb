@@ -10,11 +10,9 @@ class VisitorsController < ApplicationController
   def search_results
     @keyword_string = permitted_params["keyword"]
     if (@keyword_string.nil?) || (@keyword_string == "")
-      @resutls = []
+      @observations = []
     else
-      convert = { :url => @keyword_string }.to_query
-      keyword = convert.split("=")[1]
-      @observations = InaturalistService.search_observations(keyword)
+      @observations = Observation.search(@keyword_string)
     end
     render layout: false
   end

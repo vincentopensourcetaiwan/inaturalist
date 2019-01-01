@@ -85,33 +85,31 @@
     <div class="container margin_60_35">
       <div class="row">
         <div class="col-lg-7">
-          <% if @observations.present? %>
-            <% @observations.each_with_index do |observation, index| %>
-              <div class="strip_list wow fadeIn">
-                <figure>
-                  <a href="<%= observation["uri"] %>" target="_blank"><img src="<%= observation["photos"].first["url"] %>" alt=""></a>
-                </figure>
-                <h3><%= observation["taxon"]["name"] %></h3>
-                <p><%= observation["description"] %></p>
-                <br>
-                <ul>
-                  <li><a href="#0" onclick="onHtmlClick('Doctors', 0)" class="btn_listing">View on Map</a></li>
-                  <li>
-                  </li>
-                  <li>
-                    <% unless observation["user"].present? && observation["user"]["icon"].present? %>
-                      <%= link_to observation["user"]["login"], "https://www.inaturalist.org/people/#{observation["user"]["login"]}", target: :_blank %>
-                    <% else %>
-                      <%= "#{observation["user"]["login"]}" %>
-                      <%= link_to "https://www.inaturalist.org/people/#{observation["user"]["login"]}", target: :_blank do %>
-                        <%= image_tag observation["user"]["icon"] %>
-                      <% end %>
+          <% @observations.each do |observation| %>
+            <div class="strip_list wow fadeIn">
+              <figure>
+                <a href="<%= observation.observation_uri %>" target="_blank"><img src="<%= observation.observation_photo_url %>" alt=""></a>
+              </figure>
+              <h3><%= observation.taxon_name %></h3>
+              <p><%= observation.description %></p>
+              <br>
+              <ul>
+                <li><a href="#0" onclick="onHtmlClick('Doctors', 0)" class="btn_listing">View on Map</a></li>
+                <li>
+                </li>
+                <li>
+                  <% unless observation.user_icon.present? %>
+                    <%= link_to observation.user_login, "https://www.inaturalist.org/people/#{observation.user_login}", target: :_blank %>
+                  <% else %>
+                    <%= "#{observation.user_login}" %>
+                    <%= link_to "https://www.inaturalist.org/people/#{observation.user_login}", target: :_blank do %>
+                      <%= image_tag observation.user_icon %>
                     <% end %>
-                  </li>
-                </ul>
-              </div>
-              <!-- /strip_list -->
-            <% end %>
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+            <!-- /strip_list -->
           <% end %>
         </div>
         <!-- /col -->
