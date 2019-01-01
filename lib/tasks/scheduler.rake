@@ -23,9 +23,9 @@ task :update_inaturalist_data => :environment do
       data = JSON.parse(response.body)
       results = data["results"]
       results.each do |result|
-        observation = Observation.find_or_create_by(observation_id: result["id"])
-        observation.observation_uri = result["uri"] if result["uri"].present?
-        observation.observation_photo_url = result["photos"].first["url"] if result["photos"].present?
+        observation = Observation.find_or_create_by(inaturalist_id: result["id"])
+        observation.uri = result["uri"] if result["uri"].present?
+        observation.photo_url = result["photos"].first["url"] if result["photos"].present?
         observation.taxon_name = result["taxon"]["name"] if result["taxon"].present?
         observation.description = result["description"] if result["description"].present?
         observation.user_login = result["user"]["login"] if result["user"]["login"].present?

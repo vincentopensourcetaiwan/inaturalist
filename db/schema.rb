@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_31_071135) do
+ActiveRecord::Schema.define(version: 2019_01_01_024305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "observations", force: :cascade do |t|
-    t.integer "observation_id"
-    t.string "observation_uri"
-    t.string "observation_photo_url"
+    t.integer "inaturalist_id"
+    t.string "uri"
+    t.string "photo_url"
     t.string "taxon_name"
     t.text "description"
     t.string "user_name"

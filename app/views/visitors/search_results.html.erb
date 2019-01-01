@@ -88,7 +88,7 @@
           <% @observations.each do |observation| %>
             <div class="strip_list wow fadeIn">
               <figure>
-                <a href="<%= observation.observation_uri %>" target="_blank"><img src="<%= observation.observation_photo_url %>" alt=""></a>
+                <a href="<%= observation.uri %>" target="_blank"><img src="<%= observation.photo_url %>" alt=""></a>
               </figure>
               <h3><%= observation.taxon_name %></h3>
               <p><%= observation.description %></p>
@@ -98,13 +98,13 @@
                 <li>
                 </li>
                 <li>
-                  <% unless observation.user_icon.present? %>
-                    <%= link_to observation.user_login, "https://www.inaturalist.org/people/#{observation.user_login}", target: :_blank %>
-                  <% else %>
+                  <% if observation.user_icon.present? %>
                     <%= "#{observation.user_login}" %>
                     <%= link_to "https://www.inaturalist.org/people/#{observation.user_login}", target: :_blank do %>
                       <%= image_tag observation.user_icon %>
                     <% end %>
+                  <% else %>
+                    <%= link_to observation.user_login, "https://www.inaturalist.org/people/#{observation.user_login}", target: :_blank %>
                   <% end %>
                 </li>
               </ul>
