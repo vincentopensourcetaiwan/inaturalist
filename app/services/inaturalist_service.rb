@@ -49,14 +49,6 @@ class InaturalistService
 
   def self.get_api_token(token)
     url = API_TOKEN_URL
-    # uri = URI.parse(url)
-    # http = Net::HTTP.new(uri.host, uri.port)
-    # http.use_ssl = true
-    # http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    # request = Net::HTTP::Get.new(uri.request_uri)
-    # request['Authorization'] = "Bearer #{token}"
-    # response = http.request(request)
-    # data = JSON.parse(response.body)
     data = get_data(url)
     data["api_token"]
   end
