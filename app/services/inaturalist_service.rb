@@ -9,13 +9,13 @@ class InaturalistService
   ORDER = "desc"
   ORDER_BY = "created_at"
 
-  def self.observations
-    url = "#{API_URL}?project_id=#{NANHU_PROJECT_ID}&order=#{ORDER}&order_by=#{ORDER_BY}"
+  def self.observations(order, order_by, page)
+    url = "#{API_URL}?project_id=#{NANHU_PROJECT_ID}&order=#{order}&order_by=#{order_by}&page=#{page}"
     get_data(url)
   end
 
-  def self.search_observations(keyword)
-    url = "#{API_URL}?project_id=#{NANHU_PROJECT_ID}&q=#{keyword}&order=#{ORDER}&order_by=#{ORDER_BY}"
+  def self.search_observations(keyword, order, order_by, page)
+    url = "#{API_URL}?project_id=#{NANHU_PROJECT_ID}&q=#{keyword}&order=#{order}&order_by=#{order_by}&page=#{page}"
     get_data(url)
   end
 
