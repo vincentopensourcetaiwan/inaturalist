@@ -33,18 +33,9 @@ describe InaturalistService do
   it "get_api_token" do
     api_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjoxMDUxMzI1LCJvYXV0aF9hcHBsaWNhdGlvbl9pZCI6MjgzLCJleHAiOjE1NDUxMTkyNzV9.BPSO_T0acXypfb9qipYLMYpqU4-7i6OMDilkwWnUvkqURHWtGPFkbzd-GhWuRLpUwewEqC976ZlQiJeOmeDhVw"
     body = "{\"api_token\":\"#{api_token}\"}"
-
-    stub_request(:get, InaturalistService::API_TOKEN_URL).
-      with(
-        headers: {
-          'Accept' => '*/*',
-          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-          'Authorization' => 'Bearer 943b12908c7e1ebd178580f939b256ea68269cd70fafaec7ff72b38d4e3eee95',
-          'User-Agent' => 'Ruby'
-        }).
-      to_return(status: 200, body: body, headers: {})
-
     token = "943b12908c7e1ebd178580f939b256ea68269cd70fafaec7ff72b38d4e3eee95"
+
+    stub_request(:get, "https://www.inaturalist.org/users/api_token").with(headers:headers).to_return(status: 200, body: body, headers: {})
     reture_value = InaturalistService.get_api_token(token)
     expect(reture_value).to eq api_token
   end
