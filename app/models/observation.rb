@@ -16,4 +16,9 @@
 #
 
 class Observation < ApplicationRecord
+  include AlgoliaSearch
+
+  algoliasearch do
+    attribute :taxon_name, :description
+  end
 end
