@@ -139,9 +139,6 @@
 </div>
 <!-- page -->
 
-<div id="toTop"></div>
-<!-- Back to top button -->
-
 <!-- COMMON SCRIPTS -->
 <script src="visitor-theme/html_menu_2/js/jquery-2.2.4.min.js"></script>
 <script src="visitor-theme/html_menu_2/js/common_scripts.min.js"></script>
@@ -152,5 +149,6 @@
 <script src="visitor-theme/html_menu_2/js/map_listing.js"></script>
 <script src="visitor-theme/html_menu_2/js/infobox.js"></script>
 
+<%= debug(params) if Rails.env.development? %>
 </body>
 </html>
