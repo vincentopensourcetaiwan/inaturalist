@@ -23,6 +23,7 @@ gem 'high_voltage'
 gem 'jquery-rails'
 gem 'pg'
 gem 'pundit'
+gem 'algoliasearch-rails'
 group :development, :test do
   gem 'awesome_rails_console'
   gem 'awesome_print'
