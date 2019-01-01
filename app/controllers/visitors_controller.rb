@@ -1,16 +1,11 @@
 class VisitorsController < ApplicationController
+  layout false
+
   def search
-    render layout: false
   end
 
   def search_results
-    keyword = permitted_params["keyword"]
-    if (keyword.nil?) || (keyword == "")
-      @observations = []
-    else
-      @observations = Observation.search(keyword)
-    end
-    render layout: false
+    @observations = Observation.search(permitted_params["keyword"])
   end
 
   def permitted_params
