@@ -145,10 +145,27 @@
 <script src="visitor-theme/html_menu_2/js/functions.js"></script>
 
 <!-- SPECIFIC SCRIPTS -->
-<script src="visitor-theme/html_menu_2/js/markerclusterer.js"></script>
-<script src="visitor-theme/html_menu_2/js/map_listing.js"></script>
-<script src="visitor-theme/html_menu_2/js/infobox.js"></script>
+
+<script>
+    // Initialize and add the map
+    function initMap() {
+        // The location of Uluru
+        var uluru = {lat: 24.378206, lng: 121.404738};
+        // The map, centered at Uluru
+        var map = new google.maps.Map(
+            document.getElementById('map_listing'), {zoom: 10, center: uluru, mapTypeId: 'satellite'});
+        // The marker, positioned at Uluru
+        var marker = new google.maps.Marker({position: uluru, map: map});
+
+        var uluru_01 = {lat: 24.3797783333, lng: 121.4390333333};
+        var marker = new google.maps.Marker({position: uluru_01, map: map});
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdmImc5lwG42mDG9Agi1QA8XxvZZEvMvo&callback=initMap">
+</script>
 
 <%= debug(params) if Rails.env.development? %>
+
 </body>
 </html>
