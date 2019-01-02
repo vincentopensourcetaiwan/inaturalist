@@ -15,6 +15,7 @@ task :update_inaturalist_data => :environment do
       observation.description = result["description"] if result["description"].present?
       observation.user_login = result["user"]["login"] if result["user"]["login"].present?
       observation.user_icon = result["user"]["icon"] if result["user"]["icon"].present?
+      observation.location = result["location"] if result["location"].present?
       observation.save
       puts "observation: #{observation.id} update finisth"
     end

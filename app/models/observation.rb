@@ -13,6 +13,7 @@
 #  user_icon      :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  location       :string
 #
 
 class Observation < ApplicationRecord
