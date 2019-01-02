@@ -145,9 +145,21 @@
 <script src="visitor-theme/html_menu_2/js/functions.js"></script>
 
 <!-- SPECIFIC SCRIPTS -->
-<script src="visitor-theme/html_menu_2/js/markerclusterer.js"></script>
-<script src="visitor-theme/html_menu_2/js/map_listing.js"></script>
-<script src="visitor-theme/html_menu_2/js/infobox.js"></script>
+<script>
+    function initMap() {
+        var uluru = {lat: 24.37837, lng: 121.39738};
+        var map = new google.maps.Map(
+            document.getElementById('map_listing'), {zoom: 10, center: uluru, mapTypeId: 'satellite'});
+
+        <% @observations.each do |observation| %>
+        var uluru = {lat: <%=observation.latitude %>, lng: <%=observation.longitude %>};
+        var marker = new google.maps.Marker({position: uluru, map: map});
+        <% end %>
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdmImc5lwG42mDG9Agi1QA8XxvZZEvMvo&callback=initMap">
+</script>
 
 <%= debug(params) if Rails.env.development? %>
 </body>
