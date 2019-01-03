@@ -61,7 +61,7 @@
           <div class="col-md-6">
             <div class="search_bar_list">
               <%= form_tag search_results_path, method: :get do %>
-                <input type="text" class="form-control" placeholder="" name="keyword">
+                <input type="text" class="form-control" placeholder="" name="keyword" value="<%= @keyword %>">
                 <input type="submit" value="搜尋">
               <% end %>
             </div>
@@ -76,7 +76,7 @@
     <div class="filters_listing">
       <div class="container">
         <% if @observations.present? %>
-          <h4><strong>顯示 <%= @observations.count %></strong> 共 <%= @observations.count %> 資料</h4>
+          <h4>顯示 <%= @observations.count %> 筆結果，共 <%= @observations.count %> 筆資料。</h4>
         <% else %>
           <h4>沒有資料</h4>
         <% end %>
