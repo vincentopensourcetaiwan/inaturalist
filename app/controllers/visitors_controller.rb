@@ -5,7 +5,8 @@ class VisitorsController < ApplicationController
   end
 
   def search_results
-    @observations = Observation.search(permitted_params["keyword"])
+    @keyword = permitted_params["keyword"]
+    @observations = Observation.search(@keyword)
   end
 
   def permitted_params
