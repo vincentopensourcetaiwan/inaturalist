@@ -97,19 +97,16 @@
               <p><%= observation.description %></p>
               <br>
               <ul>
+                <li></li>
+                <li><a href="#" onclick="onHtmlClick(<%= index %>)" class="btn_listing">View on Map</a></li>
+                <li></li>
+                <li><a href="<%= observation.uri %>" target="_blank">View on iNaturlist</a></li>
                 <li>
-                </li>
-                <li><a href="#0" onclick="onHtmlClick(<%= index %>)" class="btn_listing">View on Map</a></li>
-                <li>
-                </li>
-                <li>
+                  <%= link_to observation.user_login, "https://www.inaturalist.org/people/#{observation.user_login}", target: :_blank %>
                   <% if observation.user_icon.present? %>
-                    <%= "#{observation.user_login}" %>
                     <%= link_to "https://www.inaturalist.org/people/#{observation.user_login}", target: :_blank do %>
                       <%= image_tag observation.user_icon %>
                     <% end %>
-                  <% else %>
-                    <%= link_to observation.user_login, "https://www.inaturalist.org/people/#{observation.user_login}", target: :_blank %>
                   <% end %>
                 </li>
               </ul>
@@ -166,7 +163,7 @@
         var marker = new google.maps.Marker({position: uluru, map: map, id: <%= index %>});
         marker.addListener('click', function () {
             infowindow.open(map, marker);
-            infowindow.setContent("<%= observation.taxon_name %>");
+            infowindow.setContent('<div><a href="<%= observation.uri %>" target= "_blank"><img src="<%= observation.photo_url %>" /></a><br><br><%= observation.taxon_name %><br><%= observation.description %></div>');
             infowindow.setPosition({lat: <%=observation.latitude %>, lng: <%=observation.longitude %>});
         });
         markers.push(marker)
