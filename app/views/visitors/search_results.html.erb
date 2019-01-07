@@ -76,7 +76,7 @@
     <div class="filters_listing">
       <div class="container">
         <% if @observations.present? %>
-          <h4>顯示 <%= @observations.count %> 筆結果，共 <%= @observations.count %> 筆資料。</h4>
+          <h4>顯示 <%= @observations.count %> 項結果，共 <%= @observations.count %> 項結果。</h4>
         <% else %>
           <h4>沒有資料</h4>
         <% end %>
@@ -98,9 +98,9 @@
               <br>
               <ul>
                 <li></li>
-                <li><a href="#" onclick="onHtmlClick(<%= index %>)" class="btn_listing">View on Map</a></li>
+                <li><a href="#" onclick="onHtmlClick(<%= index %>)" class="btn_listing">顯示於地圖</a></li>
                 <li></li>
-                <li><a href="<%= observation.uri %>" target="_blank">View on iNaturlist</a></li>
+                <li><a href="<%= observation.uri %>" target="_blank">顯示於 iNaturlist</a></li>
                 <li>
                   <%= link_to observation.user_login, "https://www.inaturalist.org/people/#{observation.user_login}", target: :_blank %>
                   <% if observation.user_icon.present? %>
