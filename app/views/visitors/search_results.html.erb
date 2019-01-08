@@ -93,7 +93,15 @@
               <figure>
                 <a href="<%= observation.uri %>" target="_blank"><img src="<%= observation.photo_url %>" alt=""></a>
               </figure>
-              <h3><%= observation.taxon_name %></h3>
+              <table>
+                <tr>
+                  <td><h3><%= observation.taxon_name %></h3></td>
+                </tr>
+                <tr>
+                  <td><%= link_to "顯示於維基百科", "https://zh.wikipedia.org/zh-tw/#{observation.taxon_name}", target: "_blank" %></td>
+                </tr>
+              </table>
+              <br>
               <p><%= observation.description %></p>
               <br>
               <ul>
@@ -102,14 +110,25 @@
                 <li></li>
                 <li><a href="<%= observation.uri %>" target="_blank">顯示於 iNaturlist</a></li>
                 <li>
-                  <%= link_to observation.user_login, "https://www.inaturalist.org/people/#{observation.user_login}", target: :_blank %>
-                  <% if observation.user_icon.present? %>
-                    <%= link_to "https://www.inaturalist.org/people/#{observation.user_login}", target: :_blank do %>
-                      <%= image_tag observation.user_icon %>
-                    <% end %>
-                  <% end %>
+                  <table>
+                    <tr>
+                      <td>
+                        <% if observation.user_icon.present? %>
+                          <%= link_to "https://www.inaturalist.org/people/#{observation.user_login}", target: :_blank do %>
+                            <%= image_tag observation.user_icon %>
+                          <% end %>
+                        <% end %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><%= link_to observation.user_login, "https://www.inaturalist.org/people/#{observation.user_login}", target: :_blank %>
+                      </td>
+                    </tr>
+                  </table>
                 </li>
               </ul>
+              <br><br>
+
             </div>
             <!-- /strip_list -->
           <% end %>
