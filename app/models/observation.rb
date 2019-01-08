@@ -15,6 +15,7 @@
 #  updated_at     :datetime         not null
 #  longitude      :float
 #  latitude       :float
+#  wikipedia_url  :string
 #
 
 class Observation < ApplicationRecord

@@ -98,7 +98,7 @@
                   <td><h3><%= observation.taxon_name %></h3></td>
                 </tr>
                 <tr>
-                  <td><%= link_to "顯示於維基百科", "https://zh.wikipedia.org/zh-tw/#{observation.taxon_name}", target: "_blank" %></td>
+                  <td><%= link_to "顯示於維基百科", "https://zh.wikipedia.org/zh-tw/#{observation.taxon_name}", target: "_blank" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "View on Wikipedia", observation.wikipedia_url, target: "_blank" %></td>
                 </tr>
               </table>
               <br>
