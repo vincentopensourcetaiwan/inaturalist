@@ -12,6 +12,7 @@ task :update_inaturalist_data => :environment do
       observation.uri = result["uri"] if result["uri"].present?
       observation.photo_url = result["photos"].first["url"] if result["photos"].present?
       observation.taxon_name = result["taxon"]["name"] if result["taxon"].present?
+      observation.wikipedia_url = result["taxon"]["wikipedia_url"] if result["taxon"].present?
       observation.description = result["description"] if result["description"].present?
       observation.user_login = result["user"]["login"] if result["user"]["login"].present?
       observation.user_icon = result["user"]["icon"] if result["user"]["icon"].present?
