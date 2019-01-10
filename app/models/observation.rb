@@ -23,6 +23,6 @@ class Observation < ApplicationRecord
   include AlgoliaSearch
 
   algoliasearch do
-    attribute :taxon_name, :description
+    attribute :taxon_name, :description, :chinese_taxon_name
   end
 end
