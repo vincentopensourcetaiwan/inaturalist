@@ -24,6 +24,7 @@ gem 'jquery-rails'
 gem 'pg'
 gem 'pundit'
 gem 'algoliasearch-rails'
+gem 'nokogiri'
 group :development, :test do
   gem 'awesome_rails_console'
   gem 'awesome_print'
