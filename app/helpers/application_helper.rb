@@ -1,4 +1,13 @@
 module ApplicationHelper
+  def show_taxon_name(observation)
+    if observation.chinese_taxon_name.present?
+      "#{observation.chinese_taxon_name}（#{observation.taxon_name}）".html_safe
+    else
+      "#{observation.taxon_name}"
+    end
+  end
+
+
   def show_tags(observation)
     return_straing = ""
     description = observation["description"]

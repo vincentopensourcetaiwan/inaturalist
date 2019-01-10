@@ -1,8 +1,4 @@
 class InaturalistService
-  require "net/https"
-  require "uri"
-  require "json"
-
   API_TOKEN_URL = "https://www.inaturalist.org/users/api_token"
   API_URL = "https://api.inaturalist.org/v1/observations/"
   NANHU_PROJECT_ID = "1ac02830-8817-404e-a6ab-86027362db9c"
