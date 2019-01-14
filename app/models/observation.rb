@@ -22,6 +22,8 @@
 class Observation < ApplicationRecord
   include AlgoliaSearch
 
+  has_many :photos
+
   algoliasearch do
     attribute :taxon_name, :description, :chinese_taxon_name
   end
