@@ -91,7 +91,9 @@
           <% @observations.each_with_index do |observation, index| %>
             <div class="strip_list wow fadeIn">
               <figure>
-                <a href="<%= observation.uri %>" target="_blank"><img src="<%= observation.photo_url %>" alt=""></a>
+                <% observation.photos.each do |photo| %>
+                  <a href="<%= observation.uri %>" target="_blank"><img src="<%= photo.url %>" alt=""></a>
+                <% end %>
               </figure>
               <table>
                 <tr>
@@ -185,7 +187,7 @@
         var marker = new google.maps.Marker({position: uluru, map: map, id: <%= index %>});
         marker.addListener('click', function () {
             infowindow.open(map, marker);
-            infowindow.setContent('<div><a href="<%= observation.uri %>" target= "_blank"><img src="<%= observation.photo_url %>" /></a><br><br><%= show_taxon_name(observation) %><br><%= observation.description %><br><br><a href="<%= observation.uri %>" target="_blank">顯示於 iNaturlist</a></div>');
+            infowindow.setContent('<div><% observation.photos.each do |photo| %><a href="<%= observation.uri %>" target= "_blank"><img src="<%= photo.url %>" /></a><% end %><br><br><%= show_taxon_name(observation) %><br><%= observation.description %><br><br><a href="<%= observation.uri %>" target="_blank">顯示於 iNaturlist</a></div>');
             infowindow.setPosition({lat: <%=observation.latitude %>, lng: <%=observation.longitude %>});
         });
         markers.push(marker)
