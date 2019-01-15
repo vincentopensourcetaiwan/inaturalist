@@ -22,6 +22,8 @@
 class Observation < ApplicationRecord
   include AlgoliaSearch
 
+  HIT_PER_PAGE = 25
+
   has_many :photos
 
   algoliasearch do
