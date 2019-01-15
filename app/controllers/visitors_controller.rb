@@ -6,7 +6,8 @@ class VisitorsController < ApplicationController
 
   def search_results
     @keyword = permitted_params["keyword"]
-    @observations = Observation.search(@keyword)
+    @total_hits_count = Observation.search(@keyword).count
+    @observations = Observation.search(@keyword, { hitsPerPage: Observation::HIT_PER_PAGE, page: params[:page] })
   end
 
   def permitted_params

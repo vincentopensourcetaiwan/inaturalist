@@ -1,4 +1,9 @@
 module ApplicationHelper
+  def show_page(page, total_hits_count)
+    current_page = (page || 1).to_i
+    "顯示第 #{(current_page - 1) * Observation::HIT_PER_PAGE + 1} 至 #{current_page * Observation::HIT_PER_PAGE }項結果，共 #{total_hits_count} 項結果。"
+  end
+
   def show_taxon_name(observation)
     if observation.chinese_taxon_name.present?
       "#{observation.chinese_taxon_name}（#{observation.taxon_name}）".html_safe
@@ -22,6 +27,5 @@ module ApplicationHelper
 
   def tag_label(tag)
     "<span class='label label-lg label-inverse arrowed arrowed-in-right'>#{tag}</span>&nbsp".html_safe
-    # "<span class='badge badge-lg badge-inverse'>#{tag}</span>&nbsp".html_safe
   end
 end
