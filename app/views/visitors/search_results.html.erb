@@ -76,7 +76,7 @@
     <div class="filters_listing">
       <div class="container">
         <% if @observations.present? %>
-          <h4>顯示 <%= @observations.count %> 項結果，共 <%= @observations.count %> 項結果。</h4>
+          <h4><%= show_page(params[:page], @total_hits_count) %></h4>
         <% else %>
           <h4>沒有資料</h4>
         <% end %>
@@ -86,6 +86,8 @@
     <!-- /filters -->
 
     <div class="container margin_60_35">
+      <%= paginate @observations, theme: 'twitter-bootstrap-4' %>
+
       <div class="row">
         <div class="col-lg-7">
           <% @observations.each_with_index do |observation, index| %>
@@ -148,8 +150,11 @@
 
       </div>
       <!-- /row -->
+      <%= paginate @observations, theme: 'twitter-bootstrap-4' %>
+
     </div>
     <!-- /container -->
+
   </main>
   <!-- /main -->
 
