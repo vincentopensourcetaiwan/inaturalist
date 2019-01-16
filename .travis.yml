@@ -1,3 +1,6 @@
 language: ruby
 rvm:
   - 2.4.4
+env:
+  - ALGOLIASEARCH_APPLICATION_ID=''
+  - ALGOLIASEARCH_API_KEY=''
