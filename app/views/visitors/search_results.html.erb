@@ -75,19 +75,13 @@
 
     <div class="filters_listing">
       <div class="container">
-        <% if @observations.present? %>
-          <h4><%= show_page(params[:page], @total_hits_count) %></h4>
-        <% else %>
-          <h4>沒有資料</h4>
-        <% end %>
       </div>
       <!-- /container -->
     </div>
     <!-- /filters -->
 
     <div class="container margin_60_35">
-      <%= paginate @observations, theme: 'twitter-bootstrap-4' %>
-
+      <%= paginate @observations, theme: 'twitter-bootstrap-4', pagination_class: "pagination-sm", nav_class: "d-inline-b", window: -1 %>
       <div class="row">
         <div class="col-lg-7">
           <% @observations.each_with_index do |observation, index| %>
@@ -141,17 +135,14 @@
           <% end %>
         </div>
         <!-- /col -->
-
         <aside class="col-lg-5" id="sidebar">
           <div id="map_listing" class="normal_list">
           </div>
         </aside>
         <!-- /aside -->
-
       </div>
+      <%= paginate @observations, theme: 'twitter-bootstrap-4', pagination_class: "pagination-sm", nav_class: "d-inline-b", window: -1 %>
       <!-- /row -->
-      <%= paginate @observations, theme: 'twitter-bootstrap-4' %>
-
     </div>
     <!-- /container -->
 
