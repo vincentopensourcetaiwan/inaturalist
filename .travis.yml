@@ -1,11 +1,6 @@
 language: ruby
 rvm:
   - 2.4.4
-env:
-  global:
-    - ALGOLIASEARCH_APPLICATION_ID =''
-    - ALGOLIASEARCH_API_KEY=''
-    - ALGOLIASEARCH_API_KEY_SEARCH=''
 services:
   - postgresql
 before_script:
