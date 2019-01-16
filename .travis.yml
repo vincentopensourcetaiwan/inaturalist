@@ -6,3 +6,5 @@ env:
   - ALGOLIASEARCH_API_KEY=''
 services:
   - postgresql
+before_script:
+  - cp config/database.yml.travis config/database.yml
