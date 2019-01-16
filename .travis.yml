@@ -4,3 +4,5 @@ rvm:
 env:
   - ALGOLIASEARCH_APPLICATION_ID=''
   - ALGOLIASEARCH_API_KEY=''
+services:
+  - postgresql
