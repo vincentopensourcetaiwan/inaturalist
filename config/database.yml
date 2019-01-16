@@ -47,7 +47,7 @@ test:
   database: inaturalist_test
   pool:     5
   username: vincentlin
-  password: 
+  password:
   template: template0
 
 production:
@@ -57,5 +57,5 @@ production:
   database: inaturalist_production
   pool:     5
   username: vincentlin
-  password: 
+  password:
   template: template0
