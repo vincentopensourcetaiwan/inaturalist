@@ -6,7 +6,3 @@ services:
 before_script:
 - cp config/database.yml.travis config/database.yml
 - psql -c 'create database travis_ci_test;' -U postgres
-deploy:
-  provider: heroku
-  api_key:
-    secure: T94rc+E30zkvnjrBHt5sFdhPoWyHvGrN5mIgKPR1aOUvXzHHV22lPU9gFhr1pIOEFHhm9GMkkjt1+9U8XAkK4g1O6APgsUCyrqhBUj5jFfgLIlQ5/cBby+hh7cibRhoR/oD6trakS6UyXp74/woRA9L2Cglw5+Ln0jMSCQQby0JhkeoHgUwhmt/H6O9RjX5rIhqIsKndOIXZIsJU+loa8LrSUuJW4Px8mn/0Vq9Iv9/I01mqnxu5jlCmo10jtX4MGdsIzvqhO1P3UlBlLPR1TnB4pHO/EhLNQCN4cWtUyRRRvVSGwmUOrrftx9iyP5Hj673Pt+KPDm2o2tilMtkhqmmr9AugG8pOpO9I+x41pCowLikDINT3mq/FDbh/u9NSEP95lrX0XrH7YF3Y+TVANg6Xi3nKdzgcACxJFctOGV2TomMEz3v5eSMXx/XAM1DU7Kgy5Rq/4ZuI6ISeLDhl/7mVb5kJl0lrWfbCG+bmA+FlUk02EYftbojhqZlrw+a/2MiQ0GRW0XiUJdrRjxjmwd6McygtrIp6DL725S9XUizaxSzJTlgsOTU3xd8W1mPqnks2wWplIS8UO1go98LmETHr/xkguM5S/s4ocTXDDX05aQ1lcr+r+AcraP/2VxuSUP4QBAI1H3A6mo3lE+ct9Jkf60/rAEeKiaI3b6lQCBo=
