@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-xs-3">
+    <%= form_tag admin_observations_path, method: :get, class: 'form-search' do %>
+      <p>
+        <%= text_field_tag :keyword, params[:keyword], class: 'nav-search-input' %>
+        <%= submit_tag "search", name: nil, class: 'btn btn-primary' %>
+      </p>
+    <% end %>
+  </div>
+  <div class="col-xs-6"></div>
+  <div class="col-xs-3">
+  </div>
+</div>
+<%= paginate @observations, theme: 'twitter-bootstrap-4', pagination_class: "pagination-sm", nav_class: "d-inline-b" %>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+  <tr>
+    <th class="text-center">id</th>
+    <th class="text-center">photos</th>
+    <th class="text-center">taxon name</th>
+    <th class="text-center">顯示於維基百科</th>
+    <th class="text-center">View on Wikipedia</th>
+    <th class="text-center">description</th>
+    <th class="text-center">顯示於 iNaturlist</th>
+    <th class="text-center">上傳者</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @observations.each do |observation| %>
+    <tr>
+      <td class="text-center"><%= observation.id %></td>
+      <td>
+        <% observation.photos.each do |photo| %>
+          <a href="<%= observation.uri %>" target="_blank"><img src="<%= photo.url %>" alt=""></a>
+        <% end %>
+      </td>
+      <td><%= show_taxon_name(observation) %></td>
+      <td><%= link_to "顯示於維基百科", "https://zh.wikipedia.org/zh-tw/#{observation.taxon_name}", target: "_blank" %></td>
+      <td><%= link_to "View on Wikipedia", observation.wikipedia_url, target: "_blank" %></td>
+      <td><%= observation.description %></td>
+      <td><a href="<%= observation.uri %>" target="_blank">顯示於 iNaturlist</a></td>
+      <td>
+        <% if observation.user_icon.present? %>
+          <%= link_to "https://www.inaturalist.org/people/#{observation.user_login}", target: :_blank do %>
+            <%= image_tag observation.user_icon %>
+          <% end %>
+        <% end %>
+        <%= link_to observation.user_login, "https://www.inaturalist.org/people/#{observation.user_login}", target: :_blank %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= paginate @observations, theme: 'twitter-bootstrap-4', pagination_class: "pagination-sm", nav_class: "d-inline-b" %>
