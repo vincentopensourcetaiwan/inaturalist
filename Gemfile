@@ -27,6 +27,7 @@ gem 'algoliasearch-rails'
 gem 'nokogiri'
 gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
+gem "rolify"
 group :development, :test do
   gem 'awesome_rails_console'
   gem 'awesome_print'

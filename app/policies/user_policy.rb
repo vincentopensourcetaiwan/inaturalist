@@ -7,20 +7,26 @@ class UserPolicy
   end
 
   def index?
-    @current_user.admin?
+    @current_user.has_role? :admin
   end
 
   def show?
-    @current_user.admin? or @current_user == @user
+    @current_user.has_role? :admin
+  end
+
+  def edit?
+    @current_user.has_role? :admin or @current_user == @user
   end
 
   def update?
-    @current_user.admin?
+    @current_user.has_role? :admin or @current_user == @user
   end
 
-  def destroy?
-    return false if @current_user == @user
-    @current_user.admin?
+  def send_confirmation_instructions?
+    @current_user.has_role? :admin
   end
 
+  def confirm?
+    @current_user.has_role? :admin
+  end
 end
