@@ -7,7 +7,7 @@ class ObservationPolicy
   end
 
   def index?
-    @current_user.has_role? :admin
+    (@current_user.has_role? :admin) | (@current_user.has_role? :editor) | (@current_user.has_role? :contributor)
   end
 
   def show?
