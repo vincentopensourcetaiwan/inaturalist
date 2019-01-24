@@ -16,6 +16,10 @@
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string
 #  role                   :integer
+#  inaturalist_id         :integer
+#  nickname               :string
+#  inaturalist_icon_url   :string
+#  inaturalist_login      :string
 #
 
 describe User do
