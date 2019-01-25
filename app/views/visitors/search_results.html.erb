@@ -115,15 +115,15 @@
                   <table>
                     <tr>
                       <td>
-                        <% if observation.user_icon.present? %>
-                          <%= link_to "https://www.inaturalist.org/people/#{observation.user_login}", target: :_blank do %>
-                            <%= image_tag observation.user_icon %>
+                        <% if observation.user&.inaturalist_icon_url.present? %>
+                          <%= link_to "https://www.inaturalist.org/people/#{observation.user&.inaturalist_login}", target: :_blank do %>
+                            <%= image_tag observation.user&.inaturalist_icon_url %>
                           <% end %>
                         <% end %>
                       </td>
                     </tr>
                     <tr>
-                      <td><%= link_to observation.user_login, "https://www.inaturalist.org/people/#{observation.user_login}", target: :_blank %>
+                      <td><%= link_to observation.user&.nickname, "https://www.inaturalist.org/people/#{observation.user&.inaturalist_login}", target: :_blank %>
                       </td>
                     </tr>
                   </table>
