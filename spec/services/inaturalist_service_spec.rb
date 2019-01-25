@@ -1,5 +1,5 @@
 describe InaturalistService do
-  let(:api_url) { InaturalistService::API_URL }
+  let(:observations_api_url) { InaturalistService::OBSERVATIONS_API_URL }
   let(:project_id) { InaturalistService::NANHU_PROJECT_ID }
   let(:order) { InaturalistService::ORDER }
   let(:order_by) { InaturalistService::ORDER_BY }
@@ -8,9 +8,9 @@ describe InaturalistService do
   let(:observation_id) { "17929047" }
   let(:headers) { { 'Accept' => '*/*', 'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent' => 'Ruby' } }
   let(:status) { 200 }
-  let(:observations_stub_url) { "#{api_url}?project_id=#{project_id}&order=#{order}&order_by=#{order_by}&page=#{page}" }
-  let(:search_observations_stub_url) { "#{api_url}?project_id=#{project_id}&q=#{keyword}&order=#{order}&order_by=#{order_by}&page=#{page}" }
-  let(:show_observation_stub_url) { "#{api_url}#{observation_id}" }
+  let(:observations_stub_url) { "#{observations_api_url}?project_id=#{project_id}&order=#{order}&order_by=#{order_by}&page=#{page}" }
+  let(:search_observations_stub_url) { "#{observations_api_url}?project_id=#{project_id}&q=#{keyword}&order=#{order}&order_by=#{order_by}&page=#{page}" }
+  let(:show_observation_stub_url) { "#{observations_api_url}#{observation_id}" }
 
   it "observations" do
     stub_request(:get, observations_stub_url).with(headers: headers).to_return(status: status, body: observations_body, headers: {})
@@ -35,7 +35,7 @@ describe InaturalistService do
     body = "{\"api_token\":\"#{api_token}\"}"
     token = "943b12908c7e1ebd178580f939b256ea68269cd70fafaec7ff72b38d4e3eee95"
 
-    stub_request(:get, "https://www.inaturalist.org/users/api_token").with(headers:headers).to_return(status: 200, body: body, headers: {})
+    stub_request(:get, "https://www.inaturalist.org/users/api_token").with(headers: headers).to_return(status: 200, body: body, headers: {})
     reture_value = InaturalistService.get_api_token(token)
     expect(reture_value).to eq api_token
   end
@@ -45,7 +45,7 @@ describe InaturalistService do
     description = "可以吃,  菇,  紅色,  test, 測試"
     api_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjoxMDUxMzI1LCJvYXV0aF9hcHBsaWNhdGlvbl9pZCI6MjgzLCJleHAiOjE1NDUyMTM2NDZ9.4vwKO2XQexjf0D5YJWbkiPzNQX2b-3gFt0amM-0YQi5Esa68vfRazLYGvVaN4heksltukwICyHK0c-_2NHVB8Q"
 
-    stub_request(:put, "#{InaturalistService::API_URL}#{observation_id}").
+    stub_request(:put, "#{observations_api_url}#{observation_id}").
       with(
         body: "{\"ignore_photos\":1,\"observation\":{\"description\":\"#{description}\"}}",
         headers: {

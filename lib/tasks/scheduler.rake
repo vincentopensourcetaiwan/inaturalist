@@ -28,7 +28,7 @@ task :update_inaturalist_data => :environment do
           observation.longitude = result["location"].split(",").last.to_f
         end
 
-        observation.save
+        observation.save(validate: false)
 
         if result["photos"].present?
           result["photos"].each do |photo|
