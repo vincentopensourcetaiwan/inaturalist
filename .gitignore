@@ -93,3 +93,5 @@ config/settings/*.yml
 
 # Ignore application configuration
 /config/application.yml
+
+*.dump
