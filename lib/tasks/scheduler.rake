@@ -1,4 +1,4 @@
-desc "update iNaturalist dat"
+desc "update iNaturalist data"
 task :update_inaturalist_data => :environment do
   data = InaturalistService.observations("desc", "created_at", 1)
   total_results = data["total_results"]
@@ -43,5 +43,14 @@ task :update_inaturalist_data => :environment do
       end
     end
     puts "page: #{page} finish"
+  end
+end
+
+desc "update user information"
+task :update_user_information => :environment do
+  User.where.not(inaturalist_id: nil).each do |user|
+    data = InaturalistService.get_user(user.inaturalist_id)
+    user.update(inaturalist_icon_url: data["results"].last["icon"]) if data["results"].last["icon"].present?
+    puts "user #{user.inaturalist_login} updated"
   end
 end
