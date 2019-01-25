@@ -2,9 +2,15 @@ class InaturalistService
   API_TOKEN_URL = "https://www.inaturalist.org/users/api_token"
   API_URL = "https://api.inaturalist.org/v1/"
   OBSERVATIONS_API_URL = "#{API_URL}observations/"
+  USERS_API_URL = "#{API_URL}users/"
   NANHU_PROJECT_ID = "1ac02830-8817-404e-a6ab-86027362db9c"
   ORDER = "desc"
   ORDER_BY = "created_at"
+
+  def self.get_user(inaturalist_id)
+    url = "#{USERS_API_URL}#{inaturalist_id}"
+    get_data(url)
+  end
 
   def self.observations(order, order_by, page)
     url = "#{OBSERVATIONS_API_URL}?project_id=#{NANHU_PROJECT_ID}&order=#{order}&order_by=#{order_by}&page=#{page}"

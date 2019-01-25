@@ -1,4 +1,13 @@
 namespace :dev do
+  desc 'update user info'
+  task update_user_info: :environment do
+    User.where.not(inaturalist_id: nil).each do |user|
+      data = InaturalistService.get_user(user.inaturalist_id)
+      user.update(inaturalist_icon_url: data["results"].last["icon"]) if data["results"].last["icon"].present?
+      puts "user #{user.inaturalist_login} updated"
+    end
+  end
+
   desc 'test wikipedia many times'
   task test_wikipedia_many_times: :environment do
     data = InaturalistService.observations("desc", "created_at", 1)
