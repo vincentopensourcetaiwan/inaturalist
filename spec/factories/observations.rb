@@ -17,6 +17,7 @@
 #  latitude           :float
 #  wikipedia_url      :string
 #  chinese_taxon_name :string
+#  user_id            :integer
 #
 
 FactoryBot.define do
