@@ -17,6 +17,7 @@
 #  latitude           :float
 #  wikipedia_url      :string
 #  chinese_taxon_name :string
+#  user_id            :integer
 #
 
 class Observation < ApplicationRecord
@@ -25,6 +26,7 @@ class Observation < ApplicationRecord
   HIT_PER_PAGE = 25
 
   has_many :photos
+  belongs_to :user
 
   algoliasearch do
     attribute :taxon_name, :description, :chinese_taxon_name
