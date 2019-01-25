@@ -1,27 +1,28 @@
 class InaturalistService
   API_TOKEN_URL = "https://www.inaturalist.org/users/api_token"
-  API_URL = "https://api.inaturalist.org/v1/observations/"
+  API_URL = "https://api.inaturalist.org/v1/"
+  OBSERVATIONS_API_URL = "#{API_URL}observations/"
   NANHU_PROJECT_ID = "1ac02830-8817-404e-a6ab-86027362db9c"
   ORDER = "desc"
   ORDER_BY = "created_at"
 
   def self.observations(order, order_by, page)
-    url = "#{API_URL}?project_id=#{NANHU_PROJECT_ID}&order=#{order}&order_by=#{order_by}&page=#{page}"
+    url = "#{OBSERVATIONS_API_URL}?project_id=#{NANHU_PROJECT_ID}&order=#{order}&order_by=#{order_by}&page=#{page}"
     get_data(url)
   end
 
   def self.search_observations(keyword, order, order_by, page)
-    url = "#{API_URL}?project_id=#{NANHU_PROJECT_ID}&q=#{keyword}&order=#{order}&order_by=#{order_by}&page=#{page}"
+    url = "#{OBSERVATIONS_API_URL}?project_id=#{NANHU_PROJECT_ID}&q=#{keyword}&order=#{order}&order_by=#{order_by}&page=#{page}"
     get_data(url)
   end
 
   def self.show_observation(observation_id)
-    url = "#{API_URL}#{observation_id}"
+    url = "#{OBSERVATIONS_API_URL}#{observation_id}"
     get_data(url)
   end
 
   def self.update_observation_description(observation_id, description, api_token)
-    url = "#{API_URL}#{observation_id}"
+    url = "#{OBSERVATIONS_API_URL}#{observation_id}"
     uri = URI.parse(url)
     request = Net::HTTP::Put.new(uri)
     request.content_type = "application/json"
