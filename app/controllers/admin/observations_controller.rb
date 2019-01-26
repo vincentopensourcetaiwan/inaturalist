@@ -10,6 +10,23 @@ class Admin::ObservationsController < ApplicationController
     authorize Observation
   end
 
+  def edit_user
+    @observation = Observation.find(params[:observation_id])
+    authorize @observation
+  end
+
+  def update_user
+    @observation = Observation.find(params[:observation_id])
+    authorize @observation
+    @observation.update(observation_params)
+    redirect_to admin_observations_path
+  end
+
+  def observation_params
+    params.require(:observation).permit(:user_id)
+  end
+
+
   def permitted_params
     params.permit(:keyword)
   end

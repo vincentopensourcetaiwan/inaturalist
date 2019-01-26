@@ -25,6 +25,7 @@
     <th class="text-center">顯示於 iNaturlist</th>
     <th class="text-center">上傳者</th>
     <th class="text-center">相片拍攝者</th>
+    <th>operations</th>
   </tr>
   </thead>
   <tbody>
@@ -56,6 +57,9 @@
           <% end %>
         <% end %>
         <%= link_to observation.user&.nickname, "https://www.inaturalist.org/people/#{observation.user&.inaturalist_login}", target: :_blank %>
+      </td>
+      <td>
+        <%= link_to "選擇拍攝者", admin_observation_edit_user_path(observation), class: "btn" %>
       </td>
     </tr>
   <% end %>
