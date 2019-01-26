@@ -18,6 +18,8 @@
 #  wikipedia_url      :string
 #  chinese_taxon_name :string
 #  user_id            :integer
+#  category_id        :integer
+#  category_name      :string
 #
 
 class Observation < ApplicationRecord
@@ -27,6 +29,7 @@ class Observation < ApplicationRecord
 
   has_many :photos
   belongs_to :user
+  belongs_to :category
 
   algoliasearch do
     attribute :taxon_name, :description, :chinese_taxon_name

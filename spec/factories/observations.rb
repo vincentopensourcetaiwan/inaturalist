@@ -18,6 +18,8 @@
 #  wikipedia_url      :string
 #  chinese_taxon_name :string
 #  user_id            :integer
+#  category_id        :integer
+#  category_name      :string
 #
 
 FactoryBot.define do
