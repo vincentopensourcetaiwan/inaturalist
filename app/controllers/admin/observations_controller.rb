@@ -1,4 +1,5 @@
 class Admin::ObservationsController < ApplicationController
+  include Pundit
   layout "admin"
   before_action :authenticate_user!
   after_action :verify_authorized

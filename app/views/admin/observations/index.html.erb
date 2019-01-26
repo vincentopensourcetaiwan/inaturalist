@@ -24,6 +24,7 @@
     <th class="text-center">description</th>
     <th class="text-center">顯示於 iNaturlist</th>
     <th class="text-center">上傳者</th>
+    <th class="text-center">相片拍攝者</th>
   </tr>
   </thead>
   <tbody>
@@ -47,6 +48,14 @@
           <% end %>
         <% end %>
         <%= link_to observation.user_login, "https://www.inaturalist.org/people/#{observation.user_login}", target: :_blank %>
+      </td>
+      <td>
+        <% if observation.user&.inaturalist_icon_url.present? %>
+          <%= link_to "https://www.inaturalist.org/people/#{observation.user&.inaturalist_login}", target: :_blank do %>
+            <%= image_tag observation.user&.inaturalist_icon_url %>
+          <% end %>
+        <% end %>
+        <%= link_to observation.user&.nickname, "https://www.inaturalist.org/people/#{observation.user&.inaturalist_login}", target: :_blank %>
       </td>
     </tr>
   <% end %>
