@@ -1,4 +1,12 @@
 namespace :dev do
+  desc 'assign contributor role'
+  task assign_contributor_role: :environment do
+    User.where.not(inaturalist_id: nil).each do |user|
+      user.add_role :contributor
+    end
+  end
+
+
   desc 'update user info'
   task update_user_info: :environment do
     User.where.not(inaturalist_id: nil).each do |user|

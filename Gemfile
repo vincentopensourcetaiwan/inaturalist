@@ -28,6 +28,7 @@ gem 'nokogiri'
 gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
 gem "rolify"
+gem 'simple_form'
 group :development, :test do
   gem 'awesome_rails_console'
   gem 'awesome_print'
@@ -38,12 +39,8 @@ group :development, :test do
   gem 'rspec-rails'
 end
 group :development do
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rails_layout'
-  gem 'spring-commands-rspec'
   gem 'annotate'
 end
 group :test do

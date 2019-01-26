@@ -10,23 +10,4 @@ class UserPolicy
     @current_user.has_role? :admin
   end
 
-  def show?
-    @current_user.has_role? :admin
-  end
-
-  def edit?
-    @current_user.has_role? :admin or @current_user == @user
-  end
-
-  def update?
-    @current_user.has_role? :admin or @current_user == @user
-  end
-
-  def send_confirmation_instructions?
-    @current_user.has_role? :admin
-  end
-
-  def confirm?
-    @current_user.has_role? :admin
-  end
 end

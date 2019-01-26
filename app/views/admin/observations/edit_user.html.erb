@@ -1,0 +1,15 @@
+<%= simple_form_for @observation, url: admin_observation_update_user_path(@observation), method: 'post' do |f| %>
+
+  <%= f.input :user_id,
+              collection: User.with_role(:contributor),
+              as: :radio_buttons,
+              label_method: lambda { |user| "#{user.nickname}" },
+              label: false,
+              checked: @observation.user_id %>
+
+  <div class="form-actions">
+    <%= submit_button(f) %>
+    <%= show_cancel_link %>
+  </div>
+<% end %>
+

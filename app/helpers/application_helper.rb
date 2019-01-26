@@ -1,4 +1,12 @@
 module ApplicationHelper
+  def show_cancel_link
+    "<a href=#{request.referrer} class='btn'>Cancel</a>".html_safe
+  end
+
+  def submit_button(f)
+    f.button :submit, class: "btn btn-primary", id: "submit"
+  end
+
   def show_page(page, total_hits_count)
     current_page = (page || 1).to_i
     "顯示第 #{(current_page - 1) * Observation::HIT_PER_PAGE + 1} 至 #{current_page * Observation::HIT_PER_PAGE }項結果，共 #{total_hits_count} 項結果。"

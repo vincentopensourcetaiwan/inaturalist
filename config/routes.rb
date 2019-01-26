@@ -6,7 +6,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
-    resources :observations
+    resources :observations do
+      get :edit_user
+      post :update_user
+    end
   end
 
 end
