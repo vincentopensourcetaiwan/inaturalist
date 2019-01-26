@@ -5,8 +5,8 @@ class Admin::UsersController < ApplicationController
   after_action :verify_authorized
 
   def index
-    @users = User.all
     authorize User
+    @users = User.all.order(id: :desc).page params[:page]
   end
 
   def show

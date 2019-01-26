@@ -1,4 +1,11 @@
 <ul class="nav nav-list">
+  <li class=<%= params[:controller] == 'admin/users' ? "active" : "" %>>
+    <a href="<%= admin_users_path %>">
+      <i class="ace-icon glyphicon glyphicon-search"></i>
+      <span class="menu-text"> users </span>
+    </a>
+    <b class="arrow"></b>
+  </li>
   <li class=<%= params[:controller] == 'admin/observations' ? "active" : "" %>>
     <a href="<%= admin_observations_path %>">
       <i class="ace-icon glyphicon glyphicon-search"></i>
