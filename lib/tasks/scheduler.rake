@@ -11,12 +11,12 @@ task :update_inaturalist_data => :environment do
       if result["photos"].count > 0
         observation = Observation.find_or_create_by(inaturalist_id: result["id"])
         observation.uri = result["uri"] if result["uri"].present?
-        observation.wikipedia_url = result["taxon"]["wikipedia_url"] if result["taxon"].present?
         observation.description = result["description"] if result["description"].present?
         observation.user_login = result["user"]["login"] if result["user"]["login"].present?
         observation.user_icon = result["user"]["icon"] if result["user"]["icon"].present?
 
         if result["taxon"].present?
+          observation.wikipedia_url = result["taxon"]["wikipedia_url"]
           taxon_name = result["taxon"]["name"]
           chinese_taxon_name = WikipediaService.get_chinese_taxon_name(taxon_name)
           observation.taxon_name = taxon_name
