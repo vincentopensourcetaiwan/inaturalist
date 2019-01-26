@@ -32,6 +32,6 @@ class Observation < ApplicationRecord
   belongs_to :category
 
   algoliasearch do
-    attribute :taxon_name, :description, :chinese_taxon_name
+    attribute :taxon_name, :description, :chinese_taxon_name, :category_name, :category, :user
   end
 end
