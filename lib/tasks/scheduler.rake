@@ -17,10 +17,13 @@ task :update_inaturalist_data => :environment do
 
         if result["taxon"].present?
           observation.wikipedia_url = result["taxon"]["wikipedia_url"]
+
           taxon_name = result["taxon"]["name"]
           chinese_taxon_name = WikipediaService.get_chinese_taxon_name(taxon_name)
           observation.taxon_name = taxon_name
           observation.chinese_taxon_name = chinese_taxon_name
+
+          observation.category_name = result["taxon"]["iconic_taxon_name"]
         end
 
         if result["location"].present?
