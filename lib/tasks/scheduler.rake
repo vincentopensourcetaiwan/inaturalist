@@ -14,6 +14,7 @@ task :update_inaturalist_data => :environment do
         observation.description = result["description"] if result["description"].present?
         observation.user_login = result["user"]["login"] if result["user"]["login"].present?
         observation.user_icon = result["user"]["icon"] if result["user"]["icon"].present?
+        observation.observed_at = result["time_observed_at"].to_datetime if result["time_observed_at"].present?
 
         if result["taxon"].present?
           observation.wikipedia_url = result["taxon"]["wikipedia_url"]

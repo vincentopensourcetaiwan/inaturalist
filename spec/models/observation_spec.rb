@@ -20,6 +20,7 @@
 #  user_id            :integer
 #  category_id        :integer
 #  category_name      :string
+#  observed_at        :datetime
 #
 
 require 'rails_helper'
