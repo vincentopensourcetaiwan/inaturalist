@@ -1,7 +1,7 @@
 <ul class="nav nav-list">
   <li class=<%= params[:controller] == 'admin/users' ? "active" : "" %>>
     <a href="<%= admin_users_path %>">
-      <i class="ace-icon glyphicon glyphicon-search"></i>
+      <i class="ace-icon fa fa-users"></i>
       <span class="menu-text"> users </span>
     </a>
     <b class="arrow"></b>
@@ -10,6 +10,13 @@
     <a href="<%= admin_observations_path %>">
       <i class="ace-icon glyphicon glyphicon-search"></i>
       <span class="menu-text"> observations </span>
+    </a>
+    <b class="arrow"></b>
+  </li>
+  <li class=<%= params[:controller] == 'admin/categories' ? "active" : "" %>>
+    <a href="<%= admin_categories_path %>">
+      <i class="ace-icon fa fa-bookmark"></i>
+      <span class="menu-text"> categories </span>
     </a>
     <b class="arrow"></b>
   </li>
