@@ -22,8 +22,20 @@ class Admin::ObservationsController < ApplicationController
     redirect_to admin_observations_path
   end
 
+  def edit_category
+    @observation = Observation.find(params[:observation_id])
+    authorize @observation
+  end
+
+  def update_category
+    @observation = Observation.find(params[:observation_id])
+    authorize @observation
+    @observation.update(observation_params)
+    redirect_to admin_observations_path
+  end
+
   def observation_params
-    params.require(:observation).permit(:user_id)
+    params.require(:observation).permit(:user_id, :category_id)
   end
 
 

@@ -19,9 +19,10 @@
     <th class="text-center">id</th>
     <th class="text-center">photos</th>
     <th class="text-center">taxon name</th>
+    <th class="text-center">description</th>
+    <th class="text-center">分類</th>
     <th class="text-center">顯示於維基百科</th>
     <th class="text-center">View on Wikipedia</th>
-    <th class="text-center">description</th>
     <th class="text-center">顯示於 iNaturlist</th>
     <th class="text-center">上傳者</th>
     <th class="text-center">相片拍攝者</th>
@@ -38,9 +39,10 @@
         <% end %>
       </td>
       <td><%= show_taxon_name(observation) %></td>
+      <td><%= observation.description %></td>
+      <td><%= "#{observation.category&.chinese_name}(#{observation.category&.name})" %></td>
       <td><%= link_to "顯示於維基百科", "https://zh.wikipedia.org/zh-tw/#{observation.taxon_name}", target: "_blank" %></td>
       <td><%= link_to "View on Wikipedia", observation.wikipedia_url, target: "_blank" %></td>
-      <td><%= observation.description %></td>
       <td><a href="<%= observation.uri %>" target="_blank">顯示於 iNaturlist</a></td>
       <td>
         <% if observation.user_icon.present? %>
@@ -59,7 +61,8 @@
         <%= link_to observation.user&.nickname, "https://www.inaturalist.org/people/#{observation.user&.inaturalist_login}", target: :_blank %>
       </td>
       <td>
-        <%= link_to "選擇拍攝者", admin_observation_edit_user_path(observation), class: "btn" %>
+        <%= link_to "選擇拍攝者", admin_observation_edit_user_path(observation), class: "btn btn-primary" %>
+        <%= link_to "選擇分類", admin_observation_edit_category_path(observation), class: "btn btn-info " %>
       </td>
     </tr>
   <% end %>
