@@ -1,4 +1,31 @@
 module ApplicationHelper
+  def new_button(link)
+    "<a href='#{link}' class='btn btn-primary'>new</a>".html_safe
+  end
+
+  def show_button(link)
+    "<a href='#{link}' class='btn btn-xs btn-success' target='_blank'><i class='ace-icon fa fa-check'></i></a>".html_safe
+  end
+
+  def edit_button(link, open_new_window, size)
+    case size
+    when "default"
+      "<a href='#{link}' class='btn btn-info' #{open_new_window ? "target='_blank'" : ''}><i class='ace-icon fa fa-pencil'></i></a>".html_safe
+    when "xs"
+      "<a href='#{link}' class='btn btn-xs btn-info' #{open_new_window ? "target='_blank'" : ''}><i class='ace-icon fa fa-pencil'></i></a>".html_safe
+    else
+      "<a href='#{link}' class='btn btn-info' #{open_new_window ? "target='_blank'" : ''}><i class='ace-icon fa fa-pencil'></i></a>".html_safe
+    end
+  end
+
+  def destroy_button(link, enabled)
+    if enabled
+      "<a href='#{link}' data-confirm='Are you sure?' rel='nofollow' data-method='delete' class='btn btn-xs btn-danger' id='destroy'><i class='ace-icon fa fa-trash-o'></i></a>".html_safe
+    else
+      "<a href='#{link}' data-confirm='Are you sure?' rel='nofollow' data-method='delete' class='btn btn-xs btn-danger' disabled><i class='ace-icon fa fa-trash-o'></i></a>".html_safe
+    end
+  end
+
   def show_cancel_link
     "<a href=#{request.referrer} class='btn'>Cancel</a>".html_safe
   end

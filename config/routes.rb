@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get :edit_user
       post :update_user
     end
+    resources :categories
   end
 
 end
