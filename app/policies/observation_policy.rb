@@ -37,4 +37,13 @@ class ObservationPolicy
   def update_user?
     (@current_user.has_role? :admin) | (@current_user.has_role? :editor)
   end
+
+  def edit_category?
+    (@current_user.has_role? :admin) | (@current_user.has_role? :editor)
+  end
+
+  def update_category?
+    (@current_user.has_role? :admin) | (@current_user.has_role? :editor)
+  end
+
 end

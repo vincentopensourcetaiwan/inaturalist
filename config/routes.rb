@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :observations do
       get :edit_user
       post :update_user
+      get :edit_category
+      post :update_category
     end
     resources :categories
   end
