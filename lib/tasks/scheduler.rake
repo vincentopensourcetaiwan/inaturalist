@@ -24,7 +24,10 @@ task :update_inaturalist_data => :environment do
           observation.taxon_name = taxon_name
           observation.chinese_taxon_name = chinese_taxon_name
 
-          observation.category_name = result["taxon"]["iconic_taxon_name"]
+          category_name = result["taxon"]["iconic_taxon_name"]
+          observation.category_name = category_name
+          category = Category.find_or_create_by(name: category_name)
+          observation.category = category if observation.category.nil?
         end
 
         if result["location"].present?
