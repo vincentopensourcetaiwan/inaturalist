@@ -21,6 +21,7 @@
 #  category_id        :integer
 #  category_name      :string
 #  observed_at        :datetime
+#  name               :string
 #
 
 class Observation < ApplicationRecord
@@ -33,6 +34,6 @@ class Observation < ApplicationRecord
   belongs_to :category
 
   algoliasearch do
-    attribute :taxon_name, :description, :chinese_taxon_name, :category_name, :category, :user
+    attribute :taxon_name, :description, :chinese_taxon_name, :category_name, :category, :user, :name
   end
 end

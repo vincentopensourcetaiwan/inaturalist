@@ -21,6 +21,7 @@
 #  category_id        :integer
 #  category_name      :string
 #  observed_at        :datetime
+#  name               :string
 #
 
 FactoryBot.define do

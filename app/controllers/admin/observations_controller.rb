@@ -5,37 +5,25 @@ class Admin::ObservationsController < ApplicationController
   after_action :verify_authorized
 
   def index
+    authorize Observation
     @keyword = permitted_params["keyword"]
     @observations = Observation.search(@keyword, { hitsPerPage: Observation::HIT_PER_PAGE, page: params[:page] })
-    authorize Observation
   end
 
-  def edit_user
-    @observation = Observation.find(params[:observation_id])
+  def edit
+    @observation = Observation.find(params[:id])
     authorize @observation
   end
 
-  def update_user
-    @observation = Observation.find(params[:observation_id])
-    authorize @observation
-    @observation.update(observation_params)
-    redirect_to admin_observations_path
-  end
-
-  def edit_category
-    @observation = Observation.find(params[:observation_id])
-    authorize @observation
-  end
-
-  def update_category
-    @observation = Observation.find(params[:observation_id])
+  def update
+    @observation = Observation.find(params[:id])
     authorize @observation
     @observation.update(observation_params)
     redirect_to admin_observations_path
   end
 
   def observation_params
-    params.require(:observation).permit(:user_id, :category_id)
+    params.require(:observation).permit(:user_id, :category_id, :name)
   end
 
 

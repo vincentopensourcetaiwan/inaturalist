@@ -18,9 +18,10 @@
   <tr>
     <th class="text-center">id</th>
     <th class="text-center">photos</th>
-    <th class="text-center">taxon name</th>
     <th class="text-center">description</th>
+    <th class="text-center">taxon name</th>
     <th class="text-center">分類</th>
+    <th class="text-center">名稱</th>
     <th class="text-center">顯示於維基百科</th>
     <th class="text-center">View on Wikipedia</th>
     <th class="text-center">顯示於 iNaturlist</th>
@@ -35,13 +36,16 @@
       <td class="text-center"><%= observation.id %></td>
       <td>
         <% observation.photos.each do |photo| %>
-          <a href="<%= observation.uri %>" target="_blank"><img src="<%= photo.url %>" alt=""></a>
+          <a href="<%= photo.url.gsub("square", "original") %>" data-lightbox="<%= photo.id %>">
+            <img class="example-image" src="<%= photo.url %>">
+          </a>
         <% end %>
       </td>
-      <td><%= show_taxon_name(observation) %></td>
       <td><%= observation.description %></td>
+      <td><%= show_taxon_name(observation) %></td>
       <td><%= "#{observation.category&.chinese_name}(#{observation.category&.name})" %></td>
-      <td><%= link_to "顯示於維基百科", "https://zh.wikipedia.org/zh-tw/#{observation.taxon_name}", target: "_blank" %></td>
+      <td class="text-center"><%= observation.name %></td>
+      <td><%= show_chinese_wikipedia(observation) %></td>
       <td><%= link_to "View on Wikipedia", observation.wikipedia_url, target: "_blank" %></td>
       <td><a href="<%= observation.uri %>" target="_blank">顯示於 iNaturlist</a></td>
       <td>
@@ -61,8 +65,7 @@
         <%= link_to observation.user&.nickname, "https://www.inaturalist.org/people/#{observation.user&.inaturalist_login}", target: :_blank %>
       </td>
       <td>
-        <%= link_to "選擇拍攝者", admin_observation_edit_user_path(observation), class: "btn btn-primary" %>
-        <%= link_to "選擇分類", admin_observation_edit_category_path(observation), class: "btn btn-info " %>
+        <%= edit_button(edit_admin_observation_path(observation), false, "default") %>
       </td>
     </tr>
   <% end %>
