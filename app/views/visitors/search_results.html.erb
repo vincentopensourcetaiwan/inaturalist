@@ -32,9 +32,17 @@
   <!-- YOUR CUSTOM CSS -->
   <link href="visitor-theme/html_menu_2/css/custom.css" rel="stylesheet">
 
+  <script src="visitor-theme/html_menu_2/js/jquery-2.2.4.min.js"></script>
+
+
+  <link href="lightbox2-master/src/css/lightbox.css" rel="stylesheet">
+  <script src="lightbox2-master/src/js/lightbox.js"></script>
+
   <!-- Start of nanhu Zendesk Widget script -->
   <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=0e1cdb58-27c0-406e-aedc-4859823d0b94"></script>
   <!-- End of nanhu Zendesk Widget script -->
+
+
 </head>
 
 <body>
@@ -87,8 +95,10 @@
           <% @observations.each_with_index do |observation, index| %>
             <div class="strip_list wow fadeIn">
               <figure>
-                <% observation.photos.each do |photo| %>
-                  <a href="<%= observation.uri %>" target="_blank"><img src="<%= photo.url %>" alt=""></a>
+                <% observation.photos.each_with_index do |photo, index| %>
+                  <a href="<%= photo.url.gsub("square", "original") %>" data-lightbox="<%= photo.id %>">
+                    <img class="example-image" src="<%= photo.url %>">
+                  </a>
                 <% end %>
               </figure>
               <table>
@@ -159,7 +169,6 @@
 <!-- page -->
 
 <!-- COMMON SCRIPTS -->
-<script src="visitor-theme/html_menu_2/js/jquery-2.2.4.min.js"></script>
 <script src="visitor-theme/html_menu_2/js/common_scripts.min.js"></script>
 <script src="visitor-theme/html_menu_2/js/functions.js"></script>
 
