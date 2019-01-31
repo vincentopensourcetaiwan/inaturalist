@@ -20,6 +20,7 @@
     <th class="text-center">photos</th>
     <th class="text-center">description</th>
     <th class="text-center">taxon name</th>
+    <th class="text-center">chinese taxon name</th>
     <th class="text-center">分類</th>
     <th class="text-center">名稱</th>
     <th class="text-center">顯示於維基百科</th>
@@ -42,7 +43,8 @@
         <% end %>
       </td>
       <td><%= observation.description %></td>
-      <td><%= show_taxon_name(observation) %></td>
+      <td><%= observation.taxon_name %></td>
+      <td><%= observation.chinese_taxon_name %></td>
       <td><%= "#{observation.category&.chinese_name}(#{observation.category&.name})" %></td>
       <td class="text-center"><%= observation.name %></td>
       <td><%= show_chinese_wikipedia(observation) %></td>
