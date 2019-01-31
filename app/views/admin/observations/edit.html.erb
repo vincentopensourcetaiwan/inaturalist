@@ -1,0 +1,26 @@
+<%= simple_form_for [:admin, @observation] do |f| %>
+
+  <%= f.input :name, label: "名稱：   " %>
+  <br>
+  <%= f.input :user_id,
+              collection: User.with_role(:contributor),
+              as: :radio_buttons,
+              label_method: lambda { |user| "#{user.nickname}" },
+              label: "拍攝者",
+              checked: @observation.user_id %>
+
+  <br>
+
+  <%= f.input :category_id,
+              collection: Category.all,
+              as: :radio_buttons,
+              label_method: lambda { |category| "#{category.chinese_name}(#{category.name})" },
+              label: "分類",
+              checked: @observation.category_id %>
+
+  <div class="form-actions">
+    <%= submit_button(f) %>
+    <%= show_cancel_link %>
+  </div>
+<% end %>
+

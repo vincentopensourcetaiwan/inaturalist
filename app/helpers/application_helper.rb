@@ -1,4 +1,12 @@
 module ApplicationHelper
+  def show_chinese_wikipedia(observation)
+    if observation.name.present?
+      link_to "顯示於維基百科", "https://zh.wikipedia.org/zh-tw/#{observation.name}", target: "_blank"
+    else
+      link_to "顯示於維基百科", "https://zh.wikipedia.org/zh-tw/#{observation.taxon_name}", target: "_blank"
+    end
+  end
+
   def new_button(link)
     "<a href='#{link}' class='btn btn-primary'>new</a>".html_safe
   end
@@ -40,13 +48,14 @@ module ApplicationHelper
   end
 
   def show_taxon_name(observation)
-    if observation.chinese_taxon_name.present?
-      "#{observation.chinese_taxon_name}（#{observation.taxon_name}）".html_safe
+    if observation.name.present?
+      observation.name
+    elsif observation.chinese_taxon_name.present?
+      "#{observation.chinese_taxon_name}（#{observation.taxon_name}）"
     else
       "#{observation.taxon_name}"
     end
   end
-
 
   def show_tags(observation)
     return_straing = ""
