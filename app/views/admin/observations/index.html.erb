@@ -54,7 +54,7 @@
       </td>
       <td class="text-center"><%= observation.name %></td>
       <td><%= show_chinese_wikipedia(observation) %></td>
-      <td><%= link_to "View on Wikipedia", observation.wikipedia_url, target: "_blank" %></td>
+      <td><%= show_on_wikipedia(observation) %></td>
       <td><a href="<%= observation.uri %>" target="_blank">顯示於 iNaturlist</a></td>
       <td>
         <% if observation.user_icon.present? %>
