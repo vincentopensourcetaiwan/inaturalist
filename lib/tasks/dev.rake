@@ -1,4 +1,21 @@
 namespace :dev do
+  desc 'update observation name'
+  task update_observation_name: :environment do
+    Observation.where(name: nil).where.not(description: nil).each do |observation|
+      p "id: #{observation.id}"
+      p "inaturalist_id: #{observation.inaturalist_id}"
+      p "description: #{observation.description}"
+      p "name: #{observation.name}"
+
+      new_name = observation.description.gsub(/[a-zA-Z]/, "").gsub(/\,/, "").gsub("\n", "").gsub(/\s+/, '')
+      p "new_name: #{new_name}"
+
+      observation.update(name: new_name)
+      p "observation #{observation.id} update name: #{observation.name}"
+      p "--------------------------------------------"
+    end
+  end
+
   desc 'assign category'
   task assign_category: :environment do
     Observation.all.each do |observation|
