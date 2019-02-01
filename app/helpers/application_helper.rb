@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def show_on_wikipedia(observation)
+    link_to "View on Wikipedia", observation.wikipedia_url, target: "_blank" if observation.wikipedia_url.present?
+  end
+
   def show_chinese_wikipedia(observation)
     if observation.name.present?
       link_to "顯示於維基百科", "https://zh.wikipedia.org/zh-tw/#{observation.name}", target: "_blank"
