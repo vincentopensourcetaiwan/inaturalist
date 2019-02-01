@@ -29,11 +29,26 @@ class Observation < ApplicationRecord
 
   HIT_PER_PAGE = 25
 
+  attr_reader :tag_tokens
+
   has_many :photos
+  has_many :taggings
+  has_many :tags, through: :taggings
+
   belongs_to :user, optional: true
   belongs_to :category, optional: true
 
-  algoliasearch do
-    attribute :taxon_name, :description, :chinese_taxon_name, :category_name, :category, :user, :name
+  def tag_tokens=(ids)
+    self.tag_ids = ids.split(',')
   end
+
+  algoliasearch do
+    attribute :taxon_name, :description, :chinese_taxon_name, :category_name, :category, :user, :name, :tags
+  end
+
+  if Rails.env.test?
+    algoliasearch per_environment: true, disable_indexing: Rails.env.test? do
+    end
+  end
+
 end

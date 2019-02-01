@@ -20,4 +20,11 @@
     </a>
     <b class="arrow"></b>
   </li>
+  <li class=<%= params[:controller] == 'admin/tags' ? "active" : "" %>>
+    <a href="<%= admin_tags_path %>">
+      <i class="ace-icon glyphicon glyphicon-tag"></i>
+      <span class="menu-text"> tags </span>
+    </a>
+    <b class="arrow"></b>
+  </li>
 </ul>

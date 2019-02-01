@@ -22,6 +22,7 @@
     <th class="text-center">taxon name</th>
     <th class="text-center">chinese taxon name</th>
     <th class="text-center">分類</th>
+    <th class="text-center">tags</th>
     <th class="text-center">名稱</th>
     <th class="text-center">顯示於維基百科</th>
     <th class="text-center">View on Wikipedia</th>
@@ -46,6 +47,11 @@
       <td><%= observation.taxon_name %></td>
       <td><%= observation.chinese_taxon_name %></td>
       <td><%= "#{observation.category&.chinese_name}(#{observation.category&.name})" %></td>
+      <td>
+        <% observation.tags.each do |tag| %>
+          <%= tag_label(tag) %>
+        <% end %>
+      </td>
       <td class="text-center"><%= observation.name %></td>
       <td><%= show_chinese_wikipedia(observation) %></td>
       <td><%= link_to "View on Wikipedia", observation.wikipedia_url, target: "_blank" %></td>
