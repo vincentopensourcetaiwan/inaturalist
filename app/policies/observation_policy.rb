@@ -11,11 +11,11 @@ class ObservationPolicy
   end
 
   def edit?
-    @current_user.has_role? :admin or @current_user == @user
+    (@current_user.has_role? :admin) | (@current_user.has_role? :editor)
   end
 
   def update?
-    @current_user.has_role? :admin or @current_user == @user
+    (@current_user.has_role? :admin) | (@current_user.has_role? :editor)
   end
 
 

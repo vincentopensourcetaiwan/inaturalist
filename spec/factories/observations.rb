@@ -26,13 +26,5 @@
 
 FactoryBot.define do
   factory :observation do
-    observation_id { 1 }
-    observation_uri { "MyString" }
-    observation_photo_url { "MyString" }
-    taxon_name { "MyString" }
-    description { "MyText" }
-    user_name { "MyString" }
-    user_login { "MyString" }
-    user_icon { "MyString" }
   end
 end

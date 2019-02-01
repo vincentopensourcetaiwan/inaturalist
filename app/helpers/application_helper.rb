@@ -70,6 +70,6 @@ module ApplicationHelper
   end
 
   def tag_label(tag)
-    "<span class='label label-lg label-inverse arrowed arrowed-in-right'>#{tag}</span>&nbsp".html_safe
+    "<span class='label label-success arrowed'>#{tag.name}</span>&nbsp".html_safe
   end
 end

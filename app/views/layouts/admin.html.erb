@@ -70,7 +70,7 @@
       <a href="<%= admin_observations_path %>" class="navbar-brand">
         <small>
           <i class="fa fa-leaf"></i>
-          Homepage
+          <%= "歡迎   #{current_user.nickname}   #{current_user.email}" %>
         </small>
       </a>
       <!-- /section:basics/navbar.layout.brand -->
@@ -153,10 +153,6 @@
   window.jQuery || document.write("<script src='../assets/js/jquery1x.js'>" + "<" + "/script>");
 </script>
 <![endif]-->
-<script type="text/javascript">
-    if ('ontouchstart' in document.documentElement) document.write("<script src='/admin-panel-theme/assets/js/jquery.mobile.custom.js'>" + "<" + "/script>");
-</script>
-<script src="/admin-panel-theme/assets/js/bootstrap.js"></script>
 <!-- page specific plugin scripts -->
 <!--[if lte IE 8]>
 <script src="/admin-panel-theme/assets/js/excanvas.js"></script>
