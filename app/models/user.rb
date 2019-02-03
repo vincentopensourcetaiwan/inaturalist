@@ -30,6 +30,10 @@ class User < ApplicationRecord
 
   rolify
 
+  validates :email, presence: true
+  validates :email, uniqueness: true
+
+
   after_create :assign_default_role
 
   def assign_default_role

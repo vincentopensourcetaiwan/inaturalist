@@ -22,6 +22,11 @@
   <br>
   <%= f.text_field :tag_tokens, data: { load: @observation.tags } %>
 
+  <br>
+  Places:
+  <br>
+  <%= f.text_field :place_tokens, data: { load: @observation.places } %>
+
 
   <div class="form-actions">
     <%= submit_button(f) %>
@@ -34,6 +39,11 @@
             prePopulate: $('#observation_tag_tokens').data('load'),
             preventDuplicates: true,
             propertyToSearch: 'name'
+        });
+        $('#observation_place_tokens').tokenInput('/admin/places/search', {
+            prePopulate: $('#observation_place_tokens').data('load'),
+            preventDuplicates: true,
+            propertyToSearch: 'chinese_name'
         });
     });
 </script>

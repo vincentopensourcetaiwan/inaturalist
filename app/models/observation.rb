@@ -29,11 +29,13 @@ class Observation < ApplicationRecord
 
   HIT_PER_PAGE = 25
 
-  attr_reader :tag_tokens
+  attr_reader :tag_tokens, :place_tokens
 
   has_many :photos
   has_many :taggings
   has_many :tags, through: :taggings
+  has_many :placings
+  has_many :places, through: :placings
 
   belongs_to :user, optional: true
   belongs_to :category, optional: true
@@ -42,8 +44,12 @@ class Observation < ApplicationRecord
     self.tag_ids = ids.split(',')
   end
 
+  def place_tokens=(ids)
+    self.place_ids = ids.split(',')
+  end
+
   algoliasearch do
-    attribute :taxon_name, :description, :chinese_taxon_name, :category_name, :category, :user, :name, :tags
+    attribute :taxon_name, :description, :chinese_taxon_name, :category_name, :category, :user, :name, :tags, :places
   end
 
   if Rails.env.test?

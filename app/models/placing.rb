@@ -1,16 +1,17 @@
 # == Schema Information
 #
-# Table name: taggings
+# Table name: placings
 #
 #  id             :bigint(8)        not null, primary key
-#  tag_id         :bigint(8)
+#  place_id       :bigint(8)
 #  observation_id :bigint(8)
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
 
-require 'rails_helper'
+class Placing < ApplicationRecord
+  belongs_to :place
+  belongs_to :observation
 
-RSpec.describe Tagging, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  validates :place, uniqueness: { scope: :observation }
 end

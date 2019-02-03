@@ -8,7 +8,7 @@ task :update_inaturalist_data => :environment do
     data = InaturalistService.observations("desc", "created_at", page)
     results = data["results"]
     results.each do |result|
-      if result["photos"].count > 0
+      if result["photos"].present?
         observation = Observation.find_or_create_by(inaturalist_id: result["id"])
         observation.uri = result["uri"] if result["uri"].present?
         observation.description = result["description"] if result["description"].present?
@@ -26,7 +26,7 @@ task :update_inaturalist_data => :environment do
 
           category_name = result["taxon"]["iconic_taxon_name"]
           observation.category_name = category_name
-          category = Category.find_or_create_by(name: category_name)
+          category = Category.find_or_create_by!(name: category_name)
           observation.category = category if observation.category.nil?
         end
 
@@ -37,13 +37,8 @@ task :update_inaturalist_data => :environment do
 
         observation.save(validate: false)
 
-        if result["photos"].present?
-          result["photos"].each do |photo|
-            old_photo = observation.photos.find_by(url: photo["url"])
-            if old_photo.nil?
-              observation.photos.create(url: photo["url"])
-            end
-          end
+        result["photos"].each do |photo|
+          observation.photos.find_or_create_by!(url: photo["url"])
         end
 
         puts "observation: #{observation.id} update finisth"
@@ -57,7 +52,24 @@ desc "update user information"
 task :update_user_information => :environment do
   User.where.not(inaturalist_id: nil).each do |user|
     data = InaturalistService.get_user(user.inaturalist_id)
-    user.update(inaturalist_icon_url: data["results"].last["icon"]) if data["results"].last["icon"].present?
+    user.update!(inaturalist_icon_url: data["results"].last["icon"]) if data["results"].last["icon"].present?
     puts "user #{user.inaturalist_login} updated"
+  end
+end
+
+desc "update observation place"
+task :update_observation_place => :environment do
+  Place.all.each do |place|
+    observations = Observation.where("longitude <= ?", place[:longitude] + Place::ACCURACY)
+                     .where("longitude >= ?", place[:longitude] - Place::ACCURACY)
+                     .where("latitude >= ?", place[:latitude] - Place::ACCURACY)
+                     .where("latitude >= ?", place[:latitude] - Place::ACCURACY)
+    observations.each do |observation|
+      if observation.places.where(id: place.id).empty?
+        observation.places << place
+        p "observation #{observation.id} has #{observation.places.size} places: #{observation.places.pluck(:id)}"
+      end
+    end
+    p "place #{place.chinese_name} is updated"
   end
 end

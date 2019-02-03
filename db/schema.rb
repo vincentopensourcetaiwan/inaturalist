@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_01_082548) do
+ActiveRecord::Schema.define(version: 2019_02_03_064637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,24 @@ ActiveRecord::Schema.define(version: 2019_02_01_082548) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["observation_id"], name: "index_photos_on_observation_id"
+  end
+
+  create_table "places", force: :cascade do |t|
+    t.string "name"
+    t.string "chinese_name"
+    t.float "longitude"
+    t.float "latitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "placings", force: :cascade do |t|
+    t.bigint "place_id"
+    t.bigint "observation_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["observation_id"], name: "index_placings_on_observation_id"
+    t.index ["place_id"], name: "index_placings_on_place_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -108,6 +126,8 @@ ActiveRecord::Schema.define(version: 2019_02_01_082548) do
   end
 
   add_foreign_key "photos", "observations"
+  add_foreign_key "placings", "observations"
+  add_foreign_key "placings", "places"
   add_foreign_key "taggings", "observations"
   add_foreign_key "taggings", "tags"
 end
