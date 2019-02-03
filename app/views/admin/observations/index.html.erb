@@ -23,6 +23,7 @@
     <th class="text-center">chinese taxon name</th>
     <th class="text-center">分類</th>
     <th class="text-center">tags</th>
+    <th class="text-center">地點</th>
     <th class="text-center">名稱</th>
     <th class="text-center">顯示於維基百科</th>
     <th class="text-center">View on Wikipedia</th>
@@ -41,6 +42,7 @@
           <a href="<%= photo.url.gsub("square", "original") %>" data-lightbox="<%= photo.id %>">
             <img class="example-image" src="<%= photo.url %>">
           </a>
+          <br><br>
         <% end %>
       </td>
       <td><%= observation.description %></td>
@@ -48,8 +50,13 @@
       <td><%= observation.chinese_taxon_name %></td>
       <td><%= "#{observation.category&.chinese_name}(#{observation.category&.name})" %></td>
       <td>
-        <% observation.tags.each do |tag| %>
+        <% observation.tags.order(id: :asc).each do |tag| %>
           <%= tag_label(tag) %>
+        <% end %>
+      </td>
+      <td>
+        <% observation.places.order(chinese_name: :asc).each do |place| %>
+          <%= place_label(place) %>
         <% end %>
       </td>
       <td class="text-center"><%= observation.name %></td>

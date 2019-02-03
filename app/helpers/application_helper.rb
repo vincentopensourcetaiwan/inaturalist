@@ -74,6 +74,10 @@ module ApplicationHelper
   end
 
   def tag_label(tag)
-    "<span class='label label-success arrowed'>#{tag.name}</span>&nbsp".html_safe
+    "<span class='label label-success arrowed'>#{tag.name}</span><br><br>".html_safe
+  end
+
+  def place_label(place)
+    "<span class='label label-info arrowed'>#{place.chinese_name}</span><br><br>".html_safe
   end
 end

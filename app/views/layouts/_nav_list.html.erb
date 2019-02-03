@@ -27,4 +27,11 @@
     </a>
     <b class="arrow"></b>
   </li>
+  <li class=<%= params[:controller] == 'admin/places' ? "active" : "" %>>
+    <a href="<%= admin_places_path %>">
+      <i class="ace-icon glyphicon glyphicon-map-marker"></i>
+      <span class="menu-text"> places </span>
+    </a>
+    <b class="arrow"></b>
+  </li>
 </ul>

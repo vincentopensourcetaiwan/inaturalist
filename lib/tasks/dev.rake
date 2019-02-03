@@ -1,4 +1,50 @@
 namespace :dev do
+  desc 'place seed'
+  task place_seed: :environment do
+    places = [
+      { name: "Yunleng Cabin", chinese_name: "雲稜山莊", longitude: 121.3970180, latitude: 24.3783240 },
+      { name: "Song Feng Ling", chinese_name: "松風嶺", longitude: 121.3704440, latitude: 24.3714090 },
+      { name: "Nanhu Mountain", chinese_name: "南湖大山", longitude: 121.4393720, latitude: 24.3618300 },
+      { name: "Shen Ma Jhen Mountain", chinese_name: "審馬陣山", longitude: 121.4174670, latitude: 24.3802390 },
+      { name: "Duo Jia Tun Mountain Leading Peak", chinese_name: "多加屯山前峰", longitude: 121.3751150, latitude: 24.3693250 },
+      { name: "Duo Jia Tun Mountain", chinese_name: "多加屯山", longitude: 121.3811590, latitude: 24.3677600 },
+      { name: "Wood Pole Saddle", chinese_name: "木杆鞍部", longitude: 121.3929750, latitude: 24.3761700 },
+      { name: "Nanhu Cabin", chinese_name: "南湖山屋", longitude: 121.4435390, latitude: 24.3695620 },
+      { name: "Wu Yan Peak", chinese_name: "五岩峰", longitude: 121.4399380, latitude: 24.3780540 },
+      { name: "Nanhu North Mountain", chinese_name: "南湖北山", longitude: 121.4371820, latitude: 24.3836660 }
+    ]
+
+    places.each do |place|
+      created_place = Place.create!(name: place[:name], chinese_name: place[:chinese_name], longitude: place[:longitude], latitude: place[:latitude])
+      p "place #{created_place.id} #{created_place.name} #{created_place.chinese_name} #{created_place.longitude} #{created_place.latitude}"
+    end
+
+  end
+
+  desc 'update places'
+  task update_place: :environment do
+    places = [
+      { name: "Yunleng Cabin", chinese_name: "雲稜山莊", longitude: 121.3970180, latitude: 24.3783240 },
+      { name: "Song Feng Ling", chinese_name: "松風嶺", longitude: 121.3704440, latitude: 24.3714090 },
+      { name: "Nanhu Mountain", chinese_name: "南湖大山", longitude: 121.4393720, latitude: 24.3618300 },
+      { name: "Shen Ma Jhen Mountain", chinese_name: "審馬陣山", longitude: 121.4174670, latitude: 24.3802390 },
+      { name: "Duo Jia Tun Mountain Leading Peak", chinese_name: "多加屯山前峰", longitude: 121.3751150, latitude: 24.3693250 },
+      { name: "Duo Jia Tun Mountain", chinese_name: "多加屯山", longitude: 121.3811590, latitude: 24.3677600 },
+      { name: "Wood Pole Saddle", chinese_name: "木杆鞍部", longitude: 121.3929750, latitude: 24.3761700 },
+      { name: "Nanhu Cabin", chinese_name: "南湖山屋", longitude: 121.4435390, latitude: 24.3695620 },
+      { name: "Wu Yan Peak", chinese_name: "五岩峰", longitude: 121.4399380, latitude: 24.3780540 },
+      { name: "Nanhu North Mountain", chinese_name: "南湖北山", longitude: 121.4371820, latitude: 24.3836660 }
+    ]
+    places.each do |place|
+      observations = Observation.where("longitude <= ?", place[:longitude] + 0.001)
+                       .where("longitude >= ?", place[:longitude] - 0.001)
+                       .where("latitude >= ?", place[:latitude] - 0.001)
+                       .where("latitude >= ?", place[:latitude] - 0.001).pluck(:id)
+
+      p "#{place[:name]} #{place[:chinese_name]} #{observations.count} #{observations}"
+    end
+  end
+
   desc 'update observation name'
   task update_observation_name: :environment do
     Observation.where(name: nil).where.not(description: nil).each do |observation|
