@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   get '/search/', to: 'visitors#search'
+  get '/search_advance/', to: 'visitors#search_advance'
   get '/search_results/', to: 'visitors#search_results'
   root to: 'visitors#search'
 
