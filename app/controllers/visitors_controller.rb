@@ -6,6 +6,9 @@ class VisitorsController < ApplicationController
   def search
   end
 
+  def search_advance
+  end
+
   def search_results
     sentence = []
     user = permitted_params["user"]
