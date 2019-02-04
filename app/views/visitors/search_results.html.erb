@@ -69,7 +69,7 @@
           <div class="col-md-6">
             <div class="search_bar_list">
               <%= form_tag search_results_path, method: :get do %>
-                <input type="text" class="form-control" placeholder="" name="keyword" value="<%= @keyword %>">
+                <input type="text" class="form-control" placeholder="" name="keyword" value="<%= @search_sentence %>">
                 <input type="submit" value="搜尋">
               <% end %>
             </div>
