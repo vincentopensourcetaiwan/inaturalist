@@ -1,5 +1,7 @@
 class VisitorsController < ApplicationController
   layout false
+  ZOOM_FOR_PLACE = 20
+  ZOOM_FOR_OTHERS = 10
 
   def search
   end
@@ -12,8 +14,8 @@ class VisitorsController < ApplicationController
     keyword = permitted_params["keyword"]
 
     keywords = keyword.split(" ")
-    keywords.each do |k|
-      sentence << k
+    keywords.each do |keyword|
+      sentence << keyword
     end
     sentence << user if user.present?
     sentence << category if category.present?
@@ -25,6 +27,10 @@ class VisitorsController < ApplicationController
     observation_ids = @observations.pluck(:id)
     @longitude = Observation.where(id: observation_ids).average(:longitude)
     @latitude = Observation.where(id: observation_ids).average(:latitude)
+
+    places = Place.all.pluck(:chinese_name)
+    regexp = /#{places.join("|")}/
+    @zoom = regexp === @search_sentence ? ZOOM_FOR_PLACE : ZOOM_FOR_OTHERS
   end
 
   def permitted_params
