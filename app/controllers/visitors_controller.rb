@@ -25,6 +25,10 @@ class VisitorsController < ApplicationController
     observation_ids = @observations.pluck(:id)
     @longitude = Observation.where(id: observation_ids).average(:longitude)
     @latitude = Observation.where(id: observation_ids).average(:latitude)
+
+    places = Place.all.pluck(:chinese_name)
+    regexp = /#{places.join("|")}/
+    @zoom = regexp === @search_sentence ? 20 : 10
   end
 
   def permitted_params
