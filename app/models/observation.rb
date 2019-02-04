@@ -27,8 +27,6 @@
 class Observation < ApplicationRecord
   include AlgoliaSearch
 
-  HIT_PER_PAGE = 25
-
   attr_reader :tag_tokens, :place_tokens
 
   has_many :photos
