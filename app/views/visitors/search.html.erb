@@ -42,16 +42,57 @@
 <!-- /Preload-->
 
 <div id="page">
-
   <main>
     <%= render 'layouts/messages' %>
-
     <div class="hero_home">
       <div class="content">
         <h3>南湖登山小學</h3>
         <p>
         </p>
         <%= form_tag search_results_path, method: :get do %>
+          <div id="custom-search-input">
+            <ul style="white-space: nowrap;">
+              <li>
+                <input type="radio" id="user_0" name="user" value="" checked>
+                <label for="user_0" style="min-width: 0px">All</label>
+              </li>
+              <% Observation.order(user_id: :asc).pluck(:user_id).uniq.each do |id| %>
+                <% user = User.find(id) %>
+                <li>
+                  <input type="radio" id="<%= "user_#{id}" %>" name="user" value="<%= user.nickname %>">
+                  <label for="<%= "user_#{id}" %>" style="min-width: 0px"><%= user.nickname %></label>
+                </li>
+              <% end %>
+            </ul>
+
+            <ul style="white-space: nowrap;">
+              <li>
+                <input type="radio" id="category_0" name="category" value="" checked>
+                <label for="category_0" style="min-width: 0px">All</label>
+              </li>
+              <% Category.order(id: :asc).pluck(:id).uniq.each do |id| %>
+                <% category = Category.find(id) %>
+                <li>
+                  <input type="radio" id="<%= "category_#{id}" %>" name="category" value="<%= category.chinese_name %>">
+                  <label for="<%= "category_#{id}" %>" style="min-width: 0px"><%= category.chinese_name %></label>
+                </li>
+              <% end %>
+            </ul>
+
+            <ul style="white-space: nowrap;">
+              <li>
+                <input type="radio" id="place_0" name="place" value="" checked>
+                <label for="place_0" style="min-width: 0px">All</label>
+              </li>
+              <% Place.order(id: :asc).pluck(:id).uniq.each do |id| %>
+                <% place = Place.find(id) %>
+                <li>
+                  <input type="radio" id="<%= "place_#{id}" %>" name="place" value="<%= place.chinese_name %>">
+                  <label for="<%= "place_#{id}" %>" style="min-width: 0px"><%= place.chinese_name %></label>
+                </li>
+              <% end %>
+            </ul>
+          </div>
           <div id="custom-search-input">
             <div class="input-group">
               <%= text_field_tag :keyword, params[:keyword], class: 'search-query' %>

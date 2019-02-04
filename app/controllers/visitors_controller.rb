@@ -5,15 +5,30 @@ class VisitorsController < ApplicationController
   end
 
   def search_results
-    @keyword = permitted_params["keyword"]
-    @observations = Observation.search(@keyword, { hitsPerPage: Observation::HIT_PER_PAGE, page: params[:page] })
+    sentence = []
+    user = permitted_params["user"]
+    category = permitted_params["category"]
+    place = permitted_params["place"]
+    keyword = permitted_params["keyword"]
+
+    keywords = keyword.split(" ")
+    keywords.each do |k|
+      sentence << k
+    end
+    sentence << user if user.present?
+    sentence << category if category.present?
+    sentence << place if place.present?
+
+    @search_sentence = sentence.join(" ")
+
+    @observations = Observation.search(@search_sentence, { hitsPerPage: Observation::HIT_PER_PAGE, page: params[:page] })
     observation_ids = @observations.pluck(:id)
     @longitude = Observation.where(id: observation_ids).average(:longitude)
     @latitude = Observation.where(id: observation_ids).average(:latitude)
   end
 
   def permitted_params
-    params.permit(:keyword)
+    params.permit(:keyword, :user, :category, :place)
   end
 
 end
