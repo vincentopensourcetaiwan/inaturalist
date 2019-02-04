@@ -1,5 +1,7 @@
 class VisitorsController < ApplicationController
   layout false
+  ZOOM_FOR_PLACE = 20
+  ZOOM_FOR_OTHERS = 10
 
   def search
   end
@@ -28,7 +30,7 @@ class VisitorsController < ApplicationController
 
     places = Place.all.pluck(:chinese_name)
     regexp = /#{places.join("|")}/
-    @zoom = regexp === @search_sentence ? 20 : 10
+    @zoom = regexp === @search_sentence ? ZOOM_FOR_PLACE : ZOOM_FOR_OTHERS
   end
 
   def permitted_params
