@@ -12,8 +12,8 @@ class VisitorsController < ApplicationController
     keyword = permitted_params["keyword"]
 
     keywords = keyword.split(" ")
-    keywords.each do |k|
-      sentence << k
+    keywords.each do |keyword|
+      sentence << keyword
     end
     sentence << user if user.present?
     sentence << category if category.present?
