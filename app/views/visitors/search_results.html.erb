@@ -38,11 +38,6 @@
   <link href="lightbox2-master/src/css/lightbox.css" rel="stylesheet">
   <script src="lightbox2-master/src/js/lightbox.js"></script>
 
-  <!-- Start of nanhu Zendesk Widget script -->
-  <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=0e1cdb58-27c0-406e-aedc-4859823d0b94"></script>
-  <!-- End of nanhu Zendesk Widget script -->
-
-
 </head>
 
 <body>
@@ -183,7 +178,7 @@
     function initMap() {
         var center = {lat: <%= @latitude %>, lng: <%= @longitude %>};
         var map = new google.maps.Map(
-            document.getElementById('map_listing'), {zoom: 25, center: center, mapTypeId: 'satellite'});
+            document.getElementById('map_listing'), {zoom: 20, center: center, mapTypeId: 'satellite'});
 
         var infowindow = new google.maps.InfoWindow({position: center});
 
