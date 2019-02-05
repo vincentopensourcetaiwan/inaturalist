@@ -25,8 +25,8 @@ class VisitorsController < ApplicationController
     sentence << category if category.present?
     sentence << place if place.present?
 
-    search_sentence = sentence.join(" ")
-    @observations = Observation.search(search_sentence, { hitsPerPage: HIT_PER_PAGE, page: params[:page] })
+    @search_sentence = sentence.join(" ")
+    @observations = Observation.search(@search_sentence, { hitsPerPage: HIT_PER_PAGE, page: params[:page] })
 
     observation_ids = @observations.pluck(:id)
     @longitude = Observation.where(id: observation_ids).average(:longitude)
@@ -34,7 +34,7 @@ class VisitorsController < ApplicationController
 
     places = Place.all.pluck(:chinese_name)
     regexp = /#{places.join("|")}/
-    @zoom = regexp === search_sentence ? ZOOM_FOR_PLACE : ZOOM_FOR_OTHERS
+    @zoom = regexp === @search_sentence ? ZOOM_FOR_PLACE : ZOOM_FOR_OTHERS
     @no_hit_message = @observations.empty? ? "沒有符合的資料" : ""
   end
 
