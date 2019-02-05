@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def show_description(observation)
+    observation.description.gsub(/[a-zA-Z]/, "").gsub(/\,/, "").gsub("\n", "").gsub(/\s+/, '') if observation.description.present?
+  end
+
   def show_on_wikipedia(observation)
     link_to "View on Wikipedia", observation.wikipedia_url, target: "_blank" if observation.wikipedia_url.present?
   end

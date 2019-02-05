@@ -188,7 +188,7 @@
         var marker = new google.maps.Marker({position: uluru, map: map, id: <%= index %>});
         marker.addListener('click', function () {
             infowindow.open(map, marker);
-            infowindow.setContent('<div><% observation.photos.each do |photo| %><a href="<%= observation.uri %>" target= "_blank"><img src="<%= photo.url %>" /></a><% end %><br><br><%= show_taxon_name(observation) %><br><%= observation.description %><br><br><a href="<%= observation.uri %>" target="_blank">顯示於 iNaturlist</a></div>');
+            infowindow.setContent('<div><% observation.photos.each do |photo| %><a href="<%= observation.uri %>" target= "_blank"><img src="<%= photo.url %>" /></a><% end %><br><br><%= show_taxon_name(observation) %><br><%= show_description(observation) %><br><br><a href="<%= observation.uri %>" target="_blank">顯示於 iNaturlist</a></div>');
             infowindow.setPosition({lat: <%=observation.latitude %>, lng: <%=observation.longitude %>});
         });
         markers.push(marker)
