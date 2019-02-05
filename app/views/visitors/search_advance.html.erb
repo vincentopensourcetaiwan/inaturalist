@@ -89,6 +89,21 @@
                 </li>
               <% end %>
             </ul>
+
+            <ul>
+              <li>
+                <input type="radio" id="period_0" name="period" value="" checked>
+                <label for="period_0" style="min-width: 0px">All</label>
+              </li>
+              <% Period.order(id: :asc).pluck(:id).uniq.each do |id| %>
+                <% period = Period.find(id) %>
+                <li>
+                  <input type="radio" id="<%= "period_#{id}" %>" name="period" value="<%= period.name %>">
+                  <label for="<%= "period_#{id}" %>" style="min-width: 0px"><%= period.name %></label>
+                </li>
+              <% end %>
+            </ul>
+
           </div>
           <div id="custom-search-input">
             <div class="input-group">

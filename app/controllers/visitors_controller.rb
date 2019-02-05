@@ -14,6 +14,7 @@ class VisitorsController < ApplicationController
     sentence = []
     user = permitted_params["user"]
     category = permitted_params["category"]
+    period = permitted_params["period"]
     place = permitted_params["place"]
     keyword = permitted_params["keyword"]
 
@@ -24,6 +25,8 @@ class VisitorsController < ApplicationController
     sentence << user if user.present?
     sentence << category if category.present?
     sentence << place if place.present?
+    sentence << period if period.present?
+
 
     @search_sentence = sentence.join(" ")
     @observations = Observation.search(@search_sentence, { hitsPerPage: HIT_PER_PAGE, page: params[:page] })
@@ -39,7 +42,7 @@ class VisitorsController < ApplicationController
   end
 
   def permitted_params
-    params.permit(:keyword, :user, :category, :place)
+    params.permit(:keyword, :user, :category, :place, :period)
   end
 
 end

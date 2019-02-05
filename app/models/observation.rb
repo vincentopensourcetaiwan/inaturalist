@@ -34,6 +34,9 @@ class Observation < ApplicationRecord
   has_many :tags, through: :taggings
   has_many :placings
   has_many :places, through: :placings
+  has_many :periodings
+  has_many :periods, through: :periodings
+
 
   belongs_to :user, optional: true
   belongs_to :category, optional: true
@@ -47,7 +50,7 @@ class Observation < ApplicationRecord
   end
 
   algoliasearch do
-    attribute :taxon_name, :description, :chinese_taxon_name, :category_name, :category, :user, :name, :tags, :places
+    attribute :taxon_name, :description, :chinese_taxon_name, :category_name, :category, :user, :name, :tags, :places, :periods
   end
 
   if Rails.env.test?

@@ -80,3 +80,41 @@ task :update_observation_place => :environment do
     p "place #{place.chinese_name} is updated"
   end
 end
+
+desc "update observation period"
+task :update_observation_period => :environment do
+  Period.all.each do |period|
+    Observation.all.each do |observation|
+      if observation.observed_at.present?
+        if period.start_year.nil? | period.end_year.nil?
+          observation_month = observation.observed_at.month
+          if period.start_month == period.end_month
+            if observation_month == period.start_month
+              observation.periods << period if observation.periods.where(id: period.id).empty?
+              p "#{period.name}"
+            end
+          else
+            if ([2, 3, 4].include? observation_month) && (period.name == "春季")
+              observation.periods << period if observation.periods.where(id: period.id).empty?
+              p "#{period.name}"
+            end
+            if ([5, 6, 7].include? observation_month) && (period.name == "夏季")
+              observation.periods << period if observation.periods.where(id: period.id).empty?
+              p "#{period.name}"
+            end
+            if ([8, 9, 10].include? observation_month) && (period.name == "秋季")
+              observation.periods << period if observation.periods.where(id: period.id).empty?
+              p "#{period.name}"
+            end
+            if ([11, 12, 1].include? observation_month) && (period.name == "冬季")
+              observation.periods << period if observation.periods.where(id: period.id).empty?
+              p "#{period.name}"
+            end
+          end
+        else
+          p "有精確日期"
+        end
+      end
+    end
+  end
+end

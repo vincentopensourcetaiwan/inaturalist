@@ -1,4 +1,37 @@
 namespace :dev do
+  desc 'period seed'
+  task period_seed: :environment do
+    periods = [
+      { name: "一月", start_year: nil, start_month: 1, start_day: 1, end_year: nil, end_month: 1, end_day: 31 },
+      { name: "二月", start_year: nil, start_month: 2, start_day: 1, end_year: nil, end_month: 2, end_day: 31 },
+      { name: "三月", start_year: nil, start_month: 3, start_day: 1, end_year: nil, end_month: 3, end_day: 31 },
+      { name: "四月", start_year: nil, start_month: 4, start_day: 1, end_year: nil, end_month: 4, end_day: 31 },
+      { name: "五月", start_year: nil, start_month: 5, start_day: 1, end_year: nil, end_month: 5, end_day: 31 },
+      { name: "六月", start_year: nil, start_month: 6, start_day: 1, end_year: nil, end_month: 6, end_day: 31 },
+      { name: "七月", start_year: nil, start_month: 7, start_day: 1, end_year: nil, end_month: 7, end_day: 31 },
+      { name: "八月", start_year: nil, start_month: 8, start_day: 1, end_year: nil, end_month: 8, end_day: 31 },
+      { name: "九月", start_year: nil, start_month: 9, start_day: 1, end_year: nil, end_month: 9, end_day: 31 },
+      { name: "十月", start_year: nil, start_month: 10, start_day: 1, end_year: nil, end_month: 10, end_day: 31 },
+      { name: "十一月", start_year: nil, start_month: 11, start_day: 1, end_year: nil, end_month: 11, end_day: 31 },
+      { name: "十二月", start_year: nil, start_month: 12, start_day: 1, end_year: nil, end_month: 12, end_day: 31 },
+      { name: "春季", start_year: nil, start_month: 2, start_day: 1, end_year: nil, end_month: 4, end_day: 31 },
+      { name: "夏季", start_year: nil, start_month: 5, start_day: 1, end_year: nil, end_month: 7, end_day: 31 },
+      { name: "秋季", start_year: nil, start_month: 8, start_day: 1, end_year: nil, end_month: 10, end_day: 31 },
+      { name: "冬季", start_year: nil, start_month: 11, start_day: 1, end_year: nil, end_month: 1, end_day: 31 }
+    ]
+
+    periods.each do |period|
+      new_period = Period.create(name: period[:name],
+                                 start_year: period[:start_year],
+                                 start_month: period[:start_month],
+                                 start_day: period[:start_day],
+                                 end_year: period[:end_year],
+                                 end_month: period[:end_month],
+                                 end_day: period[:end_day])
+      p "new_period #{new_period.start_year} #{new_period.start_month} #{new_period.start_day} - #{new_period.end_year} #{new_period.end_month} #{new_period.end_day}"
+    end
+  end
+
   desc 'place seed'
   task place_seed: :environment do
     places = [
