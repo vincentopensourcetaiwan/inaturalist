@@ -2,6 +2,7 @@ class VisitorsController < ApplicationController
   layout false
   ZOOM_FOR_PLACE = 20
   ZOOM_FOR_OTHERS = 10
+  HIT_PER_PAGE = 25
 
   def search
   end
@@ -24,16 +25,17 @@ class VisitorsController < ApplicationController
     sentence << category if category.present?
     sentence << place if place.present?
 
-    @search_sentence = sentence.join(" ")
+    search_sentence = sentence.join(" ")
+    @observations = Observation.search(search_sentence, { hitsPerPage: HIT_PER_PAGE, page: params[:page] })
 
-    @observations = Observation.search(@search_sentence, { hitsPerPage: Observation::HIT_PER_PAGE, page: params[:page] })
     observation_ids = @observations.pluck(:id)
     @longitude = Observation.where(id: observation_ids).average(:longitude)
     @latitude = Observation.where(id: observation_ids).average(:latitude)
 
     places = Place.all.pluck(:chinese_name)
     regexp = /#{places.join("|")}/
-    @zoom = regexp === @search_sentence ? ZOOM_FOR_PLACE : ZOOM_FOR_OTHERS
+    @zoom = regexp === search_sentence ? ZOOM_FOR_PLACE : ZOOM_FOR_OTHERS
+    @no_hit_message = @observations.empty? ? "沒有符合的資料" : ""
   end
 
   def permitted_params
