@@ -4,10 +4,12 @@ class Admin::ObservationsController < ApplicationController
   before_action :authenticate_user!
   after_action :verify_authorized
 
+  HIT_PER_PAGE = 25
+
   def index
     authorize Observation
     @keyword = permitted_params["keyword"]
-    @observations = Observation.search(@keyword, { hitsPerPage: Observation::HIT_PER_PAGE, page: params[:page] })
+    @observations = Observation.search(@keyword, { hitsPerPage: HIT_PER_PAGE, page: params[:page] })
   end
 
   def edit

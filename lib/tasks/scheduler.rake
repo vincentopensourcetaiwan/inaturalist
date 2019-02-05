@@ -35,6 +35,13 @@ task :update_inaturalist_data => :environment do
           observation.longitude = result["location"].split(",").last.to_f
         end
 
+        if result["tags"].any?
+          result["tags"].each do |tag|
+            new_tag = Tag.find_or_create_by!(name: tag)
+            observation.tags << new_tag if observation.tags.where(id: new_tag.id).empty?
+          end
+        end
+
         observation.save(validate: false)
 
         result["photos"].each do |photo|
