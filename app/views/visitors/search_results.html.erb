@@ -81,7 +81,7 @@
     <div class="container margin_60_35">
       <h3><%= @hit_message %></h3>
       <div style="font-size: xx-small">
-        <%= paginate @observations, theme: 'twitter-bootstrap-4', pagination_class: "pagination-sm", nav_class: "d-inline-b" %>
+        <%= paginate @observations, theme: 'twitter-bootstrap-4', pagination_class: "pagination-sm", nav_class: "d-inline-b", window: 1 %>
       </div>
       <div class="row">
         <div class="col-lg-7">
@@ -145,7 +145,7 @@
         <!-- /aside -->
       </div>
       <div style="font-size: xx-small">
-        <%= paginate @observations, theme: 'twitter-bootstrap-4', pagination_class: "pagination-sm", nav_class: "d-inline-b" %>
+        <%= paginate @observations, theme: 'twitter-bootstrap-4', pagination_class: "pagination-sm", nav_class: "d-inline-b", window: 1 %>
       </div>
       <!-- /row -->
     </div>
