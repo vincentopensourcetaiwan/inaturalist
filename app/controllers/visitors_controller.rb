@@ -27,7 +27,6 @@ class VisitorsController < ApplicationController
     sentence << place if place.present?
     sentence << period if period.present?
 
-
     @search_sentence = sentence.join(" ")
     @observations = Observation.search(@search_sentence, { hitsPerPage: HIT_PER_PAGE, page: params[:page] })
 
@@ -38,7 +37,8 @@ class VisitorsController < ApplicationController
     places = Place.all.pluck(:chinese_name)
     regexp = /#{places.join("|")}/
     @zoom = regexp === @search_sentence ? ZOOM_FOR_PLACE : ZOOM_FOR_OTHERS
-    @no_hit_message = @observations.empty? ? "沒有符合的資料" : ""
+    total_hits = Observation.search(@search_sentence).count
+    @hit_message = @observations.empty? ? "沒有符合的資料" : "共 #{total_hits} 筆資料"
   end
 
   def permitted_params
