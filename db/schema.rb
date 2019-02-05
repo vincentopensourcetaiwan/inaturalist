@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_03_064637) do
+ActiveRecord::Schema.define(version: 2019_02_05_055900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,27 @@ ActiveRecord::Schema.define(version: 2019_02_03_064637) do
     t.string "category_name"
     t.datetime "observed_at"
     t.string "name"
+  end
+
+  create_table "periodings", force: :cascade do |t|
+    t.bigint "period_id"
+    t.bigint "observation_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["observation_id"], name: "index_periodings_on_observation_id"
+    t.index ["period_id"], name: "index_periodings_on_period_id"
+  end
+
+  create_table "periods", force: :cascade do |t|
+    t.string "name"
+    t.integer "start_year"
+    t.integer "start_month"
+    t.integer "start_day"
+    t.integer "end_year"
+    t.integer "end_month"
+    t.integer "end_day"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "photos", force: :cascade do |t|
@@ -125,6 +146,8 @@ ActiveRecord::Schema.define(version: 2019_02_03_064637) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "periodings", "observations"
+  add_foreign_key "periodings", "periods"
   add_foreign_key "photos", "observations"
   add_foreign_key "placings", "observations"
   add_foreign_key "placings", "places"
