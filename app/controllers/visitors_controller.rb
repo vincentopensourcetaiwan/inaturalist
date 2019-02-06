@@ -38,8 +38,9 @@ class VisitorsController < ApplicationController
     regexp = /#{places.join("|")}/
     @zoom = regexp === @search_sentence ? ZOOM_FOR_PLACE : ZOOM_FOR_OTHERS
     total_hits = Observation.search(@search_sentence).count
-    @hit_message = @observations.empty? ? "沒有符合的資料" : "共 #{total_hits} 筆資料"
-    @current_page = params[:page].present? ? params[:page] : "1"
+    hit_message = @observations.empty? ? "沒有符合的資料" : "共 #{total_hits} 筆資料"
+    current_page = params[:page].present? ? params[:page] : 1
+    @message = "#{hit_message}，第 #{current_page} 頁。"
   end
 
   def permitted_params
