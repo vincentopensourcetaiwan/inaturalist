@@ -1,6 +1,6 @@
 module ApplicationHelper
   def show_description(observation)
-    observation.description.gsub(/[a-zA-Z]/, "").gsub(/\,/, "").gsub("\n", "").gsub(/\s+/, '') if observation.description.present?
+    observation.description.gsub("\n", "").gsub(/\s+/, '') if observation.description.present?
   end
 
   def show_on_wikipedia(observation)
