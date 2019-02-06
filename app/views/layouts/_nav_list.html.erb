@@ -34,4 +34,11 @@
     </a>
     <b class="arrow"></b>
   </li>
+  <li class=<%= params[:controller] == 'admin/periods' ? "active" : "" %>>
+    <a href="<%= admin_periods_path %>">
+      <i class="ace-icon glyphicon glyphicon-time"></i>
+      <span class="menu-text"> periods </span>
+    </a>
+    <b class="arrow"></b>
+  </li>
 </ul>

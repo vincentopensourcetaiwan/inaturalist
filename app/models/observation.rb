@@ -27,7 +27,10 @@
 class Observation < ApplicationRecord
   include AlgoliaSearch
 
-  attr_reader :tag_tokens, :place_tokens
+  attr_reader :tag_tokens, :place_tokens, :period_tokens
+
+  belongs_to :user, optional: true
+  belongs_to :category, optional: true
 
   has_many :photos
   has_many :taggings
@@ -37,9 +40,9 @@ class Observation < ApplicationRecord
   has_many :periodings
   has_many :periods, through: :periodings
 
-
-  belongs_to :user, optional: true
-  belongs_to :category, optional: true
+  def period_tokens=(ids)
+    self.period_ids = ids.split(',')
+  end
 
   def tag_tokens=(ids)
     self.tag_ids = ids.split(',')

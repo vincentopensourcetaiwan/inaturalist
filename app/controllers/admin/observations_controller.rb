@@ -25,7 +25,7 @@ class Admin::ObservationsController < ApplicationController
   end
 
   def observation_params
-    params.require(:observation).permit(:user_id, :category_id, :name, :tag_tokens, :place_tokens)
+    params.require(:observation).permit(:user_id, :category_id, :name, :tag_tokens, :place_tokens, :period_tokens)
   end
 
 

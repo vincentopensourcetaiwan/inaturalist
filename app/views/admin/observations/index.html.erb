@@ -24,6 +24,7 @@
     <th class="text-center">分類</th>
     <th class="text-center">tags</th>
     <th class="text-center">地點</th>
+    <th class="text-center">時間</th>
     <th class="text-center">名稱</th>
     <th class="text-center">顯示於維基百科</th>
     <th class="text-center">View on Wikipedia</th>
@@ -57,6 +58,11 @@
       <td>
         <% observation.places.order(chinese_name: :asc).each do |place| %>
           <%= place_label(place) %>
+        <% end %>
+      </td>
+      <td>
+        <% observation.periods.order(name: :asc).each do |period| %>
+          <%= period_label(period) %>
         <% end %>
       </td>
       <td class="text-center"><%= observation.name %></td>
