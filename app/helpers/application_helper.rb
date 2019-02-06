@@ -84,4 +84,8 @@ module ApplicationHelper
   def place_label(place)
     "<span class='label label-info arrowed'>#{place.chinese_name}</span><br><br>".html_safe
   end
+
+  def period_label(period)
+    "<span class='label label-inverse arrowed'>#{period.name}</span><br><br>".html_safe
+  end
 end

@@ -27,6 +27,9 @@
   <br>
   <%= f.text_field :place_tokens, data: { load: @observation.places } %>
 
+  Period:
+  <br>
+  <%= f.text_field :period_tokens, data: { load: @observation.periods } %>
 
   <div class="form-actions">
     <%= submit_button(f) %>
@@ -44,6 +47,11 @@
             prePopulate: $('#observation_place_tokens').data('load'),
             preventDuplicates: true,
             propertyToSearch: 'chinese_name'
+        });
+        $('#observation_period_tokens').tokenInput('/admin/periods/search', {
+            prePopulate: $('#observation_period_tokens').data('load'),
+            preventDuplicates: true,
+            propertyToSearch: 'name'
         });
     });
 </script>

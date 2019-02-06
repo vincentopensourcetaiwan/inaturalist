@@ -112,7 +112,12 @@ task :update_observation_period => :environment do
             end
           end
         else
-          p "有精確日期"
+          start_date = Date.new(period.start_year, period.start_month, period.start_day)
+          end_date = Date.new(period.end_year, period.end_month, period.end_day)
+          if observation.observed_at >= start_date && observation.observed_at <= end_date
+            observation.periods << period if observation.periods.where(id: period.id).empty?
+            p period.name
+          end
         end
       end
     end

@@ -1,19 +1,40 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Year:</strong>
-  <%= @period.year %>
+  <strong>name:</strong>
+  <%= @period.name %>
 </p>
 
 <p>
-  <strong>Month:</strong>
-  <%= @period.month %>
+  <strong>start_year:</strong>
+  <%= @period.start_year %>
 </p>
 
 <p>
-  <strong>Day:</strong>
-  <%= @period.day %>
+  <strong>start_month:</strong>
+  <%= @period.start_month %>
 </p>
 
-<%= link_to 'Edit', edit_period_path(@period) %> |
-<%= link_to 'Back', periods_path %>
+<p>
+  <strong>start_day:</strong>
+  <%= @period.start_day %>
+</p>
+
+<p>
+  <strong>end_year:</strong>
+  <%= @period.end_year %>
+</p>
+
+<p>
+  <strong>end_month:</strong>
+  <%= @period.end_month %>
+</p>
+
+<p>
+  <strong>end_day:</strong>
+  <%= @period.end_day %>
+</p>
+
+
+
+
