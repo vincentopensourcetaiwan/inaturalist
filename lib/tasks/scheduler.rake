@@ -1,5 +1,14 @@
-desc "update iNaturalist data"
-task :update_inaturalist_data => :environment do
+desc "all tasks"
+task :all_tasks => :environment do
+  if Date.today.wday == 0
+    update_inaturalist_observations
+    update_inaturalist_user
+    update_observation_places
+    update_observation_period
+  end
+end
+
+def update_inaturalist_observations
   data = InaturalistService.observations("desc", "created_at", 1)
   total_results = data["total_results"]
   do_it_times = total_results / 30 + 1
@@ -55,8 +64,7 @@ task :update_inaturalist_data => :environment do
   end
 end
 
-desc "update user information"
-task :update_user_information => :environment do
+def update_inaturalist_user
   User.where.not(inaturalist_id: nil).each do |user|
     data = InaturalistService.get_user(user.inaturalist_id)
     user.update!(inaturalist_icon_url: data["results"].last["icon"]) if data["results"].last["icon"].present?
@@ -64,8 +72,7 @@ task :update_user_information => :environment do
   end
 end
 
-desc "update observation place"
-task :update_observation_place => :environment do
+def update_observation_places
   Place.all.each do |place|
     observations = Observation.where("longitude <= ?", place[:longitude] + Place::ACCURACY)
                      .where("longitude >= ?", place[:longitude] - Place::ACCURACY)
@@ -81,8 +88,7 @@ task :update_observation_place => :environment do
   end
 end
 
-desc "update observation period"
-task :update_observation_period => :environment do
+def update_observation_period
   Period.all.each do |period|
     Observation.all.each do |observation|
       if observation.observed_at.present?
