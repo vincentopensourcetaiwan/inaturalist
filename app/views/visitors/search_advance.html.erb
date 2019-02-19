@@ -53,7 +53,7 @@
                 <input type="radio" id="user_0" name="user" value="" checked>
                 <label for="user_0" style="min-width: 0px">All</label>
               </li>
-              <% Observation.order(user_id: :asc).pluck(:user_id).uniq.each do |id| %>
+              <% Observation.order(user_id: :asc).pluck(:user_id).uniq.compact.each do |id| %>
                 <% user = User.find(id) %>
                 <li>
                   <input type="radio" id="<%= "user_#{id}" %>" name="user" value="<%= user.nickname %>">
