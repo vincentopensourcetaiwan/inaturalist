@@ -1,11 +1,18 @@
-desc "all tasks"
-task :all_tasks => :environment do
-  if Date.today.wday == 0
-    update_inaturalist_observations
-    update_inaturalist_user
-    update_observation_places
-    update_observation_period
-  end
+desc "execute on sunday"
+task :execute_on_sunday => :environment do
+  execute_all_tasks if Date.today.wday == 0
+end
+
+desc "execute right away"
+task :execute_right_away => :environment do
+  execute_all_tasks
+end
+
+def execute_all_tasks
+  update_inaturalist_observations
+  update_inaturalist_user
+  update_observation_places
+  update_observation_period
 end
 
 def update_inaturalist_observations
