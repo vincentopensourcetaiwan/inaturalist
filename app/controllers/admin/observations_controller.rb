@@ -8,8 +8,10 @@ class Admin::ObservationsController < ApplicationController
 
   def index
     authorize Observation
-    @keyword = permitted_params["keyword"]
-    @observations = Observation.search(@keyword, { hitsPerPage: HIT_PER_PAGE, page: params[:page] })
+    respond_to do |format|
+      format.html
+      format.json { render json: ObservationDatatable.new(params) }
+    end
   end
 
   def edit

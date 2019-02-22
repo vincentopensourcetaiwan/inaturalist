@@ -29,6 +29,8 @@ gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
 gem "rolify"
 gem 'simple_form'
+gem 'ajax-datatables-rails'
+gem 'draper'
 group :development, :test do
   gem 'awesome_rails_console'
   gem 'awesome_print'

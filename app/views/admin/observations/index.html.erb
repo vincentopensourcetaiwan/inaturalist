@@ -1,95 +1,54 @@
-<div class="row">
-  <div class="col-xs-3">
-    <%= form_tag admin_observations_path, method: :get, class: 'form-search' do %>
-      <p>
-        <%= text_field_tag :keyword, params[:keyword], class: 'nav-search-input' %>
-        <%= submit_tag "search", name: nil, class: 'btn btn-primary' %>
-      </p>
-    <% end %>
-  </div>
-  <div class="col-xs-6"></div>
-  <div class="col-xs-3">
-  </div>
-</div>
-<%= paginate @observations, theme: 'twitter-bootstrap-4', pagination_class: "pagination-sm", nav_class: "d-inline-b" %>
-
-<table class="table table-striped table-bordered table-hover">
+<table id="observations_datatable" data-source="<%= admin_observations_path(format: :json) %>" class="table table-striped table-bordered table-hover">
   <thead>
   <tr>
-    <th class="text-center">id</th>
-    <th class="text-center">photos</th>
-    <th class="text-center">description</th>
-    <th class="text-center">taxon name</th>
-    <th class="text-center">chinese taxon name</th>
-    <th class="text-center">分類</th>
-    <th class="text-center">tags</th>
-    <th class="text-center">地點</th>
-    <th class="text-center">時間</th>
-    <th class="text-center">名稱</th>
-    <th class="text-center">顯示於維基百科</th>
-    <th class="text-center">View on Wikipedia</th>
-    <th class="text-center">顯示於 iNaturlist</th>
-    <th class="text-center">上傳者</th>
-    <th class="text-center">相片拍攝者</th>
+    <th>id</th>
+    <th>photos</th>
+    <th>description</th>
+    <th>taxon name</th>
+    <th>chinese taxon name</th>
+    <th>category chinese name</th>
+    <th>category english name</th>
+    <th>tags</th>
+    <th>places</th>
+    <th>periods</th>
+    <th>name</th>
+    <th>chinese wikipedia</th>
+    <th>english wikipedia</th>
+    <th>photo uploader</th>
+    <th>photo photographer</th>
     <th>operations</th>
   </tr>
   </thead>
   <tbody>
-  <% @observations.each do |observation| %>
-    <tr>
-      <td class="text-center"><%= observation.id %></td>
-      <td>
-        <% observation.photos.each do |photo| %>
-          <a href="<%= photo.url.gsub("square", "original") %>" data-lightbox="<%= photo.id %>">
-            <img class="example-image" src="<%= photo.url %>">
-          </a>
-          <br><br>
-        <% end %>
-      </td>
-      <td><%= observation.description %></td>
-      <td><%= observation.taxon_name %></td>
-      <td><%= observation.chinese_taxon_name %></td>
-      <td><%= "#{observation.category&.chinese_name}(#{observation.category&.name})" %></td>
-      <td>
-        <% observation.tags.order(id: :asc).each do |tag| %>
-          <%= tag_label(tag) %>
-        <% end %>
-      </td>
-      <td>
-        <% observation.places.order(chinese_name: :asc).each do |place| %>
-          <%= place_label(place) %>
-        <% end %>
-      </td>
-      <td>
-        <% observation.periods.order(name: :asc).each do |period| %>
-          <%= period_label(period) %>
-        <% end %>
-      </td>
-      <td class="text-center"><%= observation.name %></td>
-      <td><%= show_chinese_wikipedia(observation) %></td>
-      <td><%= show_on_wikipedia(observation) %></td>
-      <td><a href="<%= observation.uri %>" target="_blank">顯示於 iNaturlist</a></td>
-      <td>
-        <% if observation.user_icon.present? %>
-          <%= link_to "https://www.inaturalist.org/people/#{observation.user_login}", target: :_blank do %>
-            <%= image_tag observation.user_icon %>
-          <% end %>
-        <% end %>
-        <%= link_to observation.user_login, "https://www.inaturalist.org/people/#{observation.user_login}", target: :_blank %>
-      </td>
-      <td>
-        <% if observation.user&.inaturalist_icon_url.present? %>
-          <%= link_to "https://www.inaturalist.org/people/#{observation.user&.inaturalist_login}", target: :_blank do %>
-            <%= image_tag observation.user&.inaturalist_icon_url %>
-          <% end %>
-        <% end %>
-        <%= link_to observation.user&.nickname, "https://www.inaturalist.org/people/#{observation.user&.inaturalist_login}", target: :_blank %>
-      </td>
-      <td>
-        <%= edit_button(edit_admin_observation_path(observation), false, "default") %>
-      </td>
-    </tr>
-  <% end %>
   </tbody>
 </table>
-<%= paginate @observations, theme: 'twitter-bootstrap-4', pagination_class: "pagination-sm", nav_class: "d-inline-b" %>
+<script>
+    $(document).ready(function () {
+        var table = $('#observations_datatable').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "ajax": $('#observations_datatable').data('source'),
+            "pagingType": "full_numbers",
+            "order": [[0, "desc"]],
+            "pageLength": 100,
+            "columns": [
+                {"data": "id"},
+                {"data": "photos"},
+                {"data": "description"},
+                {"data": "taxon_name"},
+                {"data": "chinese_taxon_name"},
+                {"data": "category_chinese_name"},
+                {"data": "category_english_name"},
+                {"data": "tags"},
+                {"data": "places"},
+                {"data": "periods"},
+                {"data": "name"},
+                {"data": "chinese_wikipedia"},
+                {"data": "english_wikipedia"},
+                {"data": "photo_uploader"},
+                {"data": "photo_photographer"},
+                {"data": "operations"}
+            ]
+        });
+    });
+</script>
