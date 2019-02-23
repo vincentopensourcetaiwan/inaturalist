@@ -17,7 +17,7 @@ gem 'mini_racer'
 gem 'rollbar'
 gem 'newrelic_rpm'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'bootstrap', '~> 4.0.0'
+gem "bootstrap", ">= 4.3.1"
 gem 'devise'
 gem 'high_voltage'
 gem 'jquery-rails'
