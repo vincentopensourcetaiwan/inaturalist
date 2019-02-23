@@ -29,6 +29,10 @@ class ObservationDecorator < Draper::Decorator
     h.link_to "View on Wikipedia", object.wikipedia_url, target: "_blank" if object.wikipedia_url.present?
   end
 
+  def inaturalist
+    h.link_to "View on iNaturalist", object.uri, target: "_blank" if object.uri.present?
+  end
+
   def photo_uploader
     if object.user_icon.present?
       "<a target='_blank' href='https://www.inaturalist.org/people/#{object.user_login}'><img src='#{object.user_icon}'></a><br><a target='_blank' href='https://www.inaturalist.org/people/#{object.user_login}'>#{object.user_login}</a>".html_safe
@@ -44,7 +48,6 @@ class ObservationDecorator < Draper::Decorator
       "<a target='_blank' href='https://www.inaturalist.org/people/#{object.user&.inaturalist_login}'>#{object.user&.nickname}</a>".html_safe
     end
   end
-
 
   def operations
     edit_button(h.edit_admin_observation_path(object), false, "default")

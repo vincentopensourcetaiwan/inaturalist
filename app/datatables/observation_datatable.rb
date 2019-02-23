@@ -12,9 +12,10 @@ class ObservationDatatable < AjaxDatatablesRails::ActiveRecord
       tags: { source: "Tag.name" },
       places: { source: "Place.chinese_name" },
       periods: { source: "Period.name" },
-      name: { source: "Observation.name" },
       chinese_wikipedia: { source: "Observation.name" },
       english_wikipedia: { source: "Observation.taxon_name" },
+      inaturalist: { source: "Observation.inaturalist_id" },
+      name: { source: "Observation.name" },
       photo_uploader: { source: "Observation.user_login" },
       photo_photographer: { source: "User.nickname" },
       operations: { source: "Observation.id" }
@@ -34,9 +35,10 @@ class ObservationDatatable < AjaxDatatablesRails::ActiveRecord
         tags: record.decorate.tags,
         places: record.decorate.places,
         periods: record.decorate.periods,
-        name: record.name,
         chinese_wikipedia: record.decorate.chinese_wikipedia,
         english_wikipedia: record.decorate.english_wikipedia,
+        inaturalist: record.decorate.inaturalist,
+        name: record.name,
         photo_uploader: record.decorate.photo_uploader,
         photo_photographer: record.decorate.photo_photographer,
         operations: record.decorate.operations
