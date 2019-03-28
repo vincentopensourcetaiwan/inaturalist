@@ -25,7 +25,7 @@
 #
 
 class Observation < ApplicationRecord
-  include AlgoliaSearch
+  include SearchCop
 
   attr_reader :tag_tokens, :place_tokens, :period_tokens
 
@@ -52,13 +52,13 @@ class Observation < ApplicationRecord
     self.place_ids = ids.split(',')
   end
 
-  algoliasearch do
-    attribute :taxon_name, :description, :chinese_taxon_name, :category_name, :category, :user, :name, :tags, :places, :periods
-  end
-
-  if Rails.env.test?
-    algoliasearch per_environment: true, disable_indexing: Rails.env.test? do
-    end
+  search_scope :search do
+    attributes :taxon_name, :description, :chinese_taxon_name
+    attributes user: ["user.nickname"]
+    attributes category: ["category.name", "category.chinese_name"]
+    attributes tag: ["tags.name"]
+    attributes place: ["places.chinese_name"]
+    attributes period: ["periods.name"]
   end
 
 end

@@ -98,7 +98,7 @@
               <% Period.order(id: :asc).pluck(:id).uniq.each do |id| %>
                 <% period = Period.find(id) %>
                 <li>
-                  <input type="radio" id="<%= "period_#{id}" %>" name="period" value="<%= period.name %>">
+                  <input type="radio" id="<%= "period_#{id}" %>" name="period" value="<%= period.search_name %>">
                   <label for="<%= "period_#{id}" %>" style="min-width: 0px"><%= period.name %></label>
                 </li>
               <% end %>

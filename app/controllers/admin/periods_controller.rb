@@ -81,6 +81,6 @@ class Admin::PeriodsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def period_params
-    params.require(:period).permit(:name, :start_year, :start_month, :start_day, :end_year, :end_month, :end_day)
+    params.require(:period).permit(:name, :start_year, :start_month, :start_day, :end_year, :end_month, :end_day, :search_name)
   end
 end
