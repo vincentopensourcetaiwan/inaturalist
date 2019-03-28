@@ -8,6 +8,11 @@ task :execute_right_away => :environment do
   execute_all_tasks
 end
 
+desc "update iNaturalist user"
+task :update_inaturalist_user => :environment do
+  update_inaturalist_user
+end
+
 def execute_all_tasks
   update_inaturalist_observations
   update_inaturalist_user
@@ -31,6 +36,11 @@ def update_inaturalist_observations
         observation.user_login = result["user"]["login"] if result["user"]["login"].present?
         observation.user_icon = result["user"]["icon"] if result["user"]["icon"].present?
         observation.observed_at = result["time_observed_at"].to_datetime if result["time_observed_at"].present?
+
+        if observation.user_id.nil?
+          user = User.find_by(inaturalist_login: observation.user_login)
+          observation.user = user
+        end
 
         if result["taxon"].present?
           observation.wikipedia_url = result["taxon"]["wikipedia_url"]

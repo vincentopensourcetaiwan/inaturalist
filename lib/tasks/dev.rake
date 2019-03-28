@@ -1,4 +1,26 @@
 namespace :dev do
+  desc "create new users"
+  task :create_new_users => :environment do
+    password = "1qaz@WSX3edc"
+    users = [
+      { email: "vera@mtschool.org", nickname: "思叡", inaturalist_id: "1043450", inaturalist_login: "sirui" },
+      { email: "sflee@mtschool.org", nickname: "十分", inaturalist_id: "1559254", inaturalist_login: "sflee" },
+      { email: "yehcat@mtschool.org", nickname: "大貓", inaturalist_id: "1540735", inaturalist_login: "yehcat" }
+    ]
+
+    users.each do |user|
+      new_user = User.create(email: user[:email],
+                             nickname: user[:nickname],
+                             inaturalist_id: user[:inaturalist_id],
+                             inaturalist_login: user[:inaturalist_login],
+                             password: password,
+                             password_confirmation: password)
+      new_user.confirm
+      new_user.add_role(:contributor)
+      p "#{new_user.nickname} is created and confirm is #{new_user.confirmed?} and  has roles: #{new_user.roles.map(&:name)}"
+    end
+  end
+
   desc 'period seed'
   task period_seed: :environment do
     periods = [
