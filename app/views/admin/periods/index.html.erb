@@ -7,9 +7,7 @@
   </div>
 </div>
 </div>
-<%= paginate @periods, theme: 'twitter-bootstrap-4', pagination_class: "pagination-sm", nav_class: "d-inline-b" %>
-
-<table class="table table-striped table-bordered table-hover">
+<table class="table table-striped table-bordered table-hover" id="myTable">
   <thead>
   <tr>
     <th class="text-center">id</th>
@@ -43,4 +41,9 @@
   <% end %>
   </tbody>
 </table>
-<%= paginate @periods, theme: 'twitter-bootstrap-4', pagination_class: "pagination-sm", nav_class: "d-inline-b" %>
+<script>
+    var table = $('#myTable').DataTable({
+        "pageLength": 1000,
+        "order": [[0, "desc"]]
+    });
+</script>

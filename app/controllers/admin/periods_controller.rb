@@ -9,7 +9,7 @@ class Admin::PeriodsController < ApplicationController
   # GET /periods.json
   def index
     authorize Period
-    @periods = Period.order(name: :asc).page params[:page]
+    @periods = Period.all
   end
 
   # GET /periods/1
