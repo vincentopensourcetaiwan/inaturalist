@@ -18,7 +18,7 @@ gem 'rollbar'
 gem 'newrelic_rpm'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "bootstrap", ">= 4.3.1"
-gem 'devise'
+gem "devise", ">= 4.6.0"
 gem 'high_voltage'
 gem 'jquery-rails'
 gem 'pg'
