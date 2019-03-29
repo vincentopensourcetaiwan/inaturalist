@@ -1,4 +1,18 @@
 namespace :dev do
+  desc "create judy"
+  task :create_judy => :environment do
+    password = "1qaz@WSX3edc"
+    new_user = User.create(email: "judy@mtschool.org",
+                           nickname: "吉野櫻",
+                           inaturalist_id: "1562460",
+                           inaturalist_login: "judyliu",
+                           password: password,
+                           password_confirmation: password)
+    new_user.confirm
+    new_user.add_role(:contributor)
+    p "#{new_user.nickname} is created and confirm is #{new_user.confirmed?} and  has roles: #{new_user.roles.map(&:name)}"
+  end
+
   desc "create new users"
   task :create_new_users => :environment do
     password = "1qaz@WSX3edc"
