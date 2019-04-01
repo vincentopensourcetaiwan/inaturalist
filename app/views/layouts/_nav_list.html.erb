@@ -1,43 +1,45 @@
 <ul class="nav nav-list">
-  <li class=<%= params[:controller] == 'admin/users' ? "active" : "" %>>
-    <a href="<%= admin_users_path %>">
-      <i class="ace-icon fa fa-users"></i>
-      <span class="menu-text"> users </span>
-    </a>
-    <b class="arrow"></b>
-  </li>
+  <% if current_user.has_role? :admin %>
+    <li class=<%= params[:controller] == 'admin/users' ? "active" : "" %>>
+      <a href="<%= admin_users_path %>">
+        <i class="ace-icon fa fa-users"></i>
+        <span class="menu-text"> users </span>
+      </a>
+      <b class="arrow"></b>
+    </li>
+    <li class=<%= params[:controller] == 'admin/categories' ? "active" : "" %>>
+      <a href="<%= admin_categories_path %>">
+        <i class="ace-icon fa fa-bookmark"></i>
+        <span class="menu-text"> categories </span>
+      </a>
+      <b class="arrow"></b>
+    </li>
+    <li class=<%= params[:controller] == 'admin/tags' ? "active" : "" %>>
+      <a href="<%= admin_tags_path %>">
+        <i class="ace-icon glyphicon glyphicon-tag"></i>
+        <span class="menu-text"> tags </span>
+      </a>
+      <b class="arrow"></b>
+    </li>
+    <li class=<%= params[:controller] == 'admin/places' ? "active" : "" %>>
+      <a href="<%= admin_places_path %>">
+        <i class="ace-icon glyphicon glyphicon-map-marker"></i>
+        <span class="menu-text"> places </span>
+      </a>
+      <b class="arrow"></b>
+    </li>
+    <li class=<%= params[:controller] == 'admin/periods' ? "active" : "" %>>
+      <a href="<%= admin_periods_path %>">
+        <i class="ace-icon glyphicon glyphicon-time"></i>
+        <span class="menu-text"> periods </span>
+      </a>
+      <b class="arrow"></b>
+    </li>
+  <% end %>
   <li class=<%= params[:controller] == 'admin/observations' ? "active" : "" %>>
     <a href="<%= admin_observations_path %>">
       <i class="ace-icon glyphicon glyphicon-search"></i>
       <span class="menu-text"> observations </span>
-    </a>
-    <b class="arrow"></b>
-  </li>
-  <li class=<%= params[:controller] == 'admin/categories' ? "active" : "" %>>
-    <a href="<%= admin_categories_path %>">
-      <i class="ace-icon fa fa-bookmark"></i>
-      <span class="menu-text"> categories </span>
-    </a>
-    <b class="arrow"></b>
-  </li>
-  <li class=<%= params[:controller] == 'admin/tags' ? "active" : "" %>>
-    <a href="<%= admin_tags_path %>">
-      <i class="ace-icon glyphicon glyphicon-tag"></i>
-      <span class="menu-text"> tags </span>
-    </a>
-    <b class="arrow"></b>
-  </li>
-  <li class=<%= params[:controller] == 'admin/places' ? "active" : "" %>>
-    <a href="<%= admin_places_path %>">
-      <i class="ace-icon glyphicon glyphicon-map-marker"></i>
-      <span class="menu-text"> places </span>
-    </a>
-    <b class="arrow"></b>
-  </li>
-  <li class=<%= params[:controller] == 'admin/periods' ? "active" : "" %>>
-    <a href="<%= admin_periods_path %>">
-      <i class="ace-icon glyphicon glyphicon-time"></i>
-      <span class="menu-text"> periods </span>
     </a>
     <b class="arrow"></b>
   </li>
