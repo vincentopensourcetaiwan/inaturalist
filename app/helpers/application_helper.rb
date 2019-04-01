@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def role_label(role)
+    "<span class='label label-purple'>#{role.name}</span>".html_safe
+  end
+
   def show_description(observation)
     observation.description.gsub("\n", "").gsub(/\s+/, '') if observation.description.present?
   end
