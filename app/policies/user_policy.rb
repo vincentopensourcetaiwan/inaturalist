@@ -10,4 +10,12 @@ class UserPolicy
     @current_user.has_role? :admin
   end
 
+  def edit?
+    @current_user.has_role? :admin
+  end
+
+  def update?
+    @current_user.has_role? :admin
+  end
+
 end
