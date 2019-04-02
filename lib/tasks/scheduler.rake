@@ -137,7 +137,7 @@ def update_observation_period
         else
           start_date = Date.new(period.start_year, period.start_month, period.start_day)
           end_date = Date.new(period.end_year, period.end_month, period.end_day)
-          if observation.observed_at >= start_date && observation.observed_at <= end_date
+          if observation.observed_at.to_date >= start_date && observation.observed_at.to_date <= end_date
             observation.periods << period if observation.periods.where(id: period.id).empty?
             p period.name
           end
