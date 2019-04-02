@@ -3,6 +3,7 @@ class ObservationDatatable < AjaxDatatablesRails::ActiveRecord
   def view_columns
     @view_columns ||= {
       id: { source: "Observation.id" },
+      inaturalist_id: { source: "Observation.inaturalist_id" },
       photos: { source: "Observation.id" },
       description: { source: "Observation.description" },
       taxon_name: { source: "Observation.taxon_name" },
@@ -26,6 +27,7 @@ class ObservationDatatable < AjaxDatatablesRails::ActiveRecord
     records.map do |record|
       {
         id: record.id,
+        inaturalist_id: record.inaturalist_id,
         photos: record.decorate.photos,
         description: record.description,
         taxon_name: record.taxon_name,
