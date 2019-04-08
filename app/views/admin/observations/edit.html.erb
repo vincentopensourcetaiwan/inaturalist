@@ -30,6 +30,8 @@
   Period:
   <br>
   <%= f.text_field :period_tokens, data: { load: @observation.periods } %>
+  <br>
+  <%= f.input :disabled %>
 
   <div class="form-actions">
     <%= submit_button(f) %>

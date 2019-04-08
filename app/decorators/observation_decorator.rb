@@ -1,6 +1,11 @@
 class ObservationDecorator < Draper::Decorator
   delegate_all
 
+  def disabled
+
+      "<span class='badge badge-danger'>#{object.disabled}</span>".html_safe if object.disabled == true
+  end
+
   def photos
     object.photos.map { |photo| "<a href='#{photo.url.gsub('square', 'original')}' data-lightbox='#{photo.id}'><img class='example-image' src='#{photo.url}'></a>" }.join("<br><br>").html_safe
   end

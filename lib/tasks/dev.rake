@@ -1,4 +1,10 @@
 namespace :dev do
+  desc "disable vincent's dali observations"
+  task :disable_vincent_dali_observations => :environment do
+    user = User.find_by(email: "vincent@mtschool.org")
+    user.observations.update_all(disabled: true)
+  end
+
   desc "create judy"
   task :create_judy => :environment do
     password = "1qaz@WSX3edc"

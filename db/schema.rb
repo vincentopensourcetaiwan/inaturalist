@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_28_092220) do
+ActiveRecord::Schema.define(version: 2019_04_08_042145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2019_03_28_092220) do
     t.string "category_name"
     t.datetime "observed_at"
     t.string "name"
+    t.boolean "disabled", default: false, null: false
   end
 
   create_table "periodings", force: :cascade do |t|

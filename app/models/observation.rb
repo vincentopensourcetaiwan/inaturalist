@@ -22,6 +22,7 @@
 #  category_name      :string
 #  observed_at        :datetime
 #  name               :string
+#  disabled           :boolean          default(FALSE), not null
 #
 
 class Observation < ApplicationRecord
@@ -39,6 +40,9 @@ class Observation < ApplicationRecord
   has_many :places, through: :placings
   has_many :periodings
   has_many :periods, through: :periodings
+
+  scope :enabled, -> { where(disabled: false) }
+  scope :disabled, -> { where(disabled: true) }
 
   def period_tokens=(ids)
     self.period_ids = ids.split(',')
