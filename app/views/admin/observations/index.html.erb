@@ -1,6 +1,7 @@
 <table id="observations_datatable" data-source="<%= admin_observations_path(format: :json) %>" class="table table-striped table-bordered table-hover">
   <thead>
   <tr>
+    <th>disabled</th>
     <th>id</th>
     <th>inaturalist_id</th>
     <th>photos</th>
@@ -31,9 +32,10 @@
             "serverSide": true,
             "ajax": $('#observations_datatable').data('source'),
             "pagingType": "full_numbers",
-            "order": [[0, "desc"]],
+            "order": [[1, "desc"]],
             "pageLength": 100,
             "columns": [
+                {"data": "disabled"},
                 {"data": "id"},
                 {"data": "inaturalist_id"},
                 {"data": "photos"},

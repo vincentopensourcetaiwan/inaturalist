@@ -22,6 +22,7 @@
 #  category_name      :string
 #  observed_at        :datetime
 #  name               :string
+#  disabled           :boolean          default(FALSE), not null
 #
 
 FactoryBot.define do

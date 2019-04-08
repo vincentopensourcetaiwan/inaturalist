@@ -27,12 +27,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable
-
   rolify
 
   validates :email, presence: true
   validates :email, uniqueness: true
 
+  has_many :observations
 
   after_create :assign_default_role
 
