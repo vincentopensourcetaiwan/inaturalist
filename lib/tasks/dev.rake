@@ -1,4 +1,31 @@
 namespace :dev do
+  desc "get project members"
+  task :get_project_members => :environment do
+    require 'csv'
+
+    url = "https://api.inaturalist.org/v1/projects/1ac02830-8817-404e-a6ab-86027362db9c/members"
+    uri = URI.parse(url)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    request = Net::HTTP::Get.new(uri.request_uri)
+    response = http.request(request)
+    data = JSON.parse(response.body)
+    members = data["results"].map { |member|
+      {
+        user_id: member["user_id"],
+        login: member["user"]["login"],
+        name: member["user"]["name"]
+      }
+    }
+    CSV.open("tmp/#{Time.now.strftime("%Y-%m-%d-%H-%M-%S")}-members.csv", "wb") do |csv|
+      members.each do |member|
+        element = [member[:user_id], member[:login], member[:name]]
+        csv << element
+      end
+    end
+  end
+
   desc "disable vincent's dali observations"
   task :disable_vincent_dali_observations => :environment do
     user = User.find_by(email: "vincent@mtschool.org")
