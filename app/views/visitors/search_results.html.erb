@@ -99,6 +99,12 @@
                   <td><h3><%= show_taxon_name(observation) %></h3></td>
                 </tr>
                 <tr>
+                  <td>拍攝時間：<%= observation.observed_at.strftime("%Y 年 %m 月 %d 日 %H 點 %M 分") %></td>
+                </tr>
+                <tr>
+                  <td>place</td>
+                </tr>
+                <tr>
                   <td><%= show_chinese_wikipedia(observation) %></td>
                 </tr>
                 <tr>
