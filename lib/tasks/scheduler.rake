@@ -13,6 +13,11 @@ task :update_inaturalist_user => :environment do
   update_inaturalist_user
 end
 
+desc "update period"
+task :update_period => :environment do
+  update_observation_period
+end
+
 def execute_all_tasks
   update_inaturalist_observations
   update_inaturalist_user
@@ -117,19 +122,19 @@ def update_observation_period
               p "#{period.name}"
             end
           else
-            if ([2, 3, 4].include? observation_month) && (period.name == "春季")
+            if ([3, 4, 5].include? observation_month) && (period.name == "春季")
               observation.periods << period if observation.periods.where(id: period.id).empty?
               p "#{period.name}"
             end
-            if ([5, 6, 7].include? observation_month) && (period.name == "夏季")
+            if ([6, 7, 8].include? observation_month) && (period.name == "夏季")
               observation.periods << period if observation.periods.where(id: period.id).empty?
               p "#{period.name}"
             end
-            if ([8, 9, 10].include? observation_month) && (period.name == "秋季")
+            if ([9, 10, 11].include? observation_month) && (period.name == "秋季")
               observation.periods << period if observation.periods.where(id: period.id).empty?
               p "#{period.name}"
             end
-            if ([11, 12, 1].include? observation_month) && (period.name == "冬季")
+            if ([12, 1, 2, 3].include? observation_month) && (period.name == "冬季")
               observation.periods << period if observation.periods.where(id: period.id).empty?
               p "#{period.name}"
             end
