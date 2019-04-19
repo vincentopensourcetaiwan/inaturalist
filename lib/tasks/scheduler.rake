@@ -18,6 +18,11 @@ task :update_period => :environment do
   update_observation_period
 end
 
+desc "update place"
+task :update_place => :environment do
+  update_observation_places
+end
+
 def execute_all_tasks
   update_inaturalist_observations
   update_inaturalist_user
@@ -96,10 +101,10 @@ end
 
 def update_observation_places
   Place.all.each do |place|
-    observations = Observation.where("longitude <= ?", place[:longitude] + Place::ACCURACY)
-                     .where("longitude >= ?", place[:longitude] - Place::ACCURACY)
+    observations = Observation.where("longitude >= ?", place[:longitude] - Place::ACCURACY)
+                     .where("longitude <= ?", place[:longitude] + Place::ACCURACY)
                      .where("latitude >= ?", place[:latitude] - Place::ACCURACY)
-                     .where("latitude >= ?", place[:latitude] - Place::ACCURACY)
+                     .where("latitude <= ?", place[:latitude] + Place::ACCURACY)
     observations.each do |observation|
       if observation.places.where(id: place.id).empty?
         observation.places << place
