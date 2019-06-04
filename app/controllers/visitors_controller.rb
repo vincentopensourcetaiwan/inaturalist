@@ -28,7 +28,7 @@ class VisitorsController < ApplicationController
     sentence << period if period.present?
 
     @search_sentence = sentence.join(" ")
-    @observations = Observation.enabled.search(@search_sentence).page params[:page]
+    @observations = Observation.enabled.search(@search_sentence).order_by_id_desc.page params[:page]
     observation_ids = @observations.pluck(:id)
     @longitude = Observation.where(id: observation_ids).average(:longitude)
     @latitude = Observation.where(id: observation_ids).average(:latitude)
