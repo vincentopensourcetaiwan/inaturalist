@@ -43,6 +43,8 @@ class Observation < ApplicationRecord
 
   scope :enabled, -> { where(disabled: false) }
   scope :disabled, -> { where(disabled: true) }
+  scope :order_by_id_asc, -> { order(id: :asc) }
+  scope :order_by_id_desc, -> { order(id: :desc) }
 
   def period_tokens=(ids)
     self.period_ids = ids.split(',')
