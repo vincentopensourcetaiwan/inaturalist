@@ -20,6 +20,8 @@ class ObservationDatatable < AjaxDatatablesRails::ActiveRecord
       name: { source: "Observation.name" },
       photo_uploader: { source: "Observation.user_login" },
       photo_photographer: { source: "User.nickname" },
+      created_at: { source: "Observation.created_at" },
+      updated_at: { source: "Observation.updated_at" },
       operations: { source: "Observation.id" }
     }
   end
@@ -45,6 +47,8 @@ class ObservationDatatable < AjaxDatatablesRails::ActiveRecord
         name: record.name,
         photo_uploader: record.decorate.photo_uploader,
         photo_photographer: record.decorate.photo_photographer,
+        created_at: record.created_at,
+        updated_at: record.updated_at,
         operations: record.decorate.operations
       }
     end
