@@ -2,6 +2,8 @@
   <div class="form-inputs">
     <%= f.input :role_ids, :collection => Role.all, :as => :check_boxes, :label_method => lambda { |t| t.name.titleize }, :label => false, checked: @user.role_ids %>
     <%= f.input :nickname %>
+    <%= f.input :inaturalist_id %>
+    <%= f.input :inaturalist_login %>
   </div>
   <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-primary', id: 'submit' %>

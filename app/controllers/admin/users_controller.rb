@@ -26,7 +26,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:nickname, role_ids: [])
+    params.require(:user).permit(:inaturalist_login, :inaturalist_id, :nickname, role_ids: [])
   end
 
 end
