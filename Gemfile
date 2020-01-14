@@ -31,6 +31,7 @@ gem 'simple_form'
 gem 'ajax-datatables-rails'
 gem 'draper'
 gem 'search_cop'
+gem 'devise_token_auth'
 group :development, :test do
   gem 'awesome_rails_console'
   gem 'awesome_print'
