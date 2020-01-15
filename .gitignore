@@ -95,3 +95,4 @@ config/settings/*.yml
 /config/application.yml
 
 *.dump
+*.dump.*
