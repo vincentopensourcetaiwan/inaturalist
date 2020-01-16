@@ -423,7 +423,7 @@ DEPENDENCIES
   newrelic_rpm
   nokogiri
   oauth2
-  omniauth (~> 1.6, >= 1.6.1)
+  omniauth
   pg
   pry
   pry-remote
