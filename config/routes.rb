@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   end
 
   namespace :apis, constraints: { format: 'json' } do
+    mount_devise_token_auth_for 'User', at: 'auth'
     namespace :v1 do
       resources :observations, only: [:index]
     end
