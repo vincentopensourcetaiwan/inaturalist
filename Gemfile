@@ -32,7 +32,7 @@ gem 'ajax-datatables-rails'
 gem 'draper'
 gem 'search_cop'
 gem 'devise_token_auth'
-gem 'omniauth', '~> 1.6', '>= 1.6.1'
+gem 'omniauth'
 group :development, :test do
   gem 'awesome_rails_console'
   gem 'awesome_print'
