@@ -12,5 +12,6 @@ RSpec.describe '/apis/v1/observations_controller', type: :request do
   #   expect(data["observations"].first["taxon_name"]).to eq observation_02.taxon_name
   #   expect(data["observations"].last["taxon_name"]).to eq observation_01.taxon_name
   # end
+
 end
 
