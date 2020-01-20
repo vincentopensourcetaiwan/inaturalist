@@ -172,6 +172,10 @@ GEM
       thor (~> 0.14)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    graphiql-rails (1.7.0)
+      railties
+      sprockets-rails
+    graphql (1.9.18)
     hashdiff (1.0.0)
     hashie (3.6.0)
     high_voltage (3.1.2)
@@ -413,6 +417,8 @@ DEPENDENCIES
   factory_bot_rails
   faker
   figaro
+  graphiql-rails
+  graphql
   high_voltage
   jbuilder (~> 2.5)
   jquery-rails

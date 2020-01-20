@@ -33,6 +33,7 @@ gem 'draper'
 gem 'search_cop'
 gem 'devise_token_auth'
 gem 'omniauth'
+gem "graphql"
 group :development, :test do
   gem 'awesome_rails_console'
   gem 'awesome_print'
@@ -46,6 +47,7 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rails_layout'
   gem 'annotate'
+  gem 'graphiql-rails'
 end
 group :test do
   gem 'capybara', '>= 2.15', '< 4.0'
@@ -57,4 +59,3 @@ group :test do
   gem 'simplecov', require: false
   gem 'codeclimate-test-reporter', require: false
 end
-
