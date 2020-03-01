@@ -31,9 +31,9 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :apis, constraints: { format: 'json' } do
-    namespace :v1 do
-      resources :observations, only: [:index]
-    end
-  end
+  # namespace :apis, constraints: { format: 'json' } do
+  #   namespace :v1 do
+  #     resources :observations, only: [:index]
+  #   end
+  # end
 end
