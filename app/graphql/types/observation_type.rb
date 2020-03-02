@@ -21,5 +21,12 @@ module Types
     field :observed_at, GraphQL::Types::ISO8601DateTime, null: true
     field :name, String, null: true
     field :disabled, Boolean, null: true
+    field :photos, [Types::PhotoType], null: true, resolve: -> (observation, args, ctx) do
+      BatchLoader::GraphQL.for(observation.id).batch(default_value: []) do |observation_ids, loader|
+        Photo.where(observation_id: observation_ids).each do |photo|
+          loader.call(photo.observation_id) { |memo| memo << photo }
+        end
+      end
+    end
   end
 end
