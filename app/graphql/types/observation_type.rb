@@ -1,6 +1,6 @@
 module Types
   class ObservationType < Types::BaseObject
-    field :id, ID, null: false
+    field :id, Int, null: false
     field :inaturalist_id, Int, null: true
     field :uri, String, null: true
     field :taxon_name, String, null: true
