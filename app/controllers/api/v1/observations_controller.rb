@@ -1,4 +1,4 @@
-class Apis::V1::ObservationsController < ApplicationController
+class Api::V1::ObservationsController < ApplicationController
   # before_action :authenticate_user!
 
   def index

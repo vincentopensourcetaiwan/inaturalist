@@ -33,8 +33,6 @@ gem 'draper'
 gem 'search_cop'
 gem 'devise_token_auth'
 gem 'omniauth'
-gem "graphql"
-gem 'batch-loader'
 group :development, :test do
   gem 'awesome_rails_console'
   gem 'awesome_print'
