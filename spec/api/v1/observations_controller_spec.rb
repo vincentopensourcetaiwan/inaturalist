@@ -10,8 +10,8 @@ RSpec.describe '/api/v1/observations_controller', type: :request do
     params = { keyword: keyword }
     get '/api/v1/observations', params: params, headers: headers
     expect(response).to have_http_status(:success)
-    expect(data["observations"].first["taxon_name"]).to eq observation_02.taxon_name
-    expect(data["observations"].last["taxon_name"]).to eq observation_01.taxon_name
+    expect(data["observations"].first["observation"]["taxon_name"]).to eq observation_02.taxon_name
+    expect(data["observations"].last["observation"]["taxon_name"]).to eq observation_01.taxon_name
   end
 
 
