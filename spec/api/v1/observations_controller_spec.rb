@@ -1,6 +1,6 @@
 RSpec.describe '/api/v1/observations_controller', type: :request do
   let(:user) { create(:user) }
-  let(:headers) { user.create_new_auth_token.merge("Content-Type" => "application/json").merge("Accept" => "application/json") }
+  let(:headers) { { "ACCEPT" => "application/json", "CONTENT_TYPE" => "application/json" } }
   let(:data) { JSON.parse(response.body) }
 
   it "index" do
