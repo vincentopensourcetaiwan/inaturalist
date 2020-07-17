@@ -1,4 +1,43 @@
 namespace :dev do
+  desc "create no 3 users"
+  task :create_no_3_users => :environment do
+    password = "1qaz@WSX3edc"
+    users = [
+      { email: "nikartsai@mtschool.org", nickname: "晏霖", inaturalist_id: "2674872", inaturalist_login: "nikartsai" },
+      { email: "tana36992002@mtschool.org", nickname: "歐歐", inaturalist_id: "3126757", inaturalist_login: "tana36992002" },
+      { email: "wenyihuang@mtschool.org", nickname: "文儀", inaturalist_id: "1357631", inaturalist_login: "wenyihuang" },
+      { email: "joycelin@mtschool.org", nickname: "Joyce", inaturalist_id: "3025145", inaturalist_login: "joycelin" },
+      { email: "yuanwang12@mtschool.org", nickname: "汪緣", inaturalist_id: "3030713", inaturalist_login: "yuanwang12" },
+      { email: "cecile33@mtschool.org", nickname: "藍", inaturalist_id: "2500774", inaturalist_login: "cecile33" },
+      { email: "iams@mtschool.org", nickname: "小山", inaturalist_id: "3058719", inaturalist_login: "iams" },
+      { email: "arleneg5@mtschool.org", nickname: "Arlene", inaturalist_id: "3063924", inaturalist_login: "arleneg5" },
+      { email: "buffy7@mtschool.org", nickname: "小天", inaturalist_id: "3050442", inaturalist_login: "buffy7" },
+      { email: "ruj@mtschool.org", nickname: "Ru", inaturalist_id: "3038841", inaturalist_login: "ruj" },
+      { email: "julichen@mtschool.org", nickname: "Juli", inaturalist_id: "3040457", inaturalist_login: "julichen" },
+      { email: "bamboo916@mtschool.org", nickname: "竹竹", inaturalist_id: "3080101", inaturalist_login: "bamboo916" },
+      { email: "t_y@mtschool.org", nickname: "大魚", inaturalist_id: "3079785", inaturalist_login: "t_y" },
+      { email: "shane0417@mtschool.org", nickname: "洪洪", inaturalist_id: "3038972", inaturalist_login: "shane0417" },
+      { email: "chienan@mtschool.org", nickname: "安安", inaturalist_id: "3034391", inaturalist_login: "chienan" },
+      { email: "martinni@mtschool.org", nickname: "馬丁", inaturalist_id: "3120624", inaturalist_login: "martinni" },
+      { email: "naturalist333@mtschool.org", nickname: "凱翔", inaturalist_id: "92411", inaturalist_login: "naturalist333" },
+      { email: "tinowang@mtschool.org", nickname: "Tino", inaturalist_id: "2515668", inaturalist_login: "tinowang" },
+      { email: "bensonsoong@mtschool.org", nickname: "柏宣", inaturalist_id: "3020904", inaturalist_login: "bensonsoong" },
+      { email: "camelhan@mtschool.org", nickname: "宗翰", inaturalist_id: "2093839", inaturalist_login: "camelhan" }
+    ]
+
+    users.each do |user|
+      new_user = User.create(email: user[:email],
+                             nickname: user[:nickname],
+                             inaturalist_id: user[:inaturalist_id],
+                             inaturalist_login: user[:inaturalist_login],
+                             password: password,
+                             password_confirmation: password)
+      new_user.confirm
+      new_user.add_role(:contributor)
+      p "#{new_user.nickname} is created and confirm is #{new_user.confirmed?} and  has roles: #{new_user.roles.map(&:name)}"
+    end
+  end
+
   desc "get project members"
   task :get_project_members => :environment do
     require 'csv'
