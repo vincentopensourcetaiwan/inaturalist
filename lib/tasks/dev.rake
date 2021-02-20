@@ -320,6 +320,5 @@ namespace :dev do
   desc 'iNaturalist observations api'
   task inaturalist_observations_api: :environment do
     data = InaturalistService.observations("desc", "created_at", 1)
-    binding.pry
   end
 end
