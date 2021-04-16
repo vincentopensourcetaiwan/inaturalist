@@ -83,10 +83,6 @@ GEM
     autoprefixer-rails (10.2.4.0)
       execjs
     awesome_print (1.9.2)
-    awesome_rails_console (0.4.4)
-      awesome_print
-      pry-rails
-      railties
     bcrypt (3.1.16)
     bootsnap (1.7.3)
       msgpack (~> 1.0)
@@ -276,8 +272,6 @@ GEM
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    pry-rails (0.3.9)
-      pry (>= 0.10.4)
     pry-remote (0.1.8)
       pry (~> 0.9)
       slop (~> 3.0)
@@ -428,7 +422,6 @@ DEPENDENCIES
   ajax-datatables-rails
   annotate
   awesome_print
-  awesome_rails_console
   bootsnap (>= 1.1.0)
   bootstrap (>= 4.3.1)
   bootstrap4-kaminari-views
@@ -442,6 +435,7 @@ DEPENDENCIES
   draper
   factory_bot_rails
   faker
+  faraday
   figaro
   graphiql-rails
   high_voltage
